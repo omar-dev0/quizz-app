@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizz_app/core/resources/colors.dart';
 
 class AppTheme {
-  static const Color _primary = Color(0xFF02369C);
-  static final Color _black30 = Colors.black.withOpacity(0.3);
+
   static final ThemeData light = ThemeData(
-    canvasColor: _primary,
+    canvasColor: AppColors.primary,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: _primary,
-      primary: _primary,
+      seedColor: AppColors.primary,
+      primary: AppColors.primary,
       onPrimary: Colors.white,
-      secondary: _primary.withOpacity(.2),
+      secondary: AppColors.primary.withOpacity(.2),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: _black30,
-      selectedItemColor: _primary,
+      backgroundColor: AppColors.black30,
+      selectedItemColor: AppColors.primary,
       enableFeedback: false,
-      unselectedItemColor: _black30,
-      selectedLabelStyle: GoogleFonts.roboto(color: _primary, fontSize: 12.sp),
+      unselectedItemColor: AppColors.primary,
+      selectedLabelStyle: GoogleFonts.roboto(color: AppColors.primary, fontSize: 12.sp),
       unselectedLabelStyle:
-      GoogleFonts.roboto(color: _black30, fontSize: 12.sp),
+      GoogleFonts.roboto(color: AppColors.black30, fontSize: 12.sp),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: _primary,
-        disabledBackgroundColor: _black30,
+        backgroundColor: AppColors.primary,
+        disabledBackgroundColor: AppColors.black30,
       ),
     ),
     textTheme:  TextTheme(
@@ -40,8 +40,40 @@ class AppTheme {
       bodyLarge: GoogleFonts.roboto(
         color: Colors.white,
         fontSize: 16.sp
-      )
-
+      ),
     ),
+    inputDecorationTheme:  InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: AppColors.black , width: 1),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(4.r) ,
+          topRight: Radius.circular(4.r) ,
+        )
+      ),
+      focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.black , width: 1),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4.r) ,
+            topRight: Radius.circular(4.r) ,
+          )
+      ),
+      disabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.black , width: 1),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4.r) ,
+            topRight: Radius.circular(4.r) ,
+          )
+      ),
+      errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.error , width: 1),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4.r) ,
+            topRight: Radius.circular(4.r) ,
+          )
+      ),
+      errorStyle: GoogleFonts.roboto(fontSize : 12.sp , color : AppColors.error),
+      labelStyle: GoogleFonts.roboto(fontSize : 12.sp , color : AppColors.grey),
+
+    )
   );
 }
