@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 const String _animationPath = "assets/animations/";
 const String _iconsPath = "assets/icons/";
 const String _imagesPath = "assets/images/";
@@ -11,4 +13,5 @@ abstract class AnimationAssets{
 
 }
 
-abstract class IconsAssets{}
+abstract class IconsAssets{
+}
