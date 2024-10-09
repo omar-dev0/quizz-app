@@ -21,7 +21,8 @@ class ActionHandler {
          break;
        case CheckedBoxAction():
          _handleCheckboxAction(action);
-
+       case LoginFormInputValidate():
+         break;
      }
   }
 

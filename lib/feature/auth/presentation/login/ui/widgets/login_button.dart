@@ -7,9 +7,9 @@ import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_
 import '../../../../../../core/resources/colors.dart';
 
 class LoginButton extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
 
-  const LoginButton({super.key, required this.formKey});
+
+  const LoginButton({super.key});
 
 
   @override
@@ -23,7 +23,7 @@ class LoginButton extends StatelessWidget {
             style: Theme.of(context).elevatedButtonTheme.style,
             onPressed: () {
               FocusScope.of(context).unfocus();
-              if(formKey.currentState?.validate() ?? false){
+              if(loginViewModel.getLoginFormKey().currentState?.validate() ?? false){
                 loginViewModel.doAction(LoginAction());
               }else{
                 loginViewModel.emitState(EmptyFiledState("Required"));

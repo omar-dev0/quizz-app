@@ -1,6 +1,5 @@
-import 'controller_manger.dart';
-
 abstract class ValidateManger {
+
   static String? isEmailInputFieldEmpty(String? email) {
     if (email == null || email.isEmpty) {
       return "Email is required";
