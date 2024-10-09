@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizz_app/core/extensions/build_context_extensions.dart';
+import 'package:quizz_app/core/resources/colors.dart';
+import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/login_button.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me_and_forgot_password_row.dart';
 
 import 'login_form.dart';
@@ -14,8 +17,14 @@ class LoginScreenBody extends StatelessWidget {
       child: Column(
         children: [
           LoginForm(),
-          SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           RememberMeAndForgotPasswordRow(),
+          SizedBox(
+            height: 48,
+          ),
+          LoginButton()
         ],
       ),
     );
