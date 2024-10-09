@@ -20,11 +20,15 @@ dependencies:
   dio: ^5.7.0
   injectable: ^2.5.0
   flutter_bloc: ^8.1.6
+  get_it:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+    # add the generator to your dev_dependencies
+  injectable_generator:
+# add build runner if not already added
+  build_runner:
   flutter_lints: ^3.0.0
 
 

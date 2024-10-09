@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizz_app/core/resources/theme.dart';
-void main() {
+import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
+
+import 'core/di/di.dart';
+void main() async{
+  configureDependencies();
   runApp(const MyApp());
 }
 
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         home: child,
       ),
-      child: TestScreen(),
+      child:  LoginScreen(),
     );
   }
 }
