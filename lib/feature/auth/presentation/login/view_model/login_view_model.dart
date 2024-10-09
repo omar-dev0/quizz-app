@@ -1,45 +1,35 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/auth/domain/use_cases/login_use_case.dart';
-import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
 
+import '../../../domain/use_cases/login_use_case.dart';
+import 'ActionsHandler.dart';
+import 'ControllerManger.dart';
+import 'RememberMeanger.dart';
+import 'login_actions.dart';
 import 'login_screen_state.dart';
-
 
 @injectable
 class LoginViewModel extends Cubit<LoginScreenState> {
-  LoginUseCase loginUseCase;
-  LoginViewModel(this.loginUseCase) : super(InitialScreenState());
+  final ControllersManager controllersManager;
+  final RememberMeManager rememberMeManager;
+  final ActionHandler actionHandler;
 
-   bool _isRememberMeBoxChecked = false;
-   void _setRememberMeBoxState(bool isRememberMeBoxChecked){
-     _isRememberMeBoxChecked = isRememberMeBoxChecked;
-   }
+  LoginViewModel(LoginUseCase loginUseCase)
+      : controllersManager = ControllersManager(),
+        rememberMeManager = RememberMeManager(),
+        actionHandler = ActionHandler(loginUseCase, RememberMeManager()),
+        super(InitialScreenState());
 
-   bool getRememberMeBoxState(){
-     return _isRememberMeBoxChecked;
-   }
-
-  void doAction(Actions action){
-    switch (action) {
-      case LoginAction():
-        _login(action);
-        break;
-      case ForgetPasswordAction():
-        _forgetPasswordAction();
-        break;
-      case CheckedBoxAction():
-        _setRememberMeBoxState(action.isBoxChecked);
-        break;
-    }
+  TextEditingController getFieldController(String field) {
+    return controllersManager.getFieldController(field);
   }
 
-  void _isCheckedBox(CheckedBoxAction action){
-    _setRememberMeBoxState(action.isBoxChecked);
+  bool getRememberMeBoxState() {
+    return rememberMeManager.isRememberMeBoxChecked;
   }
 
-  void _login(LoginAction action){}
-
-  void _forgetPasswordAction(){}
-
+  void doAction(LoginScreenActions action) {
+    actionHandler.handleAction(action);
+  }
 }
