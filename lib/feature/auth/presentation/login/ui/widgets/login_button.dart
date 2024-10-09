@@ -22,6 +22,7 @@ class LoginButton extends StatelessWidget {
           child: ElevatedButton(
             style: Theme.of(context).elevatedButtonTheme.style,
             onPressed: () {
+              FocusScope.of(context).unfocus();
               if(formKey.currentState?.validate() ?? false){
                 loginViewModel.doAction(LoginAction());
               }else{
