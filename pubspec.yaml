@@ -12,7 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  retrofit: ^4.4.1
+  logger: ^2.4.0  # for logging purpose
+  json_annotation: ^4.9.0
   cupertino_icons: ^1.0.6
   lottie: ^3.1.2
   google_fonts: ^6.2.1
@@ -28,8 +30,10 @@ dev_dependencies:
     # add the generator to your dev_dependencies
   injectable_generator:
 # add build runner if not already added
-  build_runner:
   flutter_lints: ^3.0.0
+  retrofit_generator: '>=8.0.0 <10.0.0' # for Dart 3.3 use ^9.0.0
+  build_runner: ^2.3.3
+  json_serializable: ^6.8.0
 
 
 flutter:

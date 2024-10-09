@@ -1,3 +1,5 @@
+import 'package:dio/src/dio_exception.dart';
+
 abstract class Result<T>{}
 
 class Success<T> implements Result<T>
@@ -9,5 +11,5 @@ class Success<T> implements Result<T>
 class Fail<T> implements Result<T>
 {
   Exception? error;
-  Fail({this.error});
+  Fail(DioException ex, {this.error});
 }
