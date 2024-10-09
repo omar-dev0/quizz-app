@@ -6,8 +6,8 @@ abstract class ValidateManger{
     String? message;
     String email = ControllersManager().getFieldController("Email").text;
     String password = ControllersManager().getFieldController("Password").text;
-    bool isEmptyEmail = _isEmailInputFieldEmpty(email);
-    bool isEmptyPassword = _isPasswordInputFieldEmpty(password);
+    bool isEmptyEmail = isEmailInputFieldEmpty(email);
+    bool isEmptyPassword = isPasswordInputFieldEmpty(password);
 
     if(isEmptyEmail && isEmptyPassword){
       message = "Both fields are required";
@@ -20,11 +20,11 @@ abstract class ValidateManger{
   }
 
 
-  static bool _isEmailInputFieldEmpty(String email){
+  static bool isEmailInputFieldEmpty(String email){
     return email.isEmpty;
   }
 
- static bool _isPasswordInputFieldEmpty(String password){
+ static bool isPasswordInputFieldEmpty(String password){
     return password.isEmpty;
   }
 

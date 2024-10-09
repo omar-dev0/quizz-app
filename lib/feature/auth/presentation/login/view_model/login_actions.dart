@@ -3,6 +3,7 @@ sealed class LoginScreenActions{}
 
 class LoginAction extends LoginScreenActions{}
 
+
 class ForgetPasswordAction extends LoginScreenActions{
 
 }

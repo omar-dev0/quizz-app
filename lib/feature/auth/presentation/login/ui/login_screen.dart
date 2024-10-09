@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
           ),
         ),
-        body: const SafeArea(child: LoginScreenBody()),
+        body: SafeArea(child: LoginScreenBody()),
       ),
     );
   }

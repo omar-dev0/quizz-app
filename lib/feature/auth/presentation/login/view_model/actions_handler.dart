@@ -15,24 +15,18 @@ class ActionHandler {
   void handleAction(LoginScreenActions action) {
      switch (action) {
        case LoginAction():
-
          break;
        case ForgetPasswordAction():
 
          break;
        case CheckedBoxAction():
          _handleCheckboxAction(action);
+
      }
   }
 
-
-
   void _login() {
-    String? validateMessage = ValidateManger.validateEmptyField();
-    if(validateMessage != null){
-      loginViewModel.emitState(EmptyFiledState(validateMessage));
-      return;
-    }
+
   }
 
   void _forgetPasswordAction() {

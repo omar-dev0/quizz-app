@@ -6,13 +6,14 @@ import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_
 class CustomInputField extends StatelessWidget {
   final String hintText;
   final String labelText;
-  
-  const CustomInputField({super.key, required this.hintText,required this.labelText});
+  final FormFieldValidator<String>? validator;
+  const CustomInputField({super.key, required this.hintText,required this.labelText, required this.validator});
 
   @override
   Widget build(BuildContext context) {
     LoginViewModel  viewModel = context.read<LoginViewModel>();
-    return TextField(
+    return TextFormField(
+      validator: validator,
       controller: viewModel.getFieldController(labelText),
       obscureText: labelText == 'Password',
       style: Theme.of(context).textTheme.bodyMedium,

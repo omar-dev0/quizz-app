@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../../../../core/resources/colors.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final GlobalKey<FormState> formKey;
+
+  const LoginButton({super.key, required this.formKey});
 
 
   @override
@@ -19,7 +22,11 @@ class LoginButton extends StatelessWidget {
           child: ElevatedButton(
             style: Theme.of(context).elevatedButtonTheme.style,
             onPressed: () {
-              loginViewModel.doAction(LoginAction());
+              if(formKey.currentState?.validate() ?? false){
+                loginViewModel.doAction(LoginAction());
+              }else{
+                loginViewModel.emitState(EmptyFiledState("Required"));
+              }
             },
             child: Padding(
               padding: const EdgeInsets.all(12),

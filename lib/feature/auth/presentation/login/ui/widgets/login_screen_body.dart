@@ -8,23 +8,23 @@ import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me
 import 'login_form.dart';
 
 class LoginScreenBody extends StatelessWidget {
-  const LoginScreenBody({super.key});
-
+   LoginScreenBody({super.key});
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(24),
+    return  Padding(
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          LoginForm(),
-          SizedBox(
+          LoginForm(formKey: formKey,),
+          const SizedBox(
             height: 16,
           ),
-          RememberMeAndForgotPasswordRow(),
-          SizedBox(
+          const RememberMeAndForgotPasswordRow(),
+          const SizedBox(
             height: 48,
           ),
-          LoginButton()
+           LoginButton(formKey: formKey,)
         ],
       ),
     );
