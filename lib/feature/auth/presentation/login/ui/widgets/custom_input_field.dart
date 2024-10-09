@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/core/resources/colors.dart';
 
 class CustomInputField extends StatelessWidget {
   final String hintText;
@@ -8,9 +9,11 @@ class CustomInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,
+        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(color: AppColors.grey),
         labelStyle: Theme.of(context).inputDecorationTheme.labelStyle,
         enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
         focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
