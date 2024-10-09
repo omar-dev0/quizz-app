@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/validate_manager.dart';
 import 'custom_input_field.dart';
 
 class LoginForm extends StatelessWidget {
@@ -20,10 +21,7 @@ class LoginForm extends StatelessWidget {
               hintText: "Enter your email",
               labelText: "Email",
               validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Email is required";
-                }
-                return null;
+                return ValidateManger.isEmailInputFieldEmpty(value);
               },
             ),
             const SizedBox(
@@ -33,10 +31,7 @@ class LoginForm extends StatelessWidget {
               hintText: "Enter your password",
               labelText: "Password",
               validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Password  is required";
-                }
-                return null;
+                return ValidateManger.isPasswordInputFieldEmpty(value);
               },
             ),
           ],
