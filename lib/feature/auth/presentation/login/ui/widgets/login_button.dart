@@ -19,7 +19,7 @@ class LoginButton extends StatelessWidget {
           child: ElevatedButton(
             style: Theme.of(context).elevatedButtonTheme.style,
             onPressed: () {
-              loginViewModel.doAction(LoginAction("", ""));
+              loginViewModel.doAction(LoginAction());
             },
             child: Padding(
               padding: const EdgeInsets.all(12),

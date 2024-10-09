@@ -9,19 +9,14 @@ class ActionHandler {
   ActionHandler(this.loginUseCase, this.rememberMeManager);
 
   void handleAction(LoginScreenActions action) {
-    switch (action.runtimeType) {
-      case LoginAction _:
-        _login(action as LoginAction);
-        break;
-      case ForgetPasswordAction _:
-        _forgetPasswordAction();
-        break;
-      case CheckedBoxAction _:
-        _handleCheckboxAction(action as CheckedBoxAction);
-        break;
-      default:
-        throw Exception("Unknown action");
-    }
+     switch (action) {
+       case LoginAction():
+         // TODO: Handle this case.
+       case ForgetPasswordAction():
+         // TODO: Handle this case.
+       case CheckedBoxAction():
+         // TODO: Handle this case.
+     }
   }
 
   void _login(LoginAction action) {

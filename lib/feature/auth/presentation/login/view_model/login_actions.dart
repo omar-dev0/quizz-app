@@ -1,17 +1,13 @@
-sealed class Actions{}
+sealed class LoginScreenActions{}
 
 
-class LoginAction extends Actions{
-  String email;
-  String password;
-  LoginAction(this.email, this.password);
-}
+class LoginAction extends LoginScreenActions{}
 
-class ForgetPasswordAction extends Actions{
+class ForgetPasswordAction extends LoginScreenActions{
 
 }
 
-class CheckedBoxAction extends Actions{
+class CheckedBoxAction extends LoginScreenActions{
   bool isBoxChecked;
   CheckedBoxAction(this.isBoxChecked);
 }
