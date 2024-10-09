@@ -20,7 +20,7 @@ class _RememberMeRowState extends State<RememberMeRow> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Checkbox(
-            value: viewModel.getRememberMeBoxState(),
+            value: isChecked,
             onChanged: (value) {
               setState(() {
                 isChecked = value?? false;

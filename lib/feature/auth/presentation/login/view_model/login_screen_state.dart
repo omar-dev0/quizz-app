@@ -6,7 +6,10 @@ class InitialScreenState extends LoginScreenState{}
 
 class LoadingState extends LoginScreenState{}
 
-
+class EmptyFiledState extends LoginScreenState{
+  String message;
+  EmptyFiledState(this.message);
+}
 
 class LoginErrorState extends LoginScreenState{
   Exception? exception;
