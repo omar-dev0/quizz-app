@@ -1,0 +1,47 @@
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/remember_me_manager.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/validate_manager.dart';
+import '../../../domain/use_cases/login_use_case.dart';
+
+import 'controller_manger.dart';
+import 'login_actions.dart';
+
+class ActionHandler {
+  final LoginUseCase loginUseCase;
+  final RememberMeManager rememberMeManager;
+  final ControllersManager controllersManager;
+  final LoginViewModel loginViewModel;
+  ActionHandler(this.loginUseCase, this.rememberMeManager, this.controllersManager, this.loginViewModel);
+
+  void handleAction(LoginScreenActions action) {
+     switch (action) {
+       case LoginAction():
+
+         break;
+       case ForgetPasswordAction():
+
+         break;
+       case CheckedBoxAction():
+         _handleCheckboxAction(action);
+     }
+  }
+
+
+
+  void _login() {
+    String? validateMessage = ValidateManger.validateEmptyField();
+    if(validateMessage != null){
+      loginViewModel.emitState(EmptyFiledState(validateMessage));
+      return;
+    }
+  }
+
+  void _forgetPasswordAction() {
+
+  }
+
+  void _handleCheckboxAction(CheckedBoxAction action) {
+    rememberMeManager.setRememberMeBoxState(action.isBoxChecked);
+  }
+}
