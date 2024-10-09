@@ -15,6 +15,7 @@ class LoginViewModel extends Cubit<LoginScreenState> {
    void _setRememberMeBoxState(bool isRememberMeBoxChecked){
      _isRememberMeBoxChecked = isRememberMeBoxChecked;
    }
+
    bool getRememberMeBoxState(){
      return _isRememberMeBoxChecked;
    }
@@ -27,12 +28,13 @@ class LoginViewModel extends Cubit<LoginScreenState> {
       case ForgetPasswordAction():
         _forgetPasswordAction();
         break;
-      case CheckedBoxAction():_isCheckedBox(action);
+      case CheckedBoxAction():
+        _setRememberMeBoxState(action.isBoxChecked);
+        break;
     }
   }
 
   void _isCheckedBox(CheckedBoxAction action){
-    emit(RememberMeCheckedBoxState());
     _setRememberMeBoxState(action.isBoxChecked);
   }
 

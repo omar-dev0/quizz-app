@@ -15,3 +15,5 @@ class CheckedBoxAction extends Actions{
   bool isBoxChecked;
   CheckedBoxAction(this.isBoxChecked);
 }
+
+

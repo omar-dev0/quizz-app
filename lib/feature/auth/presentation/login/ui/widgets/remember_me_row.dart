@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 
 class RememberMeRow extends StatefulWidget {
   const RememberMeRow({super.key});
@@ -12,14 +15,16 @@ class _RememberMeRowState extends State<RememberMeRow> {
 
   @override
   Widget build(BuildContext context) {
+   LoginViewModel viewModel = context.read<LoginViewModel>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Checkbox(
-            value: isChecked,
+            value: viewModel.getRememberMeBoxState(),
             onChanged: (value) {
               setState(() {
-                isChecked = value ?? false;
+                isChecked = value?? false;
+                viewModel.doAction(CheckedBoxAction(isChecked));
               });
             }),
         Text(

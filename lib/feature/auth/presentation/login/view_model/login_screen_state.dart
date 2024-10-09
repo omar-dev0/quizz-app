@@ -6,7 +6,7 @@ class InitialScreenState extends LoginScreenState{}
 
 class LoadingState extends LoginScreenState{}
 
-class RememberMeCheckedBoxState extends LoginScreenState{}
+
 
 class LoginErrorState extends LoginScreenState{
   Exception? exception;
