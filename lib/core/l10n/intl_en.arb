@@ -1,0 +1,20 @@
+{
+  "signIn" : "Sign up",
+  "userName" : "User name",
+  "inputName" : "Enter your user name",
+  "firstName" : "First name",
+  "firstNameInput" : "Enter First name",
+  "lastNameInput" : "Enter Last name",
+  "lastName" : "Last name",
+  "email" : "Email",
+  "password" : "Password",
+  "inputEmail" : "Enter your email",
+  "inputPassword" : "Enter password",
+  "confirmPassword" : "Confirm password",
+  "phoneNumber" : "Phone number",
+  "phoneInput" : "Enter phone number",
+  "signUp" : "Signup",
+  "login" : "Login",
+  "haveAccount" : "Already have an account?",
+  "update" : "Update"
+}
