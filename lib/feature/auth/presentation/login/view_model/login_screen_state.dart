@@ -11,6 +11,11 @@ class EmptyFiledState extends LoginScreenState{
   EmptyFiledState(this.message);
 }
 
+class RememberMeBoxCheckedState extends LoginScreenState{
+  bool isChecked;
+  RememberMeBoxCheckedState(this.isChecked);
+}
+
 class LoginErrorState extends LoginScreenState{
   Exception? exception;
   LoginErrorState(this.exception);
