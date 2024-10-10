@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/feature/auth/data/api/api_client.dart';
-import 'package:quizz_app/feature/auth/presentation/forget_password_screen.dart';
+import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../domain/model/user.dart';
