@@ -24,14 +24,12 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LoginResponse> login(
-    String email,
-    String password,
-  ) async {
+  Future<LoginResponse> login(LoginRequest loginRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(loginRequest.toJson());
     final _options = _setStreamType<LoginResponse>(Options(
       method: 'POST',
       headers: _headers,

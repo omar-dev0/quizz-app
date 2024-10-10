@@ -1,13 +1,14 @@
-/// email : "elv@elevate.com"
-/// password : "Elevate@123"
+import 'package:json_annotation/json_annotation.dart';
+part 'login_request.g.dart';
 
-class LogInRequest {
-  LogInRequest({
+@JsonSerializable()
+class LoginRequest {
+  LoginRequest({
     this.email,
     this.password,
   });
 
-  LogInRequest.fromJson(dynamic json) {
+  LoginRequest.fromJson(dynamic json) {
     email = json['email'];
     password = json['password'];
   }
