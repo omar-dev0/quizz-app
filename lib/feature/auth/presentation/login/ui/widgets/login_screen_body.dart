@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/login_button.dart';
@@ -6,7 +5,6 @@ import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../../../../core/resources/colors.dart';
-import '../../../../../../core/shared_widgets/dialogs.dart';
 import 'login_form.dart';
 
 class LoginScreenBody extends StatelessWidget {
