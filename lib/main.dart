@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         home: child,
       ),
-      child:  LoginScreen(),
+      child: LoginScreen(),
     );
   }
 }

@@ -16,8 +16,7 @@ class RememberMeBoxCheckedState extends LoginScreenState{
 }
 
 class LoginErrorState extends LoginScreenState{
-  Exception? exception;
-  LoginErrorState(this.exception);
+
 }
 
 class LoginSuccessState extends LoginScreenState{

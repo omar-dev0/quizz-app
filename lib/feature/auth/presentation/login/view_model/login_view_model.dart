@@ -25,6 +25,14 @@ class LoginViewModel extends Cubit<LoginScreenState> {
     return controllersManager.getFieldController(field);
   }
 
+  void setEmailValue(String email) {
+    controllersManager.setEmailControllerValue(email);
+  }
+
+  void setPasswordValue(String password) {
+    controllersManager.setPasswordControllerValue(password);
+  }
+
   GlobalKey<FormState> getLoginFormKey(){
     return formKeyManager.getLoginFormKey();
   }
