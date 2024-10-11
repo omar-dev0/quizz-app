@@ -16,7 +16,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
-      body: const CheckEmailScreen(),
+      // body: const CheckEmailScreen(),
     );
   }
 }

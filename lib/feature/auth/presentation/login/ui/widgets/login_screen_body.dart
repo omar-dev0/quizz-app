@@ -12,19 +12,29 @@ class LoginScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginViewModel, LoginScreenState>(
-      builder: (context, state) {
-        if(state is LoadingState){
-          return const CircularProgressIndicator();
-        }else if(state is LoginErrorState){
-          return const AlertDialog(
-            backgroundColor: AppColors.error,
-            title: Text("Something went wrong"),
-            actions: [
-
-            ],
-          );
+    return BlocConsumer<LoginViewModel, LoginScreenState>(
+      listenWhen: (previous, current){
+        if(previous is LoadingState || previous is LoginErrorState){
+          Navigator.pop(context);
         }
+        return current is! InitialScreenState;
+      },
+      listener: (context, state) {
+        if (state is LoadingState) {
+          showDialog(context: context, builder: (_){
+            return const CircularProgressIndicator();
+          });
+        } else if (state is LoginErrorState) {
+          showDialog(context: context, builder: (_){
+            return const AlertDialog(
+              backgroundColor: AppColors.error,
+              title: Text("Something went wrong"),
+              actions: [],
+            );
+          });
+        }
+      },
+      builder: (BuildContext context, LoginScreenState state) {
         return const Padding(
           padding: EdgeInsets.all(24),
           child: Column(

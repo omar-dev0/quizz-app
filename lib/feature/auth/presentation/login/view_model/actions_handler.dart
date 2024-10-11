@@ -6,15 +6,13 @@ import 'package:quizz_app/feature/auth/presentation/login/view_model/login_scree
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../domain/model/user.dart';
 import '../../../domain/use_cases/login_use_case.dart';
-import 'controller_manger.dart';
 import 'login_actions.dart';
 
 class ActionHandler {
   final LoginUseCase loginUseCase;
-  final ControllersManager controllersManager;
   final LoginViewModel loginViewModel;
 
-  ActionHandler(this.loginUseCase, this.controllersManager,
+  ActionHandler(this.loginUseCase,
       this.loginViewModel);
 
   void handleAction(LoginScreenActions action) {
@@ -35,12 +33,12 @@ class ActionHandler {
   Future<void> _login() async {
     loginViewModel.emitState(LoadingState());
     final ApiClient apiClient = ApiClient();
-    String email = controllersManager.emailController.text;
-    String password = controllersManager.passwordController.text;
+    String email = loginViewModel.controllersManager.emailController.text;
+    String password =loginViewModel.controllersManager.passwordController.text;
     log("email $email");
     log("password: $password");
     final response = await apiClient.login(email,password);
-    log("responsedata ${response}");
+    log("responsedata ${response?.message}");
     if(response == null){
        loginViewModel.emitState(LoginErrorState());
     }else{
@@ -50,7 +48,7 @@ class ActionHandler {
   }
 
   void _navigateToForgetPassword(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const ForgetPasswordScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ForgetPasswordScreen()));
 }
   void _handleCheckboxAction(CheckedBoxAction action) {
     loginViewModel.emitState(RememberMeBoxCheckedState(action.isBoxChecked));

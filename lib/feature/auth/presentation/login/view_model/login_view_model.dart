@@ -18,7 +18,7 @@ class LoginViewModel extends Cubit<LoginScreenState> {
       : controllersManager = ControllersManager(), formKeyManager  = FormKeyManager(),
         super(InitialScreenState()) {
     actionHandler = ActionHandler(
-        loginUseCase, ControllersManager(), this);
+        loginUseCase, this);
   }
 
   TextEditingController getFieldController(String field) {

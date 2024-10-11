@@ -10,4 +10,8 @@ class AuthRepositoryImpl implements AuthRepository{
     throw UnimplementedError();
   }
 
+  @override
+  void resetPassword() {
+    // TODO: implement resetPassword
+  }
 }
