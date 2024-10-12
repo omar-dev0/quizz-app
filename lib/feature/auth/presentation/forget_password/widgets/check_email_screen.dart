@@ -14,13 +14,7 @@ class CheckEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final forgetPasswordViewModel = context.read<ForgetPasswordViewModel>();
-    return BlocListener<ForgetPasswordViewModel,ForgetPasswordScreenState>(
-      listener: ( context,  state) {
-        if(state is NavigateToEmailVerificationScreenState){
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const OtpVerificationScreen()));
-        }
-      },
-      child: Padding(
+    return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SizedBox(
           width: context.width,
@@ -54,21 +48,25 @@ class CheckEmailScreen extends StatelessWidget {
               SizedBox(
                 width: context.width,
                 child: ElevatedButton(
-                    onPressed: () {
-                      forgetPasswordViewModel.doAction(NavigateToVerificationEmailScreenAction());
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      child: Text(
-                        "Continue",
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(color: AppColors.white),
-                      ),
-                    )),
+                  onPressed: () {
+                    forgetPasswordViewModel
+                        .doAction(NavigateToVerificationEmailScreenAction());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "Continue",
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
               )
             ],
           ),
         ),
-      ),
     );
   }
 }

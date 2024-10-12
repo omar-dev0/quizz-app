@@ -8,13 +8,14 @@ class OtpVerificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: SizedBox(
+    return SizedBox(
         width: context.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 40,
+            ),
             Text(
               "Email verification",
               style: Theme.of(context).textTheme.labelLarge,
@@ -53,7 +54,6 @@ class OtpVerificationScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    ));
+    );
   }
 }

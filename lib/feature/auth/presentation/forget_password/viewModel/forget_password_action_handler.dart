@@ -12,6 +12,8 @@ class ForgetPasswordActionHandler{
       case NavigateToVerificationEmailScreenAction():
         forgetPasswordViewModel.emitState(NavigateToEmailVerificationScreenState());
         break;
+      case NavigateToResetPasswordScreenAction():
+        forgetPasswordViewModel.emitState(NavigateToResetPasswordScreenState());
     }
   }
 }

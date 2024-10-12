@@ -1,3 +1,4 @@
 sealed class ForgetPasswordActions{}
 
 class NavigateToVerificationEmailScreenAction extends ForgetPasswordActions{}
+class NavigateToResetPasswordScreenAction extends ForgetPasswordActions{}
