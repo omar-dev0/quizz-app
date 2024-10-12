@@ -8,12 +8,12 @@ import '../../../domain/model/user.dart';
 import '../../../domain/use_cases/login_use_case.dart';
 import 'login_actions.dart';
 
-class ActionHandler {
+class LoginActionHandler {
   final LoginUseCase loginUseCase;
   final LoginViewModel loginViewModel;
   late User user;
   late String? errorMessage;
-  ActionHandler(this.loginUseCase,
+  LoginActionHandler(this.loginUseCase,
       this.loginViewModel);
 
   void handleAction(LoginScreenActions action) {
