@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
+import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
+
+import '../viewModel/forget_password_view_model.dart';
 
 class OtpCodeRow extends StatefulWidget {
   final int otpLength = 6;
   const OtpCodeRow({super.key});
-
   @override
   State<OtpCodeRow> createState() => _OtpCodeRowState();
 }
@@ -12,6 +16,7 @@ class OtpCodeRow extends StatefulWidget {
 class _OtpCodeRowState extends State<OtpCodeRow> {
   late List<TextEditingController> _controllers;
   late List<FocusNode> _focusNodes;
+  late ForgetPasswordViewModel foregetPasswodViewMdoel;
   @override
   void initState() {
     // TODO: implement initState
@@ -40,12 +45,13 @@ class _OtpCodeRowState extends State<OtpCodeRow> {
     }
     if(_controllers.every((controller)=>controller.text.length == 1)){
       final otp = _controllers.map((controller)=> controller.text).join();
-
+      foregetPasswodViewMdoel.doAction(NavigateToResetPasswordScreenAction());
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    foregetPasswodViewMdoel = context.read<ForgetPasswordViewModel>();
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(widget.otpLength, (index) {
