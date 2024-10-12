@@ -11,7 +11,8 @@ import 'login_actions.dart';
 class ActionHandler {
   final LoginUseCase loginUseCase;
   final LoginViewModel loginViewModel;
-
+  late User user;
+  late String? errorMessage;
   ActionHandler(this.loginUseCase,
       this.loginViewModel);
 
@@ -35,20 +36,18 @@ class ActionHandler {
     final ApiClient apiClient = ApiClient();
     String email = loginViewModel.controllersManager.emailController.text;
     String password =loginViewModel.controllersManager.passwordController.text;
-    log("email $email");
-    log("password: $password");
     final response = await apiClient.login(email,password);
-    log("responsedata ${response?.message}");
-    if(response == null){
+    if(response == null || response.code == 401){
+       errorMessage = response?.message!;
        loginViewModel.emitState(LoginErrorState());
     }else{
-      User user = User(email: email, token: response.token);
+       user = User(email: email, token: response.token);
       loginViewModel.emitState(LoginSuccessState(user));
     }
   }
 
   void _navigateToForgetPassword(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ForgetPasswordScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const ForgetPasswordScreen()));
 }
   void _handleCheckboxAction(CheckedBoxAction action) {
     loginViewModel.emitState(RememberMeBoxCheckedState(action.isBoxChecked));
