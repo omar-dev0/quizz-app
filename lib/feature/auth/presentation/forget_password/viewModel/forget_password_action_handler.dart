@@ -1,4 +1,5 @@
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
+import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_screen_State.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_view_model.dart';
 
 class ForgetPasswordActionHandler{
@@ -8,9 +9,9 @@ class ForgetPasswordActionHandler{
 
   void handelActions(ForgetPasswordActions action){
     switch (action) {
-
       case NavigateToVerificationEmailScreenAction():
-
+        forgetPasswordViewModel.emitState(NavigateToEmailVerificationScreenState());
+        break;
     }
   }
 }
