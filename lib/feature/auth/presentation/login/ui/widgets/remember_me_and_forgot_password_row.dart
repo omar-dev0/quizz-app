@@ -15,7 +15,7 @@ class RememberMeAndForgotPasswordRow extends StatelessWidget {
     return BlocListener<LoginViewModel, LoginScreenState>(
       listener: (context,state){
         if(state is NavigateToForgetPasswordScreenState){
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ForgetPasswordScreen()));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> ForgetPasswordScreen()));
         }
       },
       child: Row(

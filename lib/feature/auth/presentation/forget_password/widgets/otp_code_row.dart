@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
 
+import '../../../../../core/resources/colors.dart';
 import '../viewModel/forget_password_view_model.dart';
 
 class OtpCodeRow extends StatefulWidget {
@@ -55,7 +56,11 @@ class _OtpCodeRowState extends State<OtpCodeRow> {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(widget.otpLength, (index) {
-          return  SizedBox(
+          return  Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: AppColors.otpBackGround,
+              ),
               width: 50,
               child: TextFormField(
                 controller: _controllers[index],
@@ -68,7 +73,7 @@ class _OtpCodeRowState extends State<OtpCodeRow> {
                 decoration: InputDecoration(
                   counterText: "",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  const BorderSide(color: AppColors.otpBackGround),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(

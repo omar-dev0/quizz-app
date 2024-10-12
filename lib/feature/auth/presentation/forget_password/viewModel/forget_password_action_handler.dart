@@ -14,6 +14,12 @@ class ForgetPasswordActionHandler{
         break;
       case NavigateToResetPasswordScreenAction():
         forgetPasswordViewModel.emitState(NavigateToResetPasswordScreenState());
+      case NavigateBackAction():
+        forgetPasswordViewModel.emitState(NavigateBackState());
+      case InitialScreenAction():
+        forgetPasswordViewModel.emitState(InitialScreenState());
+      case NavigateToLoginSrcreenAction():
+        forgetPasswordViewModel.emitState(NavigateToLoginScreenState());
     }
   }
 }
