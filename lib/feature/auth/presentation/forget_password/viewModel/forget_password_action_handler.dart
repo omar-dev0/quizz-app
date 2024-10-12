@@ -18,7 +18,7 @@ class ForgetPasswordActionHandler{
         forgetPasswordViewModel.emitState(NavigateBackState());
       case InitialScreenAction():
         forgetPasswordViewModel.emitState(InitialScreenState());
-      case NavigateToLoginSrcreenAction():
+      case NavigateToLoginScreenAction():
         forgetPasswordViewModel.emitState(NavigateToLoginScreenState());
     }
   }
