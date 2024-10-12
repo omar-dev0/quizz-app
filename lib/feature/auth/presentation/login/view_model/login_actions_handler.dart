@@ -1,7 +1,5 @@
 
-import 'package:flutter/material.dart';
 import 'package:quizz_app/feature/auth/data/api/api_client.dart';
-import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../domain/model/user.dart';
@@ -22,7 +20,7 @@ class LoginActionHandler {
         _login();
         break;
       case ForgetPasswordNavigatorAction():
-        _navigateToForgetPassword(action.context);
+        _navigateToForgetPassword();
         break;
       case CheckedBoxAction():
         _handleCheckboxAction(action);
@@ -46,9 +44,9 @@ class LoginActionHandler {
     }
   }
 
-  void _navigateToForgetPassword(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>  ForgetPasswordScreen()));
-}
+  void _navigateToForgetPassword(){
+    loginViewModel.emitState(NavigateToForgetPasswordScreenState());
+  }
   void _handleCheckboxAction(CheckedBoxAction action) {
     loginViewModel.emitState(RememberMeBoxCheckedState(action.isBoxChecked));
   }

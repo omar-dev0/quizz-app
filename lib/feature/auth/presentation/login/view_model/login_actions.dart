@@ -6,10 +6,7 @@ sealed class LoginScreenActions{}
 class LoginAction extends LoginScreenActions{}
 
 class LoginFormInputValidate extends LoginScreenActions{}
-class ForgetPasswordNavigatorAction extends LoginScreenActions{
-  BuildContext context;
-  ForgetPasswordNavigatorAction(this.context);
-}
+class ForgetPasswordNavigatorAction extends LoginScreenActions{}
 
 class CheckedBoxAction extends LoginScreenActions{
   bool isBoxChecked;
