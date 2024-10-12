@@ -1,3 +1,4 @@
 sealed class ForgetPasswordScreenState{}
 
-
+class InitialScreenState extends ForgetPasswordScreenState{}
+class NavigateToEmailVerificationScreenState extends ForgetPasswordScreenState{}

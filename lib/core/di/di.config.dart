@@ -18,6 +18,8 @@ import '../../feature/auth/domain/repository/auth_repository.dart' as _i884;
 import '../../feature/auth/domain/use_cases/forget_password_use_case.dart'
     as _i1018;
 import '../../feature/auth/domain/use_cases/login_use_case.dart' as _i561;
+import '../../feature/auth/presentation/forget_password/viewModel/forget_password_view_model.dart'
+    as _i561;
 import '../../feature/auth/presentation/login/view_model/login_view_model.dart'
     as _i1046;
 
@@ -37,8 +39,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i884.AuthRepository>(() => _i648.AuthRepositoryImpl());
     gh.factory<_i561.LoginUseCase>(
         () => _i561.LoginUseCase(gh<_i884.AuthRepository>()));
-    gh.factory<_i1018.ForgetPasswordUserCase>(
-        () => _i1018.ForgetPasswordUserCase(gh<_i884.AuthRepository>()));
+    gh.factory<_i1018.ForgetPasswordUseCase>(
+        () => _i1018.ForgetPasswordUseCase(gh<_i884.AuthRepository>()));
+    gh.factory<_i561.ForgetPasswordViewModel>(() =>
+        _i561.ForgetPasswordViewModel(gh<_i1018.ForgetPasswordUseCase>()));
     gh.factory<_i1046.LoginViewModel>(
         () => _i1046.LoginViewModel(gh<_i561.LoginUseCase>()));
     return this;

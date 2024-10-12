@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:quizz_app/feature/auth/data/api/api_client.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
@@ -47,7 +47,7 @@ class ActionHandler {
   }
 
   void _navigateToForgetPassword(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const ForgetPasswordScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>  ForgetPasswordScreen()));
 }
   void _handleCheckboxAction(CheckedBoxAction action) {
     loginViewModel.emitState(RememberMeBoxCheckedState(action.isBoxChecked));
