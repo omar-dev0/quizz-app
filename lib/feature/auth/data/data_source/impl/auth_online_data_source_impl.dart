@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/api_services.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/Otp_code_request.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/login_request.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/Otp_code_response.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
 
 import '../contracts/auth_data_source.dart';
@@ -16,6 +18,13 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
      LoginRequest loginRequest = LoginRequest(email: email, password: password);
      LoginResponse response = await apiServices.login(loginRequest);
      return response;
+  }
+
+  @override
+  Future<OtpCodeResponse?> getOtpCode(String email) async {
+    OtpCodeRequest otpCodeRequest = OtpCodeRequest(email: email);
+    OtpCodeResponse response = await apiServices.getOtpCode(otpCodeRequest);
+    return response;
   }
 
 }

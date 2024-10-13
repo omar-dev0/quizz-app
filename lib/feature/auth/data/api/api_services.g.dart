@@ -37,7 +37,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'signin',
+          'singin',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -50,6 +50,40 @@ class _ApiServices implements ApiServices {
     late LoginResponse _value;
     try {
       _value = LoginResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<OtpCodeResponse> getOtpCode(OtpCodeRequest otpRequest) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(otpRequest.toJson());
+    final _options = _setStreamType<OtpCodeResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'forgetPassword',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late OtpCodeResponse _value;
+    try {
+      _value = OtpCodeResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

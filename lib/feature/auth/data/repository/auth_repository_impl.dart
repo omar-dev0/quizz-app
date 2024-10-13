@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/Otp_code_response.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
@@ -14,8 +15,11 @@ class AuthRepositoryImpl implements AuthRepository{
     return await authOnlineDataSource.login(email, password);
   }
 
+
+
   @override
-  void resetPassword() {
-    // TODO: implement resetPassword
+  Future<OtpCodeResponse?> getOtpCode(String email) async {
+    // TODO: implement getOtpCode
+    return await authOnlineDataSource.getOtpCode(email);
   }
 }
