@@ -1,13 +1,17 @@
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
-import 'package:quizz_app/feature/auth/domain/model/user.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
+import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository{
+
+  AuthOnlineDataSource authOnlineDataSource;
+
+  @factoryMethod
+  AuthRepositoryImpl(this.authOnlineDataSource);
   @override
-  Future<Result<User?>> login(String email, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<LoginResponse?> login(String email, String password) async{
+    return await authOnlineDataSource.login(email, password);
   }
 
   @override

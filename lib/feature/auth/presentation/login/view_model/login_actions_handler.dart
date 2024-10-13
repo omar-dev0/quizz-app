@@ -1,5 +1,4 @@
 
-import 'package:quizz_app/feature/auth/data/api/api_client.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../domain/model/user.dart';
@@ -29,17 +28,15 @@ class LoginActionHandler {
     }
   }
 
-  Future<void> _login() async {
+  void _login() async {
     loginViewModel.emitState(LoadingState());
-    final ApiClient apiClient = ApiClient();
     String email = loginViewModel.controllersManager.emailController.text;
     String password =loginViewModel.controllersManager.passwordController.text;
-    final response = await apiClient.login(email,password);
-    if(response == null || response.code == 401){
-       errorMessage = response?.message!;
+    final response = await  loginUseCase.invoke(email,password);
+    if(response == null || response!.code == 401){
        loginViewModel.emitState(LoginErrorState());
     }else{
-       user = User(email: email, token: response.token);
+       user = User(email: email);
       loginViewModel.emitState(LoginSuccessState(user));
     }
   }
