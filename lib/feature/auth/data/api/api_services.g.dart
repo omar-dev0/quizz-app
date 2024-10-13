@@ -37,7 +37,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'singin',
+          'signin',
           queryParameters: queryParameters,
           data: _data,
         )
