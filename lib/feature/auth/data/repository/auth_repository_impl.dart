@@ -20,8 +20,7 @@ class AuthRepositoryImpl implements AuthRepository{
 
 
   @override
-  Future<OtpCodeResponse?> getOtpCode(String email) async {
-    // TODO: implement getOtpCode
+  Future<Result<OtpCodeResponse?>> getOtpCode(String email) async {
     return await authOnlineDataSource.getOtpCode(email);
   }
 }

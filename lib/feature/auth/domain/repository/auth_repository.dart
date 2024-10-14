@@ -5,5 +5,5 @@ import '../common/api_result.dart';
 
 abstract class AuthRepository{
   Future<Result<LoginResponse?>> login(String email,String password);
-  Future<OtpCodeResponse?> getOtpCode(String email);
+  Future<Result<OtpCodeResponse?>> getOtpCode(String email);
 }

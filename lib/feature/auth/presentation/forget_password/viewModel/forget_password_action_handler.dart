@@ -20,6 +20,11 @@ class ForgetPasswordActionHandler{
         forgetPasswordViewModel.emitState(InitialScreenState());
       case NavigateToLoginScreenAction():
         forgetPasswordViewModel.emitState(NavigateToLoginScreenState());
+      case SentOtpcodeAction():
+    }
+
+    void _getOtpCode(String email){
+
     }
   }
 }

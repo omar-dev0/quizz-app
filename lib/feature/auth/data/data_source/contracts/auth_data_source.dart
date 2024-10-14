@@ -5,5 +5,5 @@ import '../../../domain/common/api_result.dart';
 
 abstract class AuthOnlineDataSource{
   Future<Result<LoginResponse?>> login(String email,String password);
-  Future<OtpCodeResponse?> getOtpCode(String email);
+  Future<Result<OtpCodeResponse?>> getOtpCode(String email);
 }

@@ -4,4 +4,5 @@ class InitialScreenAction extends ForgetPasswordActions{}
 class NavigateToVerificationEmailScreenAction extends ForgetPasswordActions{}
 class NavigateToResetPasswordScreenAction extends ForgetPasswordActions{}
 class NavigateBackAction extends ForgetPasswordActions{}
+class SentOtpcodeAction extends ForgetPasswordActions{}
 class NavigateToLoginScreenAction extends ForgetPasswordActions{}

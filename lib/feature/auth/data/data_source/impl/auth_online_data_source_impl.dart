@@ -26,10 +26,11 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   }
 
   @override
-  Future<OtpCodeResponse?> getOtpCode(String email) async {
+  Future<Result<OtpCodeResponse?>> getOtpCode(String email) async {
     OtpCodeRequest otpCodeRequest = OtpCodeRequest(email: email);
-    OtpCodeResponse response = await apiServices.getOtpCode(otpCodeRequest);
-    return response;
+    return await executeApiCall((){
+      return apiServices.getOtpCode(otpCodeRequest);
+    });
   }
 
 }

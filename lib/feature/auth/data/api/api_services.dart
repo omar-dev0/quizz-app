@@ -12,6 +12,7 @@ part 'api_services.g.dart';
 @lazySingleton
 @RestApi(baseUrl: BaseUrl.authBaseUrl)
 abstract class ApiServices{
+
   @factoryMethod
   factory ApiServices(Dio dio) = _ApiServices;
 
@@ -20,4 +21,6 @@ abstract class ApiServices{
 
   @POST(EndPoints.forgetPasswordEntPoint)
   Future<OtpCodeResponse> getOtpCode(@Body() OtpCodeRequest otpRequest);
+
+
 }
