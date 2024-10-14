@@ -10,7 +10,7 @@ import 'forget_password_screen_State.dart';
 class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
   late final ForgetPasswordActionHandler forgetPasswordActionHandler;
   ForgetPasswordViewModel(ForgetPasswordUseCase forgetPasswordUseCase) : super(InitialScreenState()){
-    forgetPasswordActionHandler = ForgetPasswordActionHandler(this);
+    forgetPasswordActionHandler = ForgetPasswordActionHandler(this,forgetPasswordUseCase);
   }
 
   void emitState(state){

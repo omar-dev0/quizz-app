@@ -1,11 +1,13 @@
+import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
+import 'package:quizz_app/feature/auth/domain/use_cases/forget_password_use_case.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_screen_State.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_view_model.dart';
 
 class ForgetPasswordActionHandler{
-  late ForgetPasswordViewModel forgetPasswordViewModel;
-
-  ForgetPasswordActionHandler(this.forgetPasswordViewModel);
+  final ForgetPasswordViewModel forgetPasswordViewModel;
+   final ForgetPasswordUseCase forgetPasswordUseCase;
+  ForgetPasswordActionHandler(this.forgetPasswordViewModel, this.forgetPasswordUseCase);
 
   void handelActions(ForgetPasswordActions action){
     switch (action) {
@@ -20,11 +22,18 @@ class ForgetPasswordActionHandler{
         forgetPasswordViewModel.emitState(InitialScreenState());
       case NavigateToLoginScreenAction():
         forgetPasswordViewModel.emitState(NavigateToLoginScreenState());
-      case SentOtpcodeAction():
+      case SentOtpCodeAction():
     }
 
-    void _getOtpCode(String email){
+    void _getOtpCode(String email)async{
 
+      final response = await forgetPasswordUseCase.invoke(email);
+      switch (response) {
+        case Success():
+            forgetPasswordViewModel.emitState(OtpSendingSuccess(response.data!.message));
+        case Fail():
+            forgetPasswordViewModel.emitState(OtpSendingFail(response.error.toString()));
+      }
     }
   }
 }
