@@ -14,7 +14,10 @@ class RememberMeBoxCheckedState extends LoginScreenState{
   RememberMeBoxCheckedState(this.isChecked);
 }
 
-class LoginErrorState extends LoginScreenState{}
+class LoginErrorState extends LoginScreenState{
+  String? message;
+  LoginErrorState(this.message);
+}
 
 class NavigateToForgetPasswordScreenState extends LoginScreenState{}
 

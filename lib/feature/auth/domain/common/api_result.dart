@@ -17,9 +17,8 @@ class Fail<T> implements Result<T>
 }
 
 
-class ServerFailure extends Fail {
+class ServerFailure<T> extends Fail<T>{
   ServerFailure(super.message);
-
   factory ServerFailure.fromDioError(DioException e){
     switch (e.type) {
       case DioExceptionType.connectionTimeout:

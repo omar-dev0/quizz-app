@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/Otp_code_response.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
@@ -25,7 +26,10 @@ class AuthRepositoryImpl implements AuthRepository {
       user = await authOnlineDataSource.login(email, password);
       return Success(user);
     } on Exception catch (e) {
-      return Fail(e.toString());
+      if(e is DioException) {
+        return ServerFailure.fromDioError(e);
+      }
+      return ServerFailure(e.toString());
     }
   }
 

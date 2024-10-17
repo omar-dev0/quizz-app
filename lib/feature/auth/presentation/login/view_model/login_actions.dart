@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 sealed class LoginScreenActions{}
 
-
+class InitialScreenAction extends LoginScreenActions{}
 class LoginAction extends LoginScreenActions{}
 
 class LoginFormInputValidate extends LoginScreenActions{}

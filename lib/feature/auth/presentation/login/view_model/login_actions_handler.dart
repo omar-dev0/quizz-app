@@ -26,6 +26,8 @@ class LoginActionHandler {
         _handleCheckboxAction(action);
       case LoginFormInputValidate():
         break;
+      case InitialScreenAction():
+        loginViewModel.emitState(InitialScreenState());
     }
   }
 
@@ -38,9 +40,8 @@ class LoginActionHandler {
       case Success():
         User user = User(email: email, token: response.data!.token);
         loginViewModel.emitState(LoginSuccessState(user));
-      case Fail():
-        errorMessage =response.error.toString();
-        loginViewModel.emitState(LoginErrorState());
+      case ServerFailure():
+        loginViewModel.emitState(LoginErrorState(response.error));
     }
 
   }

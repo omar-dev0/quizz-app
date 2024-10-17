@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/login_button.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me_and_forgot_password_row.dart';
+import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../../../../core/resources/colors.dart';
@@ -14,27 +15,52 @@ class LoginScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginViewModel = context.read<LoginViewModel>();
     return BlocConsumer<LoginViewModel, LoginScreenState>(
-      listenWhen: (previous, current){
-        if(previous is LoadingState || previous is LoginErrorState){
+      listenWhen: (previous, current) {
+        if (previous is LoadingState || previous is LoginErrorState) {
           Navigator.pop(context);
         }
         return current is! InitialScreenState;
       },
       listener: (context, state) {
         if (state is LoadingState) {
-          showDialog(context: context, builder: (_){
-            return  const AlertDialog(
-             title: CircularProgressIndicator(),
-            );
-          });
+          showDialog(
+              context: context,
+              builder: (_) {
+                return const AlertDialog(
+                  title: CircularProgressIndicator(),
+                );
+              });
         } else if (state is LoginErrorState) {
-          showDialog(context: context, builder: (_){
-            return  AlertDialog(
-              backgroundColor: AppColors.error,
-              title: Text(loginViewModel.actionHandler.errorMessage.toString()),
-              actions: [],
-            );
-          });
+          showDialog(
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  backgroundColor: AppColors.error,
+                  title: Text(
+                    state.message!,
+                  ),
+                  actions: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                        loginViewModel.doAction(InitialScreenAction());
+                      },
+                      child: const Text("Cancel"),
+                    )
+                  ],
+                );
+              });
+        } else if (state is LoginSuccessState) {
+          showDialog(
+            context: context,
+            builder: (_) {
+              return const AlertDialog(
+                backgroundColor: Colors.green,
+                title: Text("Success"),
+                actions: [],
+              );
+            },
+          );
         }
       },
       builder: (BuildContext context, LoginScreenState state) {
