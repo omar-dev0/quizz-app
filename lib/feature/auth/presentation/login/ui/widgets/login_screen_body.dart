@@ -32,8 +32,8 @@ class LoginScreenBody extends StatelessWidget {
                   actions: [
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
                         loginViewModel.doAction(InitialScreenAction());
+                        Navigator.pop(context);
                       },
                       child: const Text(AppStrings.cancel),
                     )
@@ -52,7 +52,6 @@ class LoginScreenBody extends StatelessWidget {
                   actions: [
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
                         loginViewModel.doAction(InitialScreenAction());
                       },
                       child: const Text(AppStrings.cancel),
