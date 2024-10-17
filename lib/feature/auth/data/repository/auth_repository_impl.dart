@@ -9,9 +9,11 @@ import '../../domain/common/api_result.dart';
 class AuthRepositoryImpl implements AuthRepository{
 
   AuthOnlineDataSource authOnlineDataSource;
+  AuthOfflineDataSource authOfflineDataSource;
 
   @factoryMethod
-  AuthRepositoryImpl(this.authOnlineDataSource);
+  AuthRepositoryImpl(this.authOnlineDataSource,this.authOfflineDataSource);
+
   @override
   Future<Result<LoginResponse?>> login(String email, String password) async{
     return await authOnlineDataSource.login(email, password);
