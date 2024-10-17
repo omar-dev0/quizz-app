@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/core/local/local.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/forget_password_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me_row.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
@@ -27,7 +28,7 @@ class RememberMeAndForgotPasswordRow extends StatelessWidget {
                loginViewModel.doAction(ForgetPasswordNavigatorAction());
             },
             child: Text(
-              "Forget password?",
+              AppStrings.forgetPassword,
               style: Theme.of(context)
                   .textTheme
                   .labelMedium

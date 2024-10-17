@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/core/local/local.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/validate_manager.dart';
 import 'custom_input_field.dart';
@@ -18,8 +19,8 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           CustomInputField(
-            hintText: "Enter your email",
-            labelText: "Email",
+            hintText: AppStrings.enterYourEmail,
+            labelText: AppStrings.email,
             validator: (value) {
               loginViewModel.setEmailValue(value.toString());
               log("Email checker: $value");
@@ -30,8 +31,8 @@ class LoginForm extends StatelessWidget {
             height: 24,
           ),
           CustomInputField(
-            hintText: "Enter your password",
-            labelText: "Password",
+            hintText: AppStrings.enterYourPassword,
+            labelText: AppStrings.password,
             validator: (value) {
               loginViewModel.setPasswordValue(value.toString());
               log("password checker: $value");

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
+import 'package:quizz_app/core/local/local.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
@@ -35,7 +36,7 @@ class LoginButton extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  "Login",
+                  AppStrings.login,
                   style: Theme.of(context)
                       .textTheme
                       .labelMedium
@@ -52,13 +53,13 @@ class LoginButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Don't have an account?",
+              AppStrings.donotHaveAnAccount,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             TextButton(
               onPressed: () {},
               child: Text(
-                "Signup",
+                AppStrings.signUp,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     decoration: TextDecoration.underline,
                     color: AppColors.primary),

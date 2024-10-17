@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/core/local/local.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/login_button.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me_and_forgot_password_row.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
@@ -34,7 +35,7 @@ class LoginScreenBody extends StatelessWidget {
                         Navigator.pop(context);
                         loginViewModel.doAction(InitialScreenAction());
                       },
-                      child: const Text("Cancel"),
+                      child: const Text(AppStrings.cancel),
                     )
                   ],
                 );
@@ -54,7 +55,7 @@ class LoginScreenBody extends StatelessWidget {
                         Navigator.pop(context);
                         loginViewModel.doAction(InitialScreenAction());
                       },
-                      child: const Text("Cancel"),
+                      child: const Text(AppStrings.cancel),
                     )
                   ],
                 );

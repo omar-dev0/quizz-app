@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/core/local/local.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 
@@ -15,7 +16,7 @@ class CustomInputField extends StatelessWidget {
     return TextFormField(
       validator: validator,
       controller: viewModel.getFieldController(labelText),
-      obscureText: labelText == 'Password',
+      obscureText: labelText == AppStrings.password,
       style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: hintText,
