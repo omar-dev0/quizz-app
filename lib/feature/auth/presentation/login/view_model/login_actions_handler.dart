@@ -41,6 +41,8 @@ class LoginActionHandler {
         User user = User(email: email, token: response.data!.token);
         loginViewModel.emitState(LoginSuccessState(user));
       case ServerFailure():
+        loginViewModel.emitState(LoginErrorState(response.message));
+      case Fail():
         loginViewModel.emitState(LoginErrorState(response.error));
     }
 

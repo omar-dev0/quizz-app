@@ -16,7 +16,7 @@ void main() async{
   setUp();
   await Hive.initFlutter();
   Hive.registerAdapter(LoginResponseAdapter());
-  await Hive.openBox(HiveBox.userBox);
+  await Hive.openBox<LoginResponse>(HiveBox.userBox);
   runApp(const MyApp());
 }
 

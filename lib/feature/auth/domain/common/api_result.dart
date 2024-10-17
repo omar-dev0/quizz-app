@@ -17,8 +17,9 @@ class Fail<T> implements Result<T>
 }
 
 
-class ServerFailure<T> extends Fail<T>{
-  ServerFailure(super.message);
+class ServerFailure<T> implements Result<T>{
+  String? message;
+  ServerFailure(this.message);
   factory ServerFailure.fromDioError(DioException e){
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
@@ -45,7 +46,10 @@ class ServerFailure<T> extends Fail<T>{
 
 
   factory ServerFailure.fromResponse(int statuesCode, dynamic response){
-    if(statuesCode == 404){
+    if(statuesCode == 401){
+      return ServerFailure("Incorrect email or password");
+    }
+    else if(statuesCode == 404){
       return ServerFailure(ErrorMessage.requestNotFount);
     }else if(statuesCode >= 500){
       return ServerFailure(ErrorMessage.serverFailure);

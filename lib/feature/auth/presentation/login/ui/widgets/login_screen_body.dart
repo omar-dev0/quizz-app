@@ -26,8 +26,17 @@ class LoginScreenBody extends StatelessWidget {
           showDialog(
               context: context,
               builder: (_) {
-                return const AlertDialog(
-                  title: CircularProgressIndicator(),
+                return  AlertDialog(
+                  title: const CircularProgressIndicator(),
+                  actions: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                        loginViewModel.doAction(InitialScreenAction());
+                      },
+                      child: const Text("Cancel"),
+                    )
+                  ],
                 );
               });
         } else if (state is LoginErrorState) {
@@ -61,9 +70,44 @@ class LoginScreenBody extends StatelessWidget {
               );
             },
           );
+        }else if(state is InitialScreenState){
+           const Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              children: [
+                LoginForm(),
+                SizedBox(
+                  height: 16,
+                ),
+                RememberMeAndForgotPasswordRow(),
+                SizedBox(
+                  height: 48,
+                ),
+                LoginButton()
+              ],
+            ),
+          );
         }
       },
       builder: (BuildContext context, LoginScreenState state) {
+        if(state is InitialScreenState){
+          return const Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              children: [
+                LoginForm(),
+                SizedBox(
+                  height: 16,
+                ),
+                RememberMeAndForgotPasswordRow(),
+                SizedBox(
+                  height: 48,
+                ),
+                LoginButton()
+              ],
+            ),
+          );
+        }
         return const Padding(
           padding: EdgeInsets.all(24),
           child: Column(

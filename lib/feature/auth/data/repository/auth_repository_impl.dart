@@ -24,7 +24,7 @@ class AuthRepositoryImpl implements AuthRepository {
         return Success(user.first);
       }
       user = await authOnlineDataSource.login(email, password);
-      return Success(user);
+      return user;
     } on Exception catch (e) {
       if(e is DioException) {
         return ServerFailure.fromDioError(e);
