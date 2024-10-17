@@ -6,6 +6,11 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:quizz_app/core/bloc_observer/simple_bloc_observer.dart';
 import 'package:quizz_app/core/constant/hive_box.dart';
 import 'package:quizz_app/core/resources/theme.dart';
+import 'package:quizz_app/feature/auth/ui/registration/registration.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'di/di.dart';
+void main() {
+  configureDependencies();
 import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 import 'core/di/di.dart';
@@ -33,27 +38,17 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_ , child)=> MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.light,
-        home: child,
+        initialRoute: RegistrationScreen.route,
+        routes: {
+          RegistrationScreen.route : (_)=>  RegistrationScreen(),
+        },
       ),
       child: LoginScreen(),
     );
   }
 }
 
-class TestScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: null,
-          child:  Text(
-            'show',
-          ),
-        ),
-      ),
-    );
-  }
-
-}

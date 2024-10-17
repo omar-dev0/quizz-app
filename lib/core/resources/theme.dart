@@ -24,6 +24,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 14.h),
         backgroundColor: AppColors.primary,
         disabledBackgroundColor: AppColors.black30,
       ),
@@ -38,27 +39,34 @@ class AppTheme {
         fontSize : 16.sp
       ),
       bodyLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 16.sp
       ),
     ),
     inputDecorationTheme:  InputDecorationTheme(
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: AppColors.black , width: 1),
+        borderSide: const BorderSide(color: AppColors.grey , width: 1),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(4.r) ,
           topRight: Radius.circular(4.r) ,
         )
       ),
       focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.black , width: 1),
+          borderSide: const BorderSide(color: AppColors.grey , width: 1),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(4.r) ,
             topRight: Radius.circular(4.r) ,
           )
       ),
       disabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.black , width: 1),
+          borderSide: const BorderSide(color: AppColors.grey , width: 1),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4.r) ,
+            topRight: Radius.circular(4.r) ,
+          )
+      ),
+      border: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.error , width: 1),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(4.r) ,
             topRight: Radius.circular(4.r) ,
@@ -72,8 +80,7 @@ class AppTheme {
           )
       ),
       errorStyle: GoogleFonts.roboto(fontSize : 12.sp , color : AppColors.error),
-      labelStyle: GoogleFonts.roboto(fontSize : 12.sp , color : AppColors.grey),
-
-    )
+      labelStyle: GoogleFonts.roboto(fontSize : 14.sp , color : AppColors.grey),
+    ),
   );
 }
