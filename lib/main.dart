@@ -6,9 +6,8 @@ import 'package:quizz_app/core/constant/hive_box.dart';
 import 'package:quizz_app/core/resources/theme.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login_response.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
-
 import 'core/di/di.dart';
-import 'feature/auth/domain/model/user.dart';
+
 void setUp(){
   getIt.registerLazySingleton<Dio>(()=>Dio());
   configureDependencies();
