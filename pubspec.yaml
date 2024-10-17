@@ -23,6 +23,8 @@ dependencies:
   injectable: ^2.5.0
   flutter_bloc: ^8.1.6
   get_it:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -34,7 +36,7 @@ dev_dependencies:
   retrofit_generator: '>=8.0.0 <10.0.0' # for Dart 3.3 use ^9.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.8.0
-
+  hive_generator: 
 
 flutter:
 

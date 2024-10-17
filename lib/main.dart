@@ -1,16 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:quizz_app/core/constant/hive_box.dart';
 import 'package:quizz_app/core/resources/theme.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 
 import 'core/di/di.dart';
+import 'feature/auth/domain/model/user.dart';
 void setUp(){
   getIt.registerLazySingleton<Dio>(()=>Dio());
   configureDependencies();
 }
 void main() async{
   setUp();
+  await Hive.initFlutter();
+   Hive.registerAdapter(UserAdapter());
+   Hive.openBox<User>(HiveBox.userBox);
   runApp(const MyApp());
 }
 
