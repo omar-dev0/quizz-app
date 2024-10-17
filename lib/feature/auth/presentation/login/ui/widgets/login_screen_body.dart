@@ -48,6 +48,7 @@ class LoginScreenBody extends StatelessWidget {
                   backgroundColor: AppColors.error,
                   title: Text(
                     state.message!,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.white),
                   ),
                   actions: [
                     InkWell(
@@ -69,23 +70,6 @@ class LoginScreenBody extends StatelessWidget {
                 actions: [],
               );
             },
-          );
-        }else if(state is InitialScreenState){
-           const Padding(
-            padding: EdgeInsets.all(24),
-            child: Column(
-              children: [
-                LoginForm(),
-                SizedBox(
-                  height: 16,
-                ),
-                RememberMeAndForgotPasswordRow(),
-                SizedBox(
-                  height: 48,
-                ),
-                LoginButton()
-              ],
-            ),
           );
         }
       },
