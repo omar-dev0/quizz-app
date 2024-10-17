@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quizz_app/core/local/local.dart';
 
 class ControllersManager {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   TextEditingController getFieldController(String field) {
-    if (field =='Password') return _passwordController;
+    if (field ==AppStrings.password) return _passwordController;
     return _emailController;
   }
 

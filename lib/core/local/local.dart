@@ -9,4 +9,6 @@ class AppStrings{
   static const String cancel = "Cancel";
   static const String donotHaveAnAccount = "Don't have and account? ";
   static const String signUp = "signUp";
+  static const String notValidEmail = "This email is not valid";
+  static const String notValidPassword = "This password is not valid";
 }
