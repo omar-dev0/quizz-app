@@ -10,8 +10,8 @@ import '../contracts/auth_data_source.dart';
 @Injectable(as: AuthOfflineDataSource)
 class AuthOfflineDataSourceImpl implements AuthOfflineDataSource{
   @override
-  Result<LoginResponse> login() {
+  List<LoginResponse> login() {
     var box = Hive.box<LoginResponse>(HiveBox.userBox);
-    return Success(box.values.toList().first);
+    return box.values.toList();
   }
 }

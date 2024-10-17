@@ -5,6 +5,6 @@ Future<Result<T>> executeApiCall<T>(Future<T> Function()  apiCall) async{
     final response = await apiCall.call();
     return Success(response); }
     catch (e){
-    return Fail(e as Exception);
+    return Fail(e.toString());
     }
 }

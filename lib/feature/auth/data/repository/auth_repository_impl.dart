@@ -5,21 +5,29 @@ import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_sour
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
 import '../../domain/common/api_result.dart';
-@Injectable(as: AuthRepository)
-class AuthRepositoryImpl implements AuthRepository{
 
+@Injectable(as: AuthRepository)
+class AuthRepositoryImpl implements AuthRepository {
   AuthOnlineDataSource authOnlineDataSource;
   AuthOfflineDataSource authOfflineDataSource;
 
   @factoryMethod
-  AuthRepositoryImpl(this.authOnlineDataSource,this.authOfflineDataSource);
+  AuthRepositoryImpl(this.authOnlineDataSource, this.authOfflineDataSource);
 
   @override
-  Future<Result<LoginResponse?>> login(String email, String password) async{
-    return await authOnlineDataSource.login(email, password);
+  Future<Result<LoginResponse?>> login(String email, String password) async {
+    var user;
+    try {
+      user = authOfflineDataSource.login();
+      if (user.isNotEmpty) {
+        return Success(user.first);
+      }
+      user = await authOnlineDataSource.login(email, password);
+      return Success(user);
+    } on Exception catch (e) {
+      return Fail(e.toString());
+    }
   }
-
-
 
   @override
   Future<Result<OtpCodeResponse?>> getOtpCode(String email) async {
