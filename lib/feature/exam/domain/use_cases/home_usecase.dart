@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/domain/core/server_failure.dart';
 import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/home_repo.dart';
 
@@ -7,7 +8,7 @@ import 'package:quizz_app/feature/exam/domain/repositories/home_repo.dart';
 class HomeUseCase{
   HomeRepo _homeRepo;
   HomeUseCase(this._homeRepo);
-  Future<Either<Fail,List<SubjectItemEntity>>> invoke() async{
+  Future<Either<ServerFailure,List<SubjectItemEntity>>> invoke() async{
     return await _homeRepo.getSubject();
   }
 }
