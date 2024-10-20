@@ -11,6 +11,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i815;
 import '../../feature/exam/domain/repositories/home_repo.dart' as _i387;
 import '../../feature/exam/domain/use_cases/home_usecase.dart' as _i341;
 
@@ -25,6 +26,7 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i387.HomeRepo>(() => _i815.HomeRepoImpl());
     gh.factory<_i341.HomeUseCase>(
         () => _i341.HomeUseCase(gh<_i387.HomeRepo>()));
     return this;
