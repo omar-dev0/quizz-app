@@ -11,5 +11,5 @@ abstract class ApiServices{
   factory ApiServices(Dio dio) = _ApiServices;
 
   @GET("/${ApiConst.subjecstId}")
-  Future<SubjectResponse> getSubjects();
+  Future<List<SubjectResponse>> getSubjects();
 }
