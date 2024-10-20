@@ -1,6 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'Subjects.dart';
 
-
+part 'Subject_response.g.dart';
+@JsonSerializable()
 class SubjectResponse {
   SubjectResponse({
       this.subjects,});
