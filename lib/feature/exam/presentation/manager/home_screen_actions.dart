@@ -1,4 +1,5 @@
-sealed class Actions{}
+sealed class HomeActions{}
 
-class GetSubjectsAction extends Actions{}
+class GetSubjectsAction extends HomeActions{}
+class NavigateToSubjectScreen extends HomeActions{}
 
