@@ -33,7 +33,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i71.OnlineDataSource>(
         () => _i685.OnlineDataSourceImpl(gh<_i578.ApiServices>()));
-    gh.factory<_i387.HomeRepo>(() => _i815.HomeRepoImpl());
+    gh.factory<_i387.HomeRepo>(
+        () => _i815.HomeRepoImpl(gh<_i71.OnlineDataSource>()));
     gh.factory<_i341.HomeUseCase>(
         () => _i341.HomeUseCase(gh<_i387.HomeRepo>()));
     return this;
