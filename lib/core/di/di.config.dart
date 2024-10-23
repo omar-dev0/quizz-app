@@ -8,6 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -19,6 +20,7 @@ import '../../feature/exam/data/data_sources/online_data_source/online_data_sour
 import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i815;
 import '../../feature/exam/domain/repositories/home_repo.dart' as _i387;
 import '../../feature/exam/domain/use_cases/home_usecase.dart' as _i341;
+import '../../feature/exam/presentation/manager/view_model.dart' as _i600;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,12 +33,16 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.lazySingleton<_i578.ApiServices>(
+        () => _i578.ApiServices(gh<_i361.Dio>()));
     gh.factory<_i71.OnlineDataSource>(
         () => _i685.OnlineDataSourceImpl(gh<_i578.ApiServices>()));
     gh.factory<_i387.HomeRepo>(
         () => _i815.HomeRepoImpl(gh<_i71.OnlineDataSource>()));
     gh.factory<_i341.HomeUseCase>(
         () => _i341.HomeUseCase(gh<_i387.HomeRepo>()));
+    gh.factory<_i600.HomeViewModel>(
+        () => _i600.HomeViewModel(gh<_i341.HomeUseCase>()));
     return this;
   }
 }

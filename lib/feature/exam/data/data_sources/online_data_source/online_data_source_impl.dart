@@ -7,6 +7,8 @@ import 'package:quizz_app/feature/exam/data/models/Subjects.dart';
 @Injectable(as: OnlineDataSource)
 class OnlineDataSourceImpl implements OnlineDataSource{
   final ApiServices _apiServices;
+
+  @factoryMethod
   OnlineDataSourceImpl(this._apiServices);
   @override
   Future<List<Subjects>> getSubjects() async{

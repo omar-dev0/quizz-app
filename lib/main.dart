@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizz_app/core/resources/theme.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/home.dart';
 
 import 'core/di/di.dart';
+import 'feature/exam/data/core/simple_observer.dart';
 void main() async{
   configureDependencies();
+  Bloc.observer= SimpleBlocObserver();
   runApp(const MyApp());
 }
 
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         home: child,
       ),
-      child: const HomeScreen(),
+      child:  HomeScreen(),
     );
   }
 }

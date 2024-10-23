@@ -10,6 +10,7 @@ part 'api_services.g.dart';
 @RestApi(baseUrl: ApiConst.baseUrl)
 abstract class ApiServices{
 
+  @factoryMethod
   factory ApiServices(Dio dio) = _ApiServices;
 
   @GET("/${ApiConst.subjecstId}")

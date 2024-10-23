@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
 
 class ActionHandler{
@@ -11,11 +11,17 @@ class ActionHandler{
 
   void handelActions(HomeActions action){
     switch (action) {
-
       case GetSubjectsAction():
-        // TODO: Handle this case.
+        _getSubjects();
+        break;
       case NavigateToSubjectScreen():
         // TODO: Handle this case.
     }
+  }
+
+  void _getSubjects() async{
+    _homeViewModel.emitStat(LoadingState());
+    final response = await _homeUseCase.invoke();
+
   }
 }
