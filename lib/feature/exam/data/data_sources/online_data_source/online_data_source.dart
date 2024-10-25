@@ -1,6 +1,6 @@
-import 'package:quizz_app/feature/exam/data/models/Subjects.dart';
+import 'package:quizz_app/feature/exam/data/models/subject_response.dart';
 
 abstract class OnlineDataSource{
 
-  Future<List<Subjects>> getSubjects();
+  Future<SubjectResponse> getSubjects();
 }

@@ -24,12 +24,13 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Subjects>> getSubjects() async {
+  Future<SubjectResponse> getSubjects(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'token': token};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Subjects>>(Options(
+    final _options = _setStreamType<SubjectResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -45,12 +46,10 @@ class _ApiServices implements ApiServices {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Subjects> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SubjectResponse _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => Subjects.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = SubjectResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

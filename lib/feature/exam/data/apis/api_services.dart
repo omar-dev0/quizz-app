@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/exam/data/models/Subjects.dart';
+import 'package:quizz_app/feature/exam/data/models/subject_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'apis_const.dart';
@@ -14,6 +14,5 @@ abstract class ApiServices{
   factory ApiServices(Dio dio) = _ApiServices;
 
   @GET("/${ApiConst.subjecstId}")
-  @Header(ApiConst.testToken)
-  Future<List<Subjects>> getSubjects();
+  Future<SubjectResponse> getSubjects(@Header("token") String token);
 }
