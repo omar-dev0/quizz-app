@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/data/apis/DTO/subject_dto.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
-import 'package:quizz_app/feature/exam/data/models/Subjects.dart';
 import 'package:quizz_app/feature/exam/domain/core/server_failure.dart';
 import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/home_repo.dart';
@@ -19,7 +19,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<ServerFailure, List<SubjectItemEntity>>> getSubject() async{
     try{
       final response = await _onlineDataSource.getSubjects();
-      List<SubjectItemEntity> subjects = subjectResponseDTO(response);
+      List<SubjectItemEntity> subjects = SubjectDIO.subjectResponseDTO(response);
       return Right(subjects);
     }on Exception catch(e){
       if(e is DioException) {
@@ -28,14 +28,4 @@ class HomeRepoImpl implements HomeRepo {
     }
     return Left(ServerFailure("unknown"));
   }
-
-  List<SubjectItemEntity> subjectResponseDTO(List<Subjects> response) {
-    List<SubjectItemEntity> subjects = [];
-    for(var subject in response){
-      SubjectItemEntity subjectItemEntity  = SubjectItemEntity(subject.id, subject.name, subject.icon);
-      subjects.add(subjectItemEntity);
-    }
-    return subjects;
-  }
-
 }
