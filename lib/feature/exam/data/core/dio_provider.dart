@@ -8,7 +8,6 @@ import '../../../../core/di/di.dart';
 
 @module
 abstract class NetworkModule{
-
   @lazySingleton
   Dio provideDio(){
     final dio = Dio();
@@ -30,6 +29,5 @@ abstract class NetworkModule{
         responseBody: true,
         responseHeader: true);
   }
-
 }
 
