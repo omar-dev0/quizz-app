@@ -9,8 +9,17 @@ import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.d
 @injectable
 class HomeViewModel extends Cubit<HomeScreenStates>{
   late final ActionHandler actionHandler;
+  late int _currentSubjectListIndex;
   HomeViewModel(HomeUseCase homeUseCase) : super(InitialState()){
      actionHandler = ActionHandler(homeUseCase, this);
+  }
+
+  void setCurrentSubjectListIndex(int index){
+    _currentSubjectListIndex = index;
+  }
+
+  int getCurrentSubjectListIndex(){
+    return _currentSubjectListIndex;
   }
 
   void emitStat(HomeScreenStates state){

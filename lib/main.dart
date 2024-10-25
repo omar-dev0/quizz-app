@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizz_app/core/resources/theme.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/home.dart';
 
 import 'core/di/di.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         home: child,
       ),
-      child:  HomeScreen(),
+      child: HomeScreen(),
     );
   }
 }

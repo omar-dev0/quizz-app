@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/resources/colors.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/subject_item.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/custom_search_bar.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/subjects_bloc.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -16,7 +17,7 @@ class HomeScreenBody extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-         const SearchBar(),
+          const CustomSearchBar(),
           const SizedBox(
             height: 40,
           ),
@@ -25,14 +26,11 @@ class HomeScreenBody extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge
-                ?.copyWith(color: AppColors.black),
+                ?.copyWith(color: AppColors.black, fontSize: 18),
             textAlign: TextAlign.start,
           ),
           const SizedBox(height: 24,),
-          const SubjectItem(),
-          const SubjectItem(),
-          const SubjectItem(),
-          const SubjectItem(),
+          const SubjectsBloc(),
         ],
       ),
     );
