@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'subject_response.g.dart';
 
+
 @JsonSerializable()
 class SubjectResponse {
   @JsonKey(name: "message")

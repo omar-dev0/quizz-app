@@ -15,6 +15,10 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
 import '../../feature/exam/data/apis/api_services.dart' as _i578;
 import '../../feature/exam/data/core/dio_provider.dart' as _i419;
+import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source.dart'
+    as _i82;
+import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source_impl.dart'
+    as _i505;
 import '../../feature/exam/data/data_sources/online_data_source/online_data_source.dart'
     as _i71;
 import '../../feature/exam/data/data_sources/online_data_source/online_data_source_impl.dart'
@@ -39,12 +43,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i528.PrettyDioLogger>(
         () => networkModule.providerInterceptor());
     gh.lazySingleton<_i361.Dio>(() => networkModule.provideDio());
+    gh.factory<_i82.OfflineDataSource>(() => _i505.OfflineDataSourceImpl());
     gh.lazySingleton<_i578.ApiServices>(
         () => _i578.ApiServices(gh<_i361.Dio>()));
     gh.factory<_i71.OnlineDataSource>(
         () => _i685.OnlineDataSourceImpl(gh<_i578.ApiServices>()));
-    gh.factory<_i387.HomeRepo>(
-        () => _i815.HomeRepoImpl(gh<_i71.OnlineDataSource>()));
+    gh.factory<_i387.HomeRepo>(() => _i815.HomeRepoImpl(
+          gh<_i71.OnlineDataSource>(),
+          gh<_i82.OfflineDataSource>(),
+        ));
     gh.factory<_i341.HomeUseCase>(
         () => _i341.HomeUseCase(gh<_i387.HomeRepo>()));
     gh.factory<_i600.HomeViewModel>(

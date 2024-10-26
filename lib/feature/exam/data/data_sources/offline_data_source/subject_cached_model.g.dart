@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'subject_item_entity.dart';
+part of 'subject_cached_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SubjectItemEntityAdapter extends TypeAdapter<SubjectItemEntity> {
+class SubjectCachedModelAdapter extends TypeAdapter<SubjectCachedModel> {
   @override
   final int typeId = 0;
 
   @override
-  SubjectItemEntity read(BinaryReader reader) {
+  SubjectCachedModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SubjectItemEntity(
+    return SubjectCachedModel(
       fields[0] as String?,
       fields[1] as String?,
       fields[2] as String?,
@@ -24,7 +24,7 @@ class SubjectItemEntityAdapter extends TypeAdapter<SubjectItemEntity> {
   }
 
   @override
-  void write(BinaryWriter writer, SubjectItemEntity obj) {
+  void write(BinaryWriter writer, SubjectCachedModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class SubjectItemEntityAdapter extends TypeAdapter<SubjectItemEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SubjectItemEntityAdapter &&
+      other is SubjectCachedModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
