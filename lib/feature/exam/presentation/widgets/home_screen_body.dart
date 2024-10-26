@@ -19,7 +19,7 @@ class HomeScreenBody extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const CustomSearchBar(),
+                 CustomSearchBar(),
                 const SizedBox(
                   height: 40,
                 ),
