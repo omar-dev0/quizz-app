@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
+import 'package:quizz_app/feature/exam/data/core/simple_observer.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/custom_search_bar.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/subjects_bloc.dart';
 
@@ -8,6 +12,8 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeViewModel = context.read<HomeViewModel>();
+    homeViewModel.doAction(GetSubjectsAction());
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(

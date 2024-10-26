@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    homeViewModel.doAction(GetSubjectsAction());
     return BlocProvider(
       create: (_) => homeViewModel,
       child: Scaffold(

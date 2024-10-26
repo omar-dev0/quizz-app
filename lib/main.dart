@@ -21,7 +21,7 @@ void main() async{
 Future<void> initHive()async{
   await Hive.initFlutter();
   Hive.registerAdapter(SubjectCachedModelAdapter());
-  await Hive.openBox<SubjectItemEntity>(AppConstant.kSubjectsHiveBox);
+  await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
 }
 
 class MyApp extends StatelessWidget {
