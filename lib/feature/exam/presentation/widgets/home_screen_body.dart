@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/custom_search_bar.dart';
@@ -9,30 +8,36 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 16,
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 16,
+                ),
+                const CustomSearchBar(),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Browse by subject",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: AppColors.black, fontSize: 18),
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(height: 24,),
+                const SubjectsBloc(),
+              ],
+            ),
           ),
-          const CustomSearchBar(),
-          const SizedBox(
-            height: 40,
-          ),
-          Text(
-            "Browse by subject",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge
-                ?.copyWith(color: AppColors.black, fontSize: 18),
-            textAlign: TextAlign.start,
-          ),
-          const SizedBox(height: 24,),
-          const SubjectsBloc(),
-        ],
-      ),
+        )
+      ],
     );
   }
 }
