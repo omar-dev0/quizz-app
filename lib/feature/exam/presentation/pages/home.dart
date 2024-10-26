@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +42,7 @@ class HomeScreen extends StatelessWidget {
         body: BlocBuilder<HomeViewModel,HomeScreenStates>(
           builder: (context,state){
              if(state is ChangeHomeCurrentFragmentState){
+               log(body[homeViewModel.getCurrentFragmentIndex()].toString());
                return body[homeViewModel.getCurrentFragmentIndex()];
              }
              return body[0];

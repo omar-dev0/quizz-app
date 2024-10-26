@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
@@ -16,7 +17,15 @@ class SubjectsBloc extends StatelessWidget {
       builder: (context, state) {
         if (state is SuccessState) {
           return const SubjectsListView();
-        } else {
+        } else if (state is FailState) {
+          Fluttertoast.showToast(
+            msg: state.message,
+            backgroundColor: AppColors.error,
+            textColor: AppColors.white,
+            toastLength: Toast.LENGTH_SHORT,
+          );
+        }
+        else if(state is LoadingState){
           return SizedBox(
             height: 200,
             width: context.width,
@@ -27,6 +36,7 @@ class SubjectsBloc extends StatelessWidget {
             ),
           );
         }
+        return const SubjectsListView();
       },
     );
   }

@@ -27,7 +27,7 @@ class ActionHandler {
     final response = await _homeUseCase.invoke();
     response.fold(
       (fail) {
-        _homeViewModel.emitStat(FailState());
+        _homeViewModel.emitStat(FailState(fail.message));
       },
       (subjects) {
         subjectsList = subjects;
