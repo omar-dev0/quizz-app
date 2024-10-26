@@ -17,15 +17,13 @@ class SubjectsBloc extends StatelessWidget {
         if (state is SuccessState) {
           return const SubjectsListView();
         } else {
-          return  Expanded(
-            child: SizedBox(
-              height: 200,
-              width: context.width,
-                child: const Center(
-                  child: SpinKitFadingCircle(
-                    color: AppColors.primary,
-                  ),
-                ),
+          return SizedBox(
+            height: 200,
+            width: context.width,
+            child: const Center(
+              child: SpinKitFadingCircle(
+                color: AppColors.primary,
+              ),
             ),
           );
         }

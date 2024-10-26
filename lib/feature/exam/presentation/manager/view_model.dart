@@ -10,10 +10,17 @@ import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.d
 class HomeViewModel extends Cubit<HomeScreenStates>{
   late final ActionHandler actionHandler;
   late int _currentSubjectListIndex;
+  int _currentFragmentIndex = 0;
   HomeViewModel(HomeUseCase homeUseCase) : super(InitialState()){
      actionHandler = ActionHandler(homeUseCase, this);
   }
 
+  void setCurrentFragmentIndex(int index){
+    _currentFragmentIndex = index;
+  }
+  int getCurrentFragmentIndex(){
+    return _currentFragmentIndex;
+  }
   void setCurrentSubjectListIndex(int index){
     _currentSubjectListIndex = index;
   }

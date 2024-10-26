@@ -17,7 +17,8 @@ class ActionHandler {
         _getSubjects();
         break;
       case NavigateToSubjectScreen():
-      // TODO: Handle this case.
+      case ChangeHomeCurrentFragmentAction():
+        _homeViewModel.emitStat(ChangeHomeCurrentFragmentState());
     }
   }
 
