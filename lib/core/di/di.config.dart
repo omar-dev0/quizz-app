@@ -26,7 +26,10 @@ import '../../feature/exam/data/data_sources/online_data_source/online_data_sour
 import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i815;
 import '../../feature/exam/domain/repositories/home_repo.dart' as _i387;
 import '../../feature/exam/domain/use_cases/home_usecase.dart' as _i341;
-import '../../feature/exam/presentation/manager/view_model.dart' as _i600;
+import '../../feature/exam/presentation/manager/home_managers/action_handler.dart'
+    as _i831;
+import '../../feature/exam/presentation/manager/home_managers/view_model.dart'
+    as _i399;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -54,8 +57,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i341.HomeUseCase>(
         () => _i341.HomeUseCase(gh<_i387.HomeRepo>()));
-    gh.factory<_i600.HomeViewModel>(
-        () => _i600.HomeViewModel(gh<_i341.HomeUseCase>()));
+    gh.factory<_i399.HomeViewModel>(
+        () => _i399.HomeViewModel(gh<_i341.HomeUseCase>()));
+    gh.singleton<_i831.ActionHandler>(() => _i831.ActionHandler(
+          gh<_i341.HomeUseCase>(),
+          gh<_i399.HomeViewModel>(),
+        ));
     return this;
   }
 }

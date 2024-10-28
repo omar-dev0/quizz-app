@@ -2,9 +2,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/action_handler.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/action_handler.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
+
+import 'home_screen_actions.dart';
 
 @injectable
 class HomeViewModel extends Cubit<HomeScreenStates>{

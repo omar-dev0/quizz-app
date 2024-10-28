@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/pages/subject_exams_screen.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 
-import '../manager/home_screen_states.dart';
+import '../manager/home_managers/home_screen_actions.dart';
+
 
 class SubjectItem extends StatelessWidget {
   const SubjectItem({super.key});

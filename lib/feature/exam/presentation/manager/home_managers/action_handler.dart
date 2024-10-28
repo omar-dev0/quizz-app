@@ -1,9 +1,10 @@
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
 import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
+
+import 'home_screen_actions.dart';
 
 @singleton
 class ActionHandler {
