@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
 import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
 
+@singleton
 class ActionHandler {
   late HomeViewModel _homeViewModel;
   final HomeUseCase _homeUseCase;
@@ -19,7 +21,7 @@ class ActionHandler {
       case ChangeHomeCurrentFragmentAction():
         _homeViewModel.emitStat(ChangeHomeCurrentFragmentState());
       case NavigateToSubjectExamsAction():
-        _homeViewModel.emitStat(NavigateToSubjectExamsState());
+        _homeViewModel.emitStat(NavigateToSubjectExamsState(action.subjectIndex));
     }
   }
 

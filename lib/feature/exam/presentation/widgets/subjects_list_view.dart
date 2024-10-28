@@ -14,13 +14,13 @@ class SubjectsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeViewModel = context.read<HomeViewModel>();
     return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: homeViewModel.actionHandler.subjectsList.length,
-        itemBuilder: (context, index) {
-          homeViewModel.setCurrentSubjectListIndex(index);
-          return const SubjectItem();
-        },
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: homeViewModel.actionHandler.subjectsList.length,
+      itemBuilder: (context, index) {
+        homeViewModel.setCurrentSubjectListIndex(index);
+        return const SubjectItem();
+      },
     );
   }
 }

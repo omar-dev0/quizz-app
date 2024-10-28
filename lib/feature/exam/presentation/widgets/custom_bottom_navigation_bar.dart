@@ -6,15 +6,17 @@ import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.
 import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
 
+   CustomBottomNavigationBar({super.key});
+   int _currentIndex = 0;
   @override
   State<CustomBottomNavigationBar> createState() =>
       _CustomBottomNavigationBarState();
+
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int _currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +26,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: BottomNavigationBar(
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
-            homeViewModel.setCurrentFragmentIndex(_currentIndex);
+            widget._currentIndex = index;
+            homeViewModel.setCurrentFragmentIndex(widget._currentIndex);
             homeViewModel.doAction(ChangeHomeCurrentFragmentAction());
           });
         },
         backgroundColor: Colors.white,
         unselectedItemColor: AppColors.grey10,
         selectedItemColor: AppColors.primary,
-        currentIndex: _currentIndex,
+        currentIndex: widget._currentIndex,
         items: const [
           BottomNavigationBarItem(icon: Icon(Elusive.home), label: "Explore"),
           BottomNavigationBarItem(icon: Icon(Elusive.edit), label: "Result"),
