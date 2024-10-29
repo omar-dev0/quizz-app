@@ -12,8 +12,8 @@ class HomeViewModel extends Cubit<HomeScreenStates>{
   late final ActionHandler actionHandler;
   late int _currentSubjectListIndex;
   int _currentFragmentIndex = 0;
-  HomeViewModel(HomeUseCase homeUseCase) : super(InitialState()){
-     actionHandler = ActionHandler(homeUseCase, this);
+  HomeViewModel(UseCase useCase) : super(InitialState()){
+     actionHandler = ActionHandler(useCase, this);
   }
 
   void setCurrentFragmentIndex(int index){
