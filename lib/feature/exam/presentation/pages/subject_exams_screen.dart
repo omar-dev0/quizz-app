@@ -16,6 +16,8 @@ class SubjectExamsScreen extends StatelessWidget {
   ExamsViewModel examsViewModel = getIt.get<ExamsViewModel>();
   @override
   Widget build(BuildContext context) {
+    String subjectId =  homeViewModel.actionHandler.subjectsList[subjectIndex].id!;
+    String subjectName =  homeViewModel.actionHandler.subjectsList[subjectIndex].name!;
     return BlocProvider(
       create: (_)=> examsViewModel,
       child: Scaffold(
@@ -33,7 +35,7 @@ class SubjectExamsScreen extends StatelessWidget {
             },
             child: const Icon(Icons.arrow_back_ios_new),),
         ),
-        body:  SubjectExamItem(subjectId: homeViewModel.actionHandler.subjectsList[subjectIndex].id!),
+        body:  SubjectExamItem(subjectId:subjectId, subjectName: subjectName,),
       ),
     );
   }

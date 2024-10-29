@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 
 import '../../../../core/resources/colors.dart';
+import '../manager/subject_exam_manager/exams_view_model.dart';
 
 class SubjectExamDetails extends StatelessWidget {
   const SubjectExamDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final examViewModel = context.read<ExamsViewModel>();
+    int currentExamIndex = examViewModel.getCurrentExamIndex();
     return Row(
       children: [
         const Icon(Icons.import_contacts_sharp),
@@ -24,11 +28,11 @@ class SubjectExamDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Level",
+                    examViewModel.actionHandler.list[currentExamIndex].title!,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   Text(
-                    "30 Minutes",
+                  examViewModel.actionHandler.list[currentExamIndex].duration.toString(),
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
@@ -38,7 +42,7 @@ class SubjectExamDetails extends StatelessWidget {
               ),
             ),
             Text(
-              "20 question",
+             examViewModel.actionHandler.list[currentExamIndex].numberOfQuestions.toString(),
               style: Theme.of(context).textTheme.labelSmall,
             ),
             const SizedBox(

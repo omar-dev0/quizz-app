@@ -7,3 +7,7 @@ class ExamsFailState extends ExamsScreenStates{
   String failMessage;
   ExamsFailState(this.failMessage);
 }
+
+class NavigateToStartExamScreenState extends ExamsScreenStates{
+
+}

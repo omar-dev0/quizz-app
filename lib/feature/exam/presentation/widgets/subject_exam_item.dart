@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_action.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/exams_bloc.dart';
 
-import 'exam_item_container.dart';
 
 class SubjectExamItem extends StatelessWidget {
   final String subjectId;
-  const SubjectExamItem({super.key, required this.subjectId});
+  final String subjectName;
+  const SubjectExamItem({super.key, required this.subjectId, required this.subjectName});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +24,14 @@ class SubjectExamItem extends StatelessWidget {
             height: 40,
           ),
           Text(
-            "English",
+           subjectName,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
                 .copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 24,),
-          const ExamItemContainer(),
-          const ExamItemContainer(),
-          const ExamItemContainer(),
+          const ExamsBloc()
         ],
       ),
     );

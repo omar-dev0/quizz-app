@@ -9,10 +9,17 @@ import '../../../domain/use_cases/usecase.dart';
 @injectable
 class ExamsViewModel extends Cubit<ExamsScreenStates>{
   late ExamsScreenActionHandler actionHandler;
+  int? _currentExamIndex;
   ExamsViewModel(UseCase useCase) : super(ExamsInitialState()){
     actionHandler = ExamsScreenActionHandler(this, useCase);
   }
 
+  void setCurrentExamIndex(int index){
+    _currentExamIndex = index;
+  }
+  int getCurrentExamIndex() {
+    return _currentExamIndex!;
+  }
   void emitState(ExamsScreenStates state){
     emit(state);
   }

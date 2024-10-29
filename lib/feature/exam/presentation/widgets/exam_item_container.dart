@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/subject_exam_details.dart';
 
-import '../../../../core/resources/colors.dart';
 
 
 class ExamItemContainer extends StatelessWidget {
