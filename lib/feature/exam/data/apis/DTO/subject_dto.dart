@@ -4,7 +4,7 @@ import '../../../domain/entities/exam_entity.dart';
 import '../../../domain/entities/subject_item_entity.dart';
 import '../../models/exams_by_subject_response.dart';
 
-abstract class SubjectDIO{
+abstract class DTOs{
 
   static List<SubjectItemEntity> subjectResponseDTO(SubjectResponse response) {
     List<SubjectItemEntity> subjects = [];

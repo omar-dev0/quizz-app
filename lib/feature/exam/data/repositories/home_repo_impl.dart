@@ -28,11 +28,11 @@ class HomeRepoImpl implements HomeRepo {
     try{
       List<SubjectCachedModel> subject = await _offlineDataSource.getSubjects();
       if(subject.isNotEmpty){
-         return Right(SubjectDIO.subjectCachedDTO(subject));
+         return Right(DTOs.subjectCachedDTO(subject));
       }
-      final response = await _onlineDataSource.getSubjects();
-      List<SubjectItemEntity> subjects = SubjectDIO.subjectResponseDTO(response);
 
+      final response = await _onlineDataSource.getSubjects();
+      List<SubjectItemEntity> subjects = DTOs.subjectResponseDTO(response);
       CachingData.cachedSubject(subjects);
 
       return Right(subjects);
@@ -45,11 +45,16 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<ServerFailure, List<ExamEntity>>> getExam(String subjectId) {
-    // TODO: implement getExam
-    throw UnimplementedError();
+  Future<Either<ServerFailure, List<ExamEntity>>> getExam(String subjectId)async {
+    try{
+      final response = await _onlineDataSource.getExamById(subjectId);
+      List<ExamEntity> examsList = DTOs.examsResponseByIdDto(response);
+      return Right(examsList);
+    }on Exception catch(e){
+      if(e is DioException){
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure("unknown"));
+    }
   }
-
-
-
 }
