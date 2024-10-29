@@ -44,10 +44,12 @@ class HomeRepoImpl implements HomeRepo {
     return Left(ServerFailure("unknown"));
   }
 
-
   @override
-  Future<Either<ServerFailure, List<ExamEntity>>> getExam(String? subjectId) {
+  Future<Either<ServerFailure, List<ExamEntity>>> getExam(String subjectId) {
     // TODO: implement getExam
     throw UnimplementedError();
   }
+
+
+
 }

@@ -58,23 +58,23 @@ class _ApiServices implements ApiServices {
   }
 
   @override
-  Future<ExamsResponse> getExamsBySubjectId(
+  Future<ExamsBySubjectResponse> getExamsBySubjectId(
     String token,
     String id,
   ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'subject': id};
     final _headers = <String, dynamic>{r'token': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ExamsResponse>(Options(
+    final _options = _setStreamType<ExamsBySubjectResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/exams/${id}',
+          '/exams',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -84,9 +84,9 @@ class _ApiServices implements ApiServices {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ExamsResponse _value;
+    late ExamsBySubjectResponse _value;
     try {
-      _value = ExamsResponse.fromJson(_result.data!);
+      _value = ExamsBySubjectResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

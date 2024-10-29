@@ -13,7 +13,7 @@ class HomeUseCase{
     return await _homeRepo.getSubject();
   }
 
-  Future<Either<ServerFailure,List<ExamEntity>>> invokeExam(String? subjectId) async {
+  Future<Either<ServerFailure,List<ExamEntity>>> invokeExam(String subjectId) async {
     return await _homeRepo.getExam(subjectId);
   }
 }
