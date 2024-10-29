@@ -9,10 +9,10 @@ import 'home_screen_actions.dart';
 @singleton
 class ActionHandler {
   late HomeViewModel _homeViewModel;
-  final HomeUseCase _homeUseCase;
+  final UseCase _useCase;
   List<SubjectItemEntity> subjectsList = [];
 
-  ActionHandler(this._homeUseCase, this._homeViewModel);
+  ActionHandler(this._useCase, this._homeViewModel);
 
   void handelActions(HomeActions action) {
     switch (action) {
@@ -28,7 +28,7 @@ class ActionHandler {
 
   void _getSubjects() async {
     _homeViewModel.emitStat(LoadingState());
-    final response = await _homeUseCase.invoke();
+    final response = await _useCase.invoke();
     response.fold(
       (fail) {
         _homeViewModel.emitStat(FailState(fail.message));
