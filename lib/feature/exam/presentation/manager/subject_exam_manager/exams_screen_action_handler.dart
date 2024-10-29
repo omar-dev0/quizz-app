@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
+import '../../../domain/use_cases/usecase.dart';
 import 'exams_screen_action.dart';
 
 @singleton
