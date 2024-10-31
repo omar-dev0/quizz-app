@@ -18,7 +18,7 @@ class ExamsScreenActionHandler{
       case GetExamsBySubjectIdAction():
         _getExamsBySubjectId(action.subjectId);
       case NavigateToStartExamScreenAction():
-        _examsViewModel.emitState(NavigateToStartExamScreenState());
+        _examsViewModel.emitState(NavigateToStartExamScreenState(action.examId));
     }
   }
 

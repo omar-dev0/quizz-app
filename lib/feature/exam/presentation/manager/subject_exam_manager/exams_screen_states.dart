@@ -9,5 +9,6 @@ class ExamsFailState extends ExamsScreenStates{
 }
 
 class NavigateToStartExamScreenState extends ExamsScreenStates{
-
+  String examId;
+  NavigateToStartExamScreenState(this.examId);
 }
