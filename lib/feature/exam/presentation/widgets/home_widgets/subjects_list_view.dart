@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/subject_item.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/subject_item.dart';
 
 class SubjectsListView extends StatelessWidget {
   const SubjectsListView({super.key});

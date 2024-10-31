@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 
-import '../manager/home_managers/home_screen_actions.dart';
+import '../../manager/home_managers/home_screen_actions.dart';
 
 
 class SubjectItem extends StatelessWidget {

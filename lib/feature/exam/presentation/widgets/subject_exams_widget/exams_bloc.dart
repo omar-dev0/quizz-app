@@ -8,9 +8,9 @@ import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_s
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/exam_start_screen.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/exams_list_view.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/subject_exams_widget/exams_list_view.dart';
 
-import '../../../../core/resources/colors.dart';
+import '../../../../../core/resources/colors.dart';
 
 class ExamsBloc extends StatelessWidget {
   const ExamsBloc({super.key});
@@ -45,7 +45,7 @@ class ExamsBloc extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => ExamStartScreen(
-              examId: state.examId,
+              exam: state.exam,
             ),
           ),
         );

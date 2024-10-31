@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
+import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_action.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/subject_exam_details.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/subject_exams_widget/subject_exam_details.dart';
 
 
 
@@ -20,7 +21,7 @@ class ExamItemContainer extends StatelessWidget {
     final currentExam = viewModel.actionHandler.list[currentExamIndex];
     return InkWell(
       onTap: (){
-         viewModel.doAction(NavigateToStartExamScreenAction(currentExam.examId.toString()));
+         viewModel.doAction(NavigateToStartExamScreenAction<ExamEntity>(currentExam));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
