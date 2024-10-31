@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 
+import '../../../../core/resources/assets_manger.dart';
 import '../../../../core/resources/colors.dart';
 import '../manager/subject_exam_manager/exams_view_model.dart';
 
@@ -15,7 +16,7 @@ class SubjectExamDetails extends StatelessWidget {
     int currentExamIndex = examViewModel.getCurrentExamIndex();
     return Row(
       children: [
-        const Icon(Icons.import_contacts_sharp),
+        Image.asset(ImageAssets.examItemImage,height: 71, width: 60,),
         const SizedBox(
           width: 8,
         ),
@@ -23,7 +24,7 @@ class SubjectExamDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: context.width * .72,
+              width: context.width * .63,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -32,7 +33,7 @@ class SubjectExamDetails extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   Text(
-                  examViewModel.actionHandler.list[currentExamIndex].duration.toString(),
+                  "${examViewModel.actionHandler.list[currentExamIndex].duration.toString()} Minutes",
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
@@ -42,7 +43,7 @@ class SubjectExamDetails extends StatelessWidget {
               ),
             ),
             Text(
-             examViewModel.actionHandler.list[currentExamIndex].numberOfQuestions.toString(),
+             "${examViewModel.actionHandler.list[currentExamIndex].numberOfQuestions.toString()} Question",
               style: Theme.of(context).textTheme.labelSmall,
             ),
             const SizedBox(
