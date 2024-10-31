@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/data/apis/DTO/subject_dto.dart';
 import 'package:quizz_app/feature/exam/data/core/caching_data.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
-import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/subject_cached_model.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
 import 'package:quizz_app/feature/exam/domain/core/server_failure.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';

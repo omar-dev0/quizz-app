@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
 import 'package:quizz_app/core/resources/theme.dart';
-import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/subject_cached_model.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 
