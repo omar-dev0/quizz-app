@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
 import 'package:quizz_app/core/resources/theme.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
@@ -20,7 +22,9 @@ void main() async{
 Future<void> initHive()async{
   await Hive.initFlutter();
   Hive.registerAdapter(SubjectCachedModelAdapter());
+  Hive.registerAdapter(SubjectExamsCachedModelAdapter());
   await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
+  await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
 }
 
 class MyApp extends StatelessWidget {

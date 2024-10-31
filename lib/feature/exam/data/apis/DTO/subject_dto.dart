@@ -1,3 +1,4 @@
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/data/models/subject_response.dart';
 import '../../../domain/entities/exam_entity.dart';
@@ -27,13 +28,25 @@ abstract class DTOs{
 
 
   static List<ExamEntity> examsResponseByIdDto(ExamsBySubjectResponse examResponse){
-    List<ExamEntity> examList = [];
+    List<ExamEntity> exameList = [];
     for(var exam in examResponse.exams!){
-      examList.add(
+      exameList.add(
         ExamEntity(exam.Id, exam.title, exam.duration, exam.subject, exam.numberOfQuestions)
       );
     }
-    return examList;
+    return exameList;
   }
+
+  static List<ExamEntity> examsCachedByIdDto(List<SubjectExamsCachedModel> cachedExams){
+    List<ExamEntity> exameList = [];
+    for(var exam in cachedExams){
+      exameList.add(
+          ExamEntity(exam.examId, exam.title, exam.duration, exam.subjectId, exam.numberOfQuestions)
+      );
+    }
+    return exameList;
+  }
+
+
 
 }

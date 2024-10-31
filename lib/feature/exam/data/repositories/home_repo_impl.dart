@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/data/apis/DTO/subject_dto.dart';
 import 'package:quizz_app/feature/exam/data/core/caching_data.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
@@ -44,7 +45,12 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ServerFailure, List<ExamEntity>>> getExam(String subjectId)async {
     try{
+      final List<SubjectExamsCachedModel> cachedExams = await _offlineDataSource.getSubjectExams(subjectId);
+      if(cachedExams.isNotEmpty){
+        return Right(DTOs.examsCachedByIdDto(cachedExams));
+      }
       final response = await _onlineDataSource.getExamById(subjectId);
+      CachingData.cachedSubjectExams(response);
       List<ExamEntity> examsList = DTOs.examsResponseByIdDto(response);
       return Right(examsList);
     }on Exception catch(e){

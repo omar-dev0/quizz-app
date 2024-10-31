@@ -6,17 +6,18 @@ part of 'subject_exams_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SubjectExamsModelAdapter extends TypeAdapter<SubjectExamsModel> {
+class SubjectExamsCachedModelAdapter
+    extends TypeAdapter<SubjectExamsCachedModel> {
   @override
   final int typeId = 1;
 
   @override
-  SubjectExamsModel read(BinaryReader reader) {
+  SubjectExamsCachedModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SubjectExamsModel(
+    return SubjectExamsCachedModel(
       fields[0] as String?,
       fields[1] as String?,
       fields[2] as int?,
@@ -26,7 +27,7 @@ class SubjectExamsModelAdapter extends TypeAdapter<SubjectExamsModel> {
   }
 
   @override
-  void write(BinaryWriter writer, SubjectExamsModel obj) {
+  void write(BinaryWriter writer, SubjectExamsCachedModel obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -47,7 +48,7 @@ class SubjectExamsModelAdapter extends TypeAdapter<SubjectExamsModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SubjectExamsModelAdapter &&
+      other is SubjectExamsCachedModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
