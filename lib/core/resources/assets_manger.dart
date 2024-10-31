@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 
 const String _animationPath = "assets/animations/";
 const String _iconsPath = "assets/icons/";
