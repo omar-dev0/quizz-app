@@ -14,8 +14,18 @@ class ExamStartScreenViewModel extends Cubit<ExamStartScreenState> {
     switch (action) {
       case GetExamByIdAction():
         emit(ExamLoadingState());
+        _getExamQuestions(action.examId);
       case NavigateToExamScreenAction():
         emit(NavigateToExamStartScreenState(action.questions));
     }
+  }
+
+  void _getExamQuestions(String examId) async {
+    var response = await _useCase.invokeExamQuestions(examId);
+    response.fold((error){
+      emit(ExamFailState(error.message));
+    }, (questions){
+      emit(SuccessGetExamState(questions));
+    });
   }
 }

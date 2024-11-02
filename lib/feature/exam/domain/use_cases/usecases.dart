@@ -24,8 +24,7 @@ class UseCases{
     return await _examRepo.getExam(subjectId);
   }
 
-  Future<Either<ServerFailure,List<ExamQuestionsEntity>>> invokExamQuesions(String examId) async{
+  Future<Either<ServerFailure,List<ExamQuestionsEntity>>> invokeExamQuestions(String examId) async{
     return await _examQuestionsRepo.getQuestions(examId);
   }
-
 }
