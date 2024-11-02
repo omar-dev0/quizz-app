@@ -5,5 +5,6 @@ import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart'
 
 abstract class HomeRepo{
   Future<Either<ServerFailure,List<SubjectItemEntity>>> getSubject();
-  Future<Either<ServerFailure,List<ExamEntity>>> getExam(String subjectId);
+
+
 }
