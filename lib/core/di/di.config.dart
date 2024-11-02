@@ -23,9 +23,15 @@ import '../../feature/exam/data/data_sources/online_data_source/online_data_sour
     as _i71;
 import '../../feature/exam/data/data_sources/online_data_source/online_data_source_impl.dart'
     as _i685;
+import '../../feature/exam/data/repositories/exam_questions_repo_impl.dart'
+    as _i644;
+import '../../feature/exam/data/repositories/exam_repo_impl.dart' as _i733;
 import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i815;
+import '../../feature/exam/domain/repositories/exam_repo.dart' as _i278;
+import '../../feature/exam/domain/repositories/exams_quesions_repo.dart'
+    as _i587;
 import '../../feature/exam/domain/repositories/home_repo.dart' as _i387;
-import '../../feature/exam/domain/use_cases/usecase.dart' as _i1009;
+import '../../feature/exam/domain/use_cases/usecases.dart' as _i874;
 import '../../feature/exam/presentation/manager/exam_start_screen_manager/exam_start_view_model.dart'
     as _i310;
 import '../../feature/exam/presentation/manager/home_managers/action_handler.dart'
@@ -61,20 +67,32 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i71.OnlineDataSource>(),
           gh<_i82.OfflineDataSource>(),
         ));
-    gh.factory<_i1009.UseCase>(() => _i1009.UseCase(gh<_i387.HomeRepo>()));
-    gh.factory<_i399.HomeViewModel>(
-        () => _i399.HomeViewModel(gh<_i1009.UseCase>()));
-    gh.factory<_i820.ExamsViewModel>(
-        () => _i820.ExamsViewModel(gh<_i1009.UseCase>()));
+    gh.factory<_i587.ExamQuestionsRepo>(() => _i644.ExamQuestionsRepoImpl(
+          gh<_i71.OnlineDataSource>(),
+          gh<_i82.OfflineDataSource>(),
+        ));
+    gh.factory<_i278.ExamRepo>(() => _i733.ExamRepoImpl(
+          gh<_i71.OnlineDataSource>(),
+          gh<_i82.OfflineDataSource>(),
+        ));
+    gh.factory<_i874.UseCases>(() => _i874.UseCases(
+          gh<_i387.HomeRepo>(),
+          gh<_i278.ExamRepo>(),
+          gh<_i587.ExamQuestionsRepo>(),
+        ));
     gh.factory<_i310.ExamStartScreenViewModel>(
-        () => _i310.ExamStartScreenViewModel(gh<_i1009.UseCase>()));
+        () => _i310.ExamStartScreenViewModel(gh<_i874.UseCases>()));
+    gh.factory<_i399.HomeViewModel>(
+        () => _i399.HomeViewModel(gh<_i874.UseCases>()));
+    gh.factory<_i820.ExamsViewModel>(
+        () => _i820.ExamsViewModel(gh<_i874.UseCases>()));
     gh.singleton<_i339.ExamsScreenActionHandler>(
         () => _i339.ExamsScreenActionHandler(
               gh<_i820.ExamsViewModel>(),
-              gh<_i1009.UseCase>(),
+              gh<_i874.UseCases>(),
             ));
     gh.singleton<_i831.ActionHandler>(() => _i831.ActionHandler(
-          gh<_i1009.UseCase>(),
+          gh<_i874.UseCases>(),
           gh<_i399.HomeViewModel>(),
         ));
     return this;
