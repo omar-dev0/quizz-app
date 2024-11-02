@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/exam_start_screen_manager/exam_start_screen_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/exam_start_screen_manager/exam_start_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/exam_start_screen_manager/exam_start_view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/questions_screen.dart';
 
 class ExamStartScreenBloc extends StatelessWidget {
   final String examId;
@@ -28,7 +27,17 @@ class ExamStartScreenBloc extends StatelessWidget {
                 );
               });
         } else if (state is ExamFailState) {
-        } else if (state is NavigateToStartExamScreenState) {}
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return  AlertDialog(
+                  title: Text(state.message),
+                );
+              });
+        } else if (state is NavigateToExamStartScreenState) {
+           Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const QuestionsScreen()));
+        }
       },
       listenWhen: (previous, current) {
         if (previous is ExamLoadingState && current is SuccessGetExamState) {
