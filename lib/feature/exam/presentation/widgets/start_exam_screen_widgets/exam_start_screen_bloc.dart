@@ -36,6 +36,7 @@ class ExamStartScreenBloc extends StatelessWidget {
         }
         return true;
       },
+      child: const SizedBox.shrink(),
     );
   }
 }
