@@ -1,7 +1,7 @@
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
 
 class ExamQuestionsEntity {
-  List<Answers>? answers;
+  List<AnswersEntity>? answers;
   String? type;
   String? id;
   String? question;
@@ -18,11 +18,11 @@ class ExamQuestionsEntity {
   );
 }
 
-class Answers {
+class AnswersEntity {
   String? answer;
   String? key;
 
-  Answers(
+  AnswersEntity(
     this.answer,
     this.key,
   );
