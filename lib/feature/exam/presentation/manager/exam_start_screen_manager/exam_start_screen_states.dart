@@ -1,5 +1,6 @@
-class ExamStartScreenState{}
 
+class ExamStartScreenState{}
+class InitialState extends ExamStartScreenState{}
 class ExamLoadingState extends ExamStartScreenState{}
 class SuccessGetExamState<T>extends ExamStartScreenState{
   T questions;
@@ -11,7 +12,7 @@ class ExamFailState extends ExamStartScreenState{
   ExamFailState(this.message);
 }
 
-class NavigateToExamStartScreenState<T> extends ExamStartScreenState{
-  T questions;
+class NavigateToExamStartScreenState extends ExamStartScreenState{
+  dynamic questions;
   NavigateToExamStartScreenState(this.questions);
 }

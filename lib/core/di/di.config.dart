@@ -26,6 +26,8 @@ import '../../feature/exam/data/data_sources/online_data_source/online_data_sour
 import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i815;
 import '../../feature/exam/domain/repositories/home_repo.dart' as _i387;
 import '../../feature/exam/domain/use_cases/usecase.dart' as _i1009;
+import '../../feature/exam/presentation/manager/exam_start_screen_manager/exam_start_view_model.dart'
+    as _i310;
 import '../../feature/exam/presentation/manager/home_managers/action_handler.dart'
     as _i831;
 import '../../feature/exam/presentation/manager/home_managers/view_model.dart'
@@ -64,6 +66,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i399.HomeViewModel(gh<_i1009.UseCase>()));
     gh.factory<_i820.ExamsViewModel>(
         () => _i820.ExamsViewModel(gh<_i1009.UseCase>()));
+    gh.factory<_i310.ExamStartScreenViewModel>(
+        () => _i310.ExamStartScreenViewModel(gh<_i1009.UseCase>()));
     gh.singleton<_i339.ExamsScreenActionHandler>(
         () => _i339.ExamsScreenActionHandler(
               gh<_i820.ExamsViewModel>(),
