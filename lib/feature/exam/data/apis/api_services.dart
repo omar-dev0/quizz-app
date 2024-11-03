@@ -21,6 +21,6 @@ abstract class ApiServices{
   @GET("/${ApiConst.exam}")
   Future<ExamsBySubjectResponse> getExamsBySubjectId(@Header("token") String token, @Query("subject") String id);
 
-  @GET("/${ApiConst.exam}")
-  Future<ExamQuestionsReponseModel> getExamQuestionsByExamId(@Header("token") String token, @Query("exams") String id);
+  @GET("/${ApiConst.questions}")
+  Future<ExamQuestionsReponseModel> getExamQuestionsByExamId(@Header("token") String token, @Query("exam") String id);
 }

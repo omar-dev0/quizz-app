@@ -100,7 +100,7 @@ class _ApiServices implements ApiServices {
     String id,
   ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'exams': id};
+    final queryParameters = <String, dynamic>{r'exam': id};
     final _headers = <String, dynamic>{r'token': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
@@ -111,7 +111,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          '/exams',
+          '/questions',
           queryParameters: queryParameters,
           data: _data,
         )
