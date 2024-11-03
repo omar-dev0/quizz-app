@@ -2,13 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/data/core/caching_data.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
 import 'package:quizz_app/feature/exam/domain/core/server_failure.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/exams_quesions_repo.dart';
 
-import '../apis/DTO/subject_dto.dart';
+import '../apis/DTO/dto.dart';
 
 @Injectable(as: ExamQuestionsRepo)
 class ExamQuestionsRepoImpl implements ExamQuestionsRepo{
@@ -20,7 +21,12 @@ class ExamQuestionsRepoImpl implements ExamQuestionsRepo{
   @override
   Future<Either<ServerFailure, List<ExamQuestionsEntity>>> getQuestions(String examId) async{
     try{
+      final cachedQuestions = await _offlineDataSource.getQuestionsOnExamId(examId);
+      if(cachedQuestions.isNotEmpty){
+        return Right(DTOs.examQuestionsCachedDto(cachedQuestions));
+      }
       final response = await _onlineDataSource.getExamQuestionsByExamId(examId);
+      CachingData.cachedQuestionsOnExamId(response);
       List<ExamQuestionsEntity> examInformation = DTOs.examQuestionsByExamIdDto(response);
       return Right(examInformation);
     }on Exception catch(e){

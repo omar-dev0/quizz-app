@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/exam/data/apis/DTO/subject_dto.dart';
+import 'package:quizz_app/feature/exam/data/apis/DTO/dto.dart';
 import 'package:quizz_app/feature/exam/data/core/caching_data.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';

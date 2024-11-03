@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/core/server_failure.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/exam_repo.dart';
-import '../apis/DTO/subject_dto.dart';
+import '../apis/DTO/dto.dart';
 import '../core/caching_data.dart';
 import '../data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import '../data_sources/offline_data_source/offline_data_source.dart';
