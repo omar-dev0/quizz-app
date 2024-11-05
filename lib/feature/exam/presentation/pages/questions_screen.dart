@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import '../widgets/questions_screen__widgets/choice_item_card.dart';
+import '../widgets/questions_screen__widgets/linear_progress_bar.dart';
 import '../widgets/questions_screen__widgets/quesions_screen_app_bar.dart';
 
 class QuestionsScreen extends StatelessWidget {
@@ -30,15 +31,18 @@ class QuestionsScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 3,),
+              LinearProgressBar(),
+              const SizedBox(
+                height: 24,
+              ),
               Text(
                 "Question",
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: AppColors.black,
                     ),
               ),
-              const SizedBox(
-                height: 24,
-              ),
+
               const ChoiceItemCard(),
               const ChoiceItemCard(),
               const ChoiceItemCard(),
