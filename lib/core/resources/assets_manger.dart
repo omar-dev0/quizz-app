@@ -1,10 +1,11 @@
 
 const String _animationPath = "assets/animations/";
 const String _iconsPath = "assets/icons/";
-const String _imagesPath = "assets/images/";
+const String _imagesPath = "assets/Images/";
 
 abstract class ImageAssets{
-  static const String examItemImage = "lib/core/resources/images/Profit.png";
+  static const String examItemImage = "${_imagesPath}Profit.png";
+  static const String timerImage = "${_imagesPath}timer.png";
 }
 
 abstract class AnimationAssets{
