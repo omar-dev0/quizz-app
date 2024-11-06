@@ -36,7 +36,7 @@ class ExamStartScreenBloc extends StatelessWidget {
                 );
               });
         } else if (state is NavigateToExamStartScreenState) {
-           Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const QuestionsScreen()));
+           Navigator.of(context).push(MaterialPageRoute(builder: (_)=>  QuestionsScreen(questions: state.questions,)));
         }
       },
       listenWhen: (previous, current) {

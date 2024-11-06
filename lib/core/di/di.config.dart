@@ -38,6 +38,8 @@ import '../../feature/exam/presentation/manager/home_managers/action_handler.dar
     as _i831;
 import '../../feature/exam/presentation/manager/home_managers/view_model.dart'
     as _i399;
+import '../../feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart'
+    as _i226;
 import '../../feature/exam/presentation/manager/subject_exam_manager/exams_screen_action_handler.dart'
     as _i339;
 import '../../feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart'
@@ -57,6 +59,8 @@ extension GetItInjectableX on _i174.GetIt {
     final networkModule = _$NetworkModule();
     gh.factory<_i528.PrettyDioLogger>(
         () => networkModule.providerInterceptor());
+    gh.factory<_i226.QuestionsScreenViewModel>(
+        () => _i226.QuestionsScreenViewModel());
     gh.lazySingleton<_i361.Dio>(() => networkModule.provideDio());
     gh.factory<_i82.OfflineDataSource>(() => _i505.OfflineDataSourceImpl());
     gh.lazySingleton<_i578.ApiServices>(
