@@ -1,53 +1,66 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quizz_app/core/extensions/build_context_extensions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
 
-class ChoiceItemCard extends StatefulWidget {
+class ChoiceItemCard extends StatelessWidget {
   final AnswersEntity answer;
-  const ChoiceItemCard({super.key, required this.answer});
+  final bool isSelected;
+  final ValueChanged<String> onSelected;
 
-  @override
-  State<ChoiceItemCard> createState() => _ChoiceItemCardState();
-}
+  const ChoiceItemCard({
+    super.key,
+    required this.answer,
+    required this.isSelected,
+    required this.onSelected,
+  });
 
-class _ChoiceItemCardState extends State<ChoiceItemCard> {
-  bool _isChecked = false;
-  String _selectedOptions = "";
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(17.5),
       height: 72,
-      width: context.width,
       decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(
-            spreadRadius: 0,
-            blurRadius:1
-          )
-        ],
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.lightBlue),
+        boxShadow: const [BoxShadow(spreadRadius: 0, blurRadius: 1)],
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.lightBlue,
+      ),
       child: Row(
         children: [
-           Checkbox(value: _isChecked,
-               onChanged: (value){
-             _isChecked = value!;
-             setState(() {
-             });
-           }),
-           // ignore: prefer_const_constructors
-           SizedBox(width: 8,),
-           Expanded(
-             child: Text(widget.answer.answer??"", softWrap: true,
-               maxLines: 2,),
-           )
+          BlocBuilder<QuestionsScreenViewModel, QuestionsScreenStates>(
+            builder: (context, state) {
+              if (state is MultipleChoiceQuestionState) {
+                return Checkbox(
+                  value: isSelected,
+                  onChanged: (value) {
+                    onSelected(answer.answer ?? "");
+                  },
+                );
+              } else {
+                return Radio<String>(
+                  value: answer.answer ?? "",
+                  groupValue: isSelected ? answer.answer : null,
+                  onChanged: (value) {
+                    onSelected(value!);
+                  },
+                );
+              }
+            },
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              answer.answer ?? "",
+              softWrap: true,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
         ],
       ),
     );
   }
 }
-

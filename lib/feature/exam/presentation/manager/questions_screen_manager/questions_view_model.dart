@@ -14,7 +14,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   void setExam(){
     _currentQuestion = 0;
   }
-  void nextQuestion(int totalQuestions){
+  void _nextQuestion(int totalQuestions){
     _currentQuestion++;
     if(_currentQuestion == totalQuestions - 1){
       emit(FinishedExamState());
@@ -22,22 +22,33 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
       emit(GoToNextQuestionState());
     }
   }
-  void prevQuestion(){
+  void _prevQuestion(){
     if(_currentQuestion > 0) _currentQuestion--;
   }
 
+  void _getQuestionAnswersType(String type){
+     if(type == "single_choice"){
+       emit(SingleChoiceQuestionState());
+     }else{
+       emit(MultipleChoiceQuestionState());
+     }
+  }
   void doAction(QuestionsScreenActions action){
     switch (action) {
       case SelectAnswerAction():
         break;
       case GoToNextQuestionAction():
-           nextQuestion(action.questions);
+           _nextQuestion(action.questions);
            break;
       case GoToPreviousQuestionAction():
-         prevQuestion();
+         _prevQuestion();
          emit(GoToPreviousQuestionState());
+         break;
       case SubmitExamAction():
         // TODO: Handle this case.
+        break;
+      case GetQuestionTypeAction():
+        _getQuestionAnswersType(action.type);
     }
   }
 }
