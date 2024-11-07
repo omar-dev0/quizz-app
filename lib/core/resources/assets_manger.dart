@@ -1,13 +1,15 @@
 
 const String _animationPath = "assets/animations/";
 const String _iconsPath = "assets/icons/";
-const String _imagesPath = "assets/Images/";
+const String _imagesPath = "assets/images/";
 
 abstract class ImageAssets{
-  static const String examItemImage = "${_imagesPath}Profit.png";
+  static const String examItemImage = "${_imagesPath}exam_icon.png";
+  static const String profileImage = '${_imagesPath}profile.png';
   static const String timerImage = "${_imagesPath}timer.png";
-  static const String timerEnd = "assets/Images/end.png";
+  static const String timerEnd = "${_imagesPath}end.png";
 }
+
 
 abstract class AnimationAssets{
   static const String error = '${_animationPath}error.json';

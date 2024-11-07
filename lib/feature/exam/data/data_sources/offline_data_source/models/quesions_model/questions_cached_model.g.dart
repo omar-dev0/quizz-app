@@ -8,7 +8,7 @@ part of 'questions_cached_model.dart';
 
 class QuestionsCachedModelAdapter extends TypeAdapter<QuestionsCachedModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   QuestionsCachedModel read(BinaryReader reader) {
