@@ -27,7 +27,7 @@ class QuestionsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
               children: <Widget>[
-                const QuesionsScreenAppBar(),
+                 QuesionsScreenAppBar(viewModel: viewModel,list: questions,),
                 const SizedBox(
                   height: 20,
                 ),
@@ -45,34 +45,6 @@ class QuestionsScreen extends StatelessWidget {
                     ),
                     const SizedBox(
                       width: 16,
-                    ),
-                    BlocBuilder<QuestionsScreenViewModel,
-                        QuestionsScreenStates>(
-                      builder: (context, state) {
-                        if (state is LastQuestionState) {
-                          return CustomButton(
-                            text: "Submit",
-                            buttonColor: AppColors.primary,
-                            textColor: AppColors.white,
-                            onPress: () {
-                              viewModel.doAction(
-                                SubmitExamAction<List<ExamQuestionsEntity>>(
-                                    questions),
-                              );
-                            },
-                          );
-                        }
-                        return CustomButton(
-                          text: "Next",
-                          buttonColor: AppColors.primary,
-                          textColor: AppColors.white,
-                          onPress: () {
-                            viewModel.doAction(
-                              GoToNextQuestionAction(questions.length),
-                            );
-                          },
-                        );
-                      },
                     ),
                   ],
                 )
