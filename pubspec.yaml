@@ -32,6 +32,7 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   fluttericon: ^2.0.0
   fluttertoast: ^8.2.8
+  percent_indicator: ^4.2.3
 
 
 dev_dependencies:

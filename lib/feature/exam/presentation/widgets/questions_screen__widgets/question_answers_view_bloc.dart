@@ -20,7 +20,7 @@ class QuestionAnswersViewBloc extends StatelessWidget {
     return BlocBuilder<QuestionsScreenViewModel, QuestionsScreenStates>(
       builder: (context, state) {
         if (state is FinishedExamState) {
-          return const ResultScreen();
+          return  ResultScreen(correctAnswers: state.correct, wrongAnswers:  state.notCorrect,);
         }
         return QuestionsAnswerView(questions: questions);
       },

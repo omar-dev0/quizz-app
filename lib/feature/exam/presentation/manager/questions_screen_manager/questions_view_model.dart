@@ -53,6 +53,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
             correct++;
           }
       }
+      emit(FinishedExamState(correct, questions.length - correct));
       log("corrent in view model $correct");
   }
   void doAction(QuestionsScreenActions action){
@@ -67,7 +68,6 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
          emit(GoToPreviousQuestionState());
          break;
       case SubmitExamAction():
-         emit(FinishedExamState());
         _checkAnswers(action.data);
         break;
       case GetQuestionTypeAction():

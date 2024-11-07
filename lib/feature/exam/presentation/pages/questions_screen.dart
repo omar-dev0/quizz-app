@@ -50,12 +50,15 @@ class QuestionsScreen extends StatelessWidget {
                         QuestionsScreenStates>(
                       builder: (context, state) {
                         if (state is LastQuestionState) {
-                           return CustomButton(
+                          return CustomButton(
                             text: "Submit",
                             buttonColor: AppColors.primary,
                             textColor: AppColors.white,
                             onPress: () {
-                               viewModel.doAction(SubmitExamAction<List<ExamQuestionsEntity>>(questions));
+                              viewModel.doAction(
+                                SubmitExamAction<List<ExamQuestionsEntity>>(
+                                    questions),
+                              );
                             },
                           );
                         }
@@ -65,11 +68,12 @@ class QuestionsScreen extends StatelessWidget {
                           textColor: AppColors.white,
                           onPress: () {
                             viewModel.doAction(
-                                GoToNextQuestionAction(questions.length));
+                              GoToNextQuestionAction(questions.length),
+                            );
                           },
                         );
                       },
-                    )
+                    ),
                   ],
                 )
               ],
