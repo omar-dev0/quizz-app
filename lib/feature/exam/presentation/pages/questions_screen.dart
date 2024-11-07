@@ -1,111 +1,62 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/core/di/di.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
-import '../widgets/questions_screen__widgets/choice_item_card.dart';
-import '../widgets/questions_screen__widgets/linear_progress_bar.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/questions_screen__widgets/custom_button.dart';
 import '../widgets/questions_screen__widgets/quesions_screen_app_bar.dart';
+import '../widgets/questions_screen__widgets/question_answers_view.dart';
 
 class QuestionsScreen extends StatelessWidget {
   List<ExamQuestionsEntity> questions;
 
   QuestionsScreen({super.key, required this.questions});
 
+  final viewModel = getIt.get<QuestionsScreenViewModel>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            children: <Widget>[
-              const QuesionsScreenAppBar(),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Question 1 of 20",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              LinearProgressBar(),
-              const SizedBox(
-                height: 24,
-              ),
-              Text(
-                "Question",
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: AppColors.black,
+    return BlocProvider(
+      create: (_) => viewModel,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Column(
+              children: <Widget>[
+                const QuesionsScreenAppBar(),
+                const SizedBox(
+                  height: 20,
+                ),
+                QuestionAnswersView(questions: questions,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      text: "Back",
+                      buttonColor: AppColors.white,
+                      textColor: AppColors.primary,
+                      onPress: (){
+                        viewModel.doAction(GoToPreviousQuestionAction());
+                      },
                     ),
-              ),
-              const SizedBox(height: 24,),
-              const ChoiceItemCard(),
-              const ChoiceItemCard(),
-              const ChoiceItemCard(),
-              const ChoiceItemCard(),
-              const SizedBox(
-                height: 80,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        side: const BorderSide(
-                          color: AppColors.primary
-                        ),
-                        backgroundColor: AppColors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        child: Text(
-                          "Back",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: AppColors.primary),
-                        ),
-                      ),
+                    const SizedBox(
+                      width: 16,
                     ),
-                  ),
-                  const SizedBox(width: 16,),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        )
-                      ),
-                      onPressed: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        child: Text(
-                          "Next",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: AppColors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+                    CustomButton(
+                      text: "Next",
+                      buttonColor: AppColors.primary,
+                      textColor: AppColors.white,
+                      onPress: (){
+                        viewModel.doAction(GoToNextQuestionAction(questions.length.toString()));
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/colors.dart';
+import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 
 class ChoiceItemCard extends StatefulWidget {
-  const ChoiceItemCard({super.key});
+  final AnswersEntity answer;
+  const ChoiceItemCard({super.key, required this.answer});
 
   @override
   State<ChoiceItemCard> createState() => _ChoiceItemCardState();
@@ -31,7 +33,15 @@ class _ChoiceItemCardState extends State<ChoiceItemCard> {
           color: AppColors.lightBlue),
       child: Row(
         children: [
-          const Text("Answer here")
+           Checkbox(value: _isChecked,
+               onChanged: (value){
+             _isChecked = value!;
+             setState(() {
+             });
+           }),
+           // ignore: prefer_const_constructors
+           SizedBox(width: 8,),
+           Text(widget.answer.answer??"")
         ],
       ),
     );
