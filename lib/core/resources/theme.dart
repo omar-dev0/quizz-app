@@ -13,6 +13,9 @@ class AppTheme {
       onPrimary: Colors.white,
       secondary: AppColors.primary.withOpacity(.2),
     ),
+    appBarTheme: const AppBarTheme(
+      centerTitle: false
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.black30,
       selectedItemColor: AppColors.primary,

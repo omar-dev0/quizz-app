@@ -28,6 +28,9 @@ class LoginActionHandler {
         break;
       case InitialScreenAction():
         loginViewModel.emitState(InitialScreenState());
+      case ClickedSignUpButton():
+       _navigateToSignUp();
+           break;
     }
   }
 
@@ -53,5 +56,9 @@ class LoginActionHandler {
   }
   void _handleCheckboxAction(CheckedBoxAction action) {
     loginViewModel.emitState(RememberMeBoxCheckedState(action.isBoxChecked));
+  }
+
+  void _navigateToSignUp(){
+    loginViewModel.emitState(NavigateToSignUp());
   }
 }

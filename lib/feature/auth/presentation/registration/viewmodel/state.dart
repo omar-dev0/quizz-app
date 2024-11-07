@@ -10,3 +10,8 @@ class FailReg extends RegistrationState {
   String? error;
   FailReg({this.error});
 }
+class HideLoadingDialog extends RegistrationState{}
+
+class NavigateToLogin extends RegistrationState{}
+
+class ErrorInField extends RegistrationState{}

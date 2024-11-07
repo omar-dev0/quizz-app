@@ -1,3 +1,4 @@
+import 'package:quizz_app/feature/auth/data/api/model/response/login/Otp_code_response.dart';
 import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
 import 'package:quizz_app/feature/auth/domain/use_cases/forget_password_use_case.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
@@ -33,7 +34,8 @@ class ForgetPasswordActionHandler{
             forgetPasswordViewModel.emitState(OtpSendingSuccess(response.data!.message));
         case Fail():
             forgetPasswordViewModel.emitState(OtpSendingFail(response.error.toString()));
-      }
+        case ServerFailure<OtpCodeResponse?>():
+          forgetPasswordViewModel.emitState(OtpSendingFail(response.message));      }
     }
   }
 }

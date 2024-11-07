@@ -7,6 +7,7 @@ import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actio
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../../../../core/resources/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'login_form.dart';
 
 class LoginScreenBody extends StatelessWidget {
@@ -92,19 +93,19 @@ class LoginScreenBody extends StatelessWidget {
             ),
           );
         }
-        return const Padding(
-          padding: EdgeInsets.all(24),
+        return  Padding(
+          padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              LoginForm(),
+              const LoginForm(),
               SizedBox(
-                height: 16,
+                height: 16.h,
               ),
-              RememberMeAndForgotPasswordRow(),
+              const RememberMeAndForgotPasswordRow(),
               SizedBox(
-                height: 48,
+                height: 48.h,
               ),
-              LoginButton()
+              const LoginButton()
             ],
           ),
         );

@@ -52,15 +52,12 @@ class CheckEmailScreen extends StatelessWidget {
                     forgetPasswordViewModel
                         .doAction(NavigateToVerificationEmailScreenAction());
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    child: Text(
-                      "Continue",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: AppColors.white),
-                    ),
+                  child: Text(
+                    "Continue",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(color: AppColors.white),
                   ),
                 ),
               )

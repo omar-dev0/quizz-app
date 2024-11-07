@@ -6,6 +6,7 @@ import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/login_scree
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
+  static const String route = 'loginScreen';
  final LoginViewModel viewModel = getIt.get<LoginViewModel>();
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class LoginScreen extends StatelessWidget {
       create: (context)=>viewModel,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: false,
           leading: const Icon(Icons.arrow_back_ios_new),
           titleSpacing: -8,
           title: Text(

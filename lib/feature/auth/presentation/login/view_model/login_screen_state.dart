@@ -25,3 +25,5 @@ class LoginSuccessState extends LoginScreenState{
   User? user;
   LoginSuccessState(this.user);
 }
+
+class NavigateToSignUp extends LoadingState{}

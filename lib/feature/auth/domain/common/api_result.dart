@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../data/core/error_message.dart';
 
-abstract class Result<T>{}
+sealed class Result<T>{}
 
 class Success<T> implements Result<T>
 {
@@ -49,6 +49,10 @@ class ServerFailure<T> implements Result<T>{
     if(statuesCode == 401){
       return ServerFailure("Incorrect email or password");
     }
+    else if(statuesCode == 409)
+      {
+        return ServerFailure('user already exist');
+      }
     else if(statuesCode == 404){
       return ServerFailure(ErrorMessage.requestNotFount);
     }else if(statuesCode >= 500){

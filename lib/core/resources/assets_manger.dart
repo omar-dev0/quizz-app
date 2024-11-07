@@ -4,7 +4,9 @@ const String _animationPath = "assets/animations/";
 const String _iconsPath = "assets/icons/";
 const String _imagesPath = "assets/images/";
 
-abstract class ImageAssets{}
+abstract class ImageAssets{
+  static const String profileImage = '${_imagesPath}profile.png';
+}
 
 abstract class AnimationAssets{
   static const String error = '${_animationPath}error.json';

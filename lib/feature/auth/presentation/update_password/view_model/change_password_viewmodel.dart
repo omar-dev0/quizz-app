@@ -1,32 +1,46 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/auth/ui/registration/viewmodel/state.dart';
+import 'package:quizz_app/feature/auth/presentation/update_password/view_model/state.dart';
+
+import 'action.dart';
+
 
 @injectable
-class RegistrationViewModel extends Cubit<RegistrationState> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController userName = TextEditingController();
-  TextEditingController rePassword = TextEditingController();
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class ChangePasswordViewModel extends Cubit<ChangePasswordSate>
+{
   @factoryMethod
-  RegistrationViewModel() : super(InitReg());
+  ChangePasswordViewModel(): super(InitChangePassword());
+  final TextEditingController currentPassword = TextEditingController();
+  final TextEditingController newPassword = TextEditingController();
+  final TextEditingController rePassword = TextEditingController();
+
+
+  void doEvent(ChangePasswordAction action)
+  {
+    switch (action) {
+
+      case BackButtonClicked():
+        {
+          emit(NavigateToEditProfile());
+          emit(InitChangePassword());
+        }
+    }
+
+  }
+
+
 
   String? emailValidator(String? val) {
     final bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(val!);
     return emailValid ? null : 'Please enter right email';
   }
 
   String? validatePassword(String? value) {
     RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value!.isEmpty) {
       return 'Please enter password';
     } else {
@@ -43,13 +57,13 @@ class RegistrationViewModel extends Cubit<RegistrationState> {
   }
 
   String? validateConfirmPassword(String? value) {
-    return password.text == rePassword.text
+    return newPassword.text == rePassword.text
         ? null
         : 'password and \nconfirm password not \nmatch';
   }
 
   String? validateMobile(String? value) {
-    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    String pattern = r'^01[0125][0-9]{8}$';
     RegExp regExp = RegExp(pattern);
     if (value!.isEmpty) {
       return 'Please enter mobile number';
@@ -63,5 +77,6 @@ class RegistrationViewModel extends Cubit<RegistrationState> {
   String? validateEmpty(String? value) {
     return value!.isEmpty ? 'Can not be Empty' : null;
   }
+
 
 }

@@ -16,5 +16,11 @@
   "signUp" : "Signup",
   "login" : "Login",
   "haveAccount" : "Already have an account?",
-  "update" : "Update"
+  "update" : "Update",
+  "profile" : "profile",
+  "change" : "change",
+  "resetPassword" : "Reset password",
+  "currentPassword" : "Current password",
+  "newPassword" : "New password",
+  "confirmPassword" : "Confirm password"
 }

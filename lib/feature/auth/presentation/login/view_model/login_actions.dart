@@ -12,5 +12,6 @@ class CheckedBoxAction extends LoginScreenActions{
   bool isBoxChecked;
   CheckedBoxAction(this.isBoxChecked);
 }
+class ClickedSignUpButton extends LoginScreenActions{}
 
 
