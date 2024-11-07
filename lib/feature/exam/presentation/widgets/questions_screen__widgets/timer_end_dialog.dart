@@ -23,7 +23,7 @@ class TimerEndDialog extends StatelessWidget {
                 SizedBox(
                     height: 50,
                     width: 50,
-                    child: Image.asset(ImageAssets.timerEnd)),
+                    child: Image.asset(ImageAssets.timerEnd),),
                 Text(
                   "Time out!!",
                   style: Theme.of(context)

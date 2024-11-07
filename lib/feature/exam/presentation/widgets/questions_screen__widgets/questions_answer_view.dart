@@ -54,33 +54,49 @@ class QuestionsAnswerView extends StatelessWidget {
         const SizedBox(
           height: 80,
         ),
-        BlocBuilder<QuestionsScreenViewModel,
-            QuestionsScreenStates>(
-          builder: (context, state) {
-            if (state is LastQuestionState) {
-              return CustomButton(
-                text: "Submit",
-                buttonColor: AppColors.primary,
-                textColor: AppColors.white,
-                onPress: () {
-                  viewModel.doAction(
-                    SubmitExamAction<List<ExamQuestionsEntity>>(
-                        questions),
-                  );
-                },
-              );
-            }
-            return CustomButton(
-              text: "Next",
-              buttonColor: AppColors.primary,
-              textColor: AppColors.white,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomButton(
+              text: "Back",
+              buttonColor: AppColors.white,
+              textColor: AppColors.primary,
               onPress: () {
-                viewModel.doAction(
-                  GoToNextQuestionAction(questions.length),
+                viewModel.doAction(GoToPreviousQuestionAction());
+              },
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            BlocBuilder<QuestionsScreenViewModel,
+                QuestionsScreenStates>(
+              builder: (context, state) {
+                if (state is LastQuestionState) {
+                  return CustomButton(
+                    text: "Submit",
+                    buttonColor: AppColors.primary,
+                    textColor: AppColors.white,
+                    onPress: () {
+                      viewModel.doAction(
+                        SubmitExamAction<List<ExamQuestionsEntity>>(
+                            questions),
+                      );
+                    },
+                  );
+                }
+                return CustomButton(
+                  text: "Next",
+                  buttonColor: AppColors.primary,
+                  textColor: AppColors.white,
+                  onPress: () {
+                    viewModel.doAction(
+                      GoToNextQuestionAction(questions.length),
+                    );
+                  },
                 );
               },
-            );
-          },
+            ),
+          ],
         ),
       ],
     );

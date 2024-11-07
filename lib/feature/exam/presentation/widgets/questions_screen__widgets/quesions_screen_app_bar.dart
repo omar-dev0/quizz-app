@@ -37,6 +37,7 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
             builder: (context) {
               return  TimerEndDialog(onPressed: () {
                 widget.viewModel.doAction(SubmitExamAction(widget.list));
+                Navigator.pop(context);
               },);
             },
           );

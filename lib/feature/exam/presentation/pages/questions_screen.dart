@@ -32,22 +32,6 @@ class QuestionsScreen extends StatelessWidget {
                   height: 20,
                 ),
                 QuestionAnswersViewBloc(questions: questions),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomButton(
-                      text: "Back",
-                      buttonColor: AppColors.white,
-                      textColor: AppColors.primary,
-                      onPress: () {
-                        viewModel.doAction(GoToPreviousQuestionAction());
-                      },
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                  ],
-                )
               ],
             ),
           ),
