@@ -1,0 +1,8 @@
+sealed class ForgetPasswordActions{}
+
+class InitialScreenAction extends ForgetPasswordActions{}
+class NavigateToVerificationEmailScreenAction extends ForgetPasswordActions{}
+class NavigateToResetPasswordScreenAction extends ForgetPasswordActions{}
+class NavigateBackAction extends ForgetPasswordActions{}
+class SentOtpCodeAction extends ForgetPasswordActions{}
+class NavigateToLoginScreenAction extends ForgetPasswordActions{}

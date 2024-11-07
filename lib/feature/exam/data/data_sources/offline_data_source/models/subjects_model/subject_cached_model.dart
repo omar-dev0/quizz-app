@@ -1,7 +1,7 @@
 
 import 'package:hive/hive.dart';
 part 'subject_cached_model.g.dart';
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class SubjectCachedModel{
   @HiveField(0)
   String? id;
