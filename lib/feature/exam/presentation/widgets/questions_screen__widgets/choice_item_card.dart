@@ -20,7 +20,7 @@ class _ChoiceItemCardState extends State<ChoiceItemCard> {
     return   Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(17.5),
-      height: 52,
+      height: 72,
       width: context.width,
       decoration: BoxDecoration(
         boxShadow: const [
@@ -41,7 +41,10 @@ class _ChoiceItemCardState extends State<ChoiceItemCard> {
            }),
            // ignore: prefer_const_constructors
            SizedBox(width: 8,),
-           Text(widget.answer.answer??"")
+           Expanded(
+             child: Text(widget.answer.answer??"", softWrap: true,
+               maxLines: 2,),
+           )
         ],
       ),
     );

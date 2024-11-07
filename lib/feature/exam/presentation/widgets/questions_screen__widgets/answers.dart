@@ -13,8 +13,9 @@ class Answers extends StatelessWidget {
     final viewModel = context.read<QuestionsScreenViewModel>();
     int currentQuestion = viewModel.getCurrentQuestion();
     return SizedBox(
-      height: 204,
+      height: 380,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
          itemCount: questions[currentQuestion].answers!.length,
           itemBuilder: (context,index){
             return ChoiceItemCard(answer: questions[currentQuestion].answers![index],);
