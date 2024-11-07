@@ -12,3 +12,5 @@ class ShowExamResultState extends QuestionsScreenStates{
   int notCorrect;
   ShowExamResultState(this.correct, this.notCorrect);
 }
+
+class LastQuestionState extends QuestionsScreenStates{}

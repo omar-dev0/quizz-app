@@ -30,7 +30,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
     _saveAnswer();
     _currentQuestion++;
     if(_currentQuestion + 1 == totalQuestions){
-      emit(FinishedExamState());
+      emit(LastQuestionState());
     }else{
       emit(GoToNextQuestionState());
     }
@@ -67,10 +67,12 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
          emit(GoToPreviousQuestionState());
          break;
       case SubmitExamAction():
+         emit(FinishedExamState());
         _checkAnswers(action.data);
         break;
       case GetQuestionTypeAction():
-        _getQuestionAnswersType(action.type);
+        // _getQuestionAnswersType(action.type);
+        break;
     }
   }
 }

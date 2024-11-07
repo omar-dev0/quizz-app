@@ -8,7 +8,7 @@ import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_man
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/questions_screen__widgets/custom_button.dart';
 import '../widgets/questions_screen__widgets/quesions_screen_app_bar.dart';
-import '../widgets/questions_screen__widgets/question_answers_view.dart';
+import '../widgets/questions_screen__widgets/question_answers_view_bloc.dart';
 
 class QuestionsScreen extends StatelessWidget {
   List<ExamQuestionsEntity> questions;
@@ -31,7 +31,7 @@ class QuestionsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                QuestionAnswersView(questions: questions),
+                QuestionAnswersViewBloc(questions: questions),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -49,7 +49,7 @@ class QuestionsScreen extends StatelessWidget {
                     BlocBuilder<QuestionsScreenViewModel,
                         QuestionsScreenStates>(
                       builder: (context, state) {
-                        if (state is FinishedExamState) {
+                        if (state is LastQuestionState) {
                            return CustomButton(
                             text: "Submit",
                             buttonColor: AppColors.primary,

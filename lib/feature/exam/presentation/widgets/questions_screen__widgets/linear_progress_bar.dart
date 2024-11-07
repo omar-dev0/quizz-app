@@ -16,7 +16,7 @@ class LinearProgressBar extends StatefulWidget {
 class _LinearProgressBarState extends State<LinearProgressBar> {
   double _progress = 1.0;
   double _currentQuestions = 1;
-  double _totalQuestionsNumber =10;
+  double _totalQuestionsNumber = 10;
   void _increment(){
     setState(() {
       _progress = _currentQuestions/ _totalQuestionsNumber;
@@ -31,7 +31,7 @@ class _LinearProgressBarState extends State<LinearProgressBar> {
   Widget build(BuildContext context) {
     return BlocListener<QuestionsScreenViewModel,QuestionsScreenStates>(
       listener: (context,state){
-        if(state is GoToNextQuestionState){
+        if(state is GoToNextQuestionState || state is LastQuestionState){
            _currentQuestions++;
         }else if(state is GoToPreviousQuestionState){
           _currentQuestions--;
