@@ -25,7 +25,7 @@ class _QuestionAnswersViewState extends State<QuestionAnswersView> {
     return BlocListener<QuestionsScreenViewModel, QuestionsScreenStates>(
       listener: (context, state) {
         if (state is GoToPreviousQuestionState ||
-            state is GoToNextQuestionState) {
+            state is GoToNextQuestionState ) {
           setState(() {
 
           });

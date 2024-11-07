@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
@@ -27,7 +29,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   void _nextQuestion(int totalQuestions){
     _saveAnswer();
     _currentQuestion++;
-    if(_currentQuestion == totalQuestions){
+    if(_currentQuestion + 1 == totalQuestions){
       emit(FinishedExamState());
     }else{
       emit(GoToNextQuestionState());
@@ -51,6 +53,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
             correct++;
           }
       }
+      log("corrent in view model $correct");
   }
   void doAction(QuestionsScreenActions action){
     switch (action) {

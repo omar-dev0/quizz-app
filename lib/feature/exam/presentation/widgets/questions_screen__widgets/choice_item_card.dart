@@ -19,6 +19,7 @@ class ChoiceItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<QuestionsScreenViewModel>();
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(17.5),
@@ -45,6 +46,7 @@ class ChoiceItemCard extends StatelessWidget {
                   groupValue: isSelected ? answer.answer : null,
                   onChanged: (value) {
                     onSelected(value!);
+                    viewModel.setLastChoice(answer.key??"");
                   },
                 );
               }
