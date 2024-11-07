@@ -41,12 +41,21 @@ class LoginActionHandler {
     final response = await loginUseCase.invoke(email,password);
     switch (response) {
       case Success():
-        User user = User(email: email, token: response.data!.token);
-        loginViewModel.emitState(LoginSuccessState(user));
+        {
+          User user = User(email: email, token: response.data!.token);
+          loginViewModel.emitState(CloseDialog());
+          loginViewModel.emitState(LoginSuccessState(user));
+        }
       case ServerFailure():
-        loginViewModel.emitState(LoginErrorState(response.message));
+        {
+          loginViewModel.emitState(CloseDialog());
+          loginViewModel.emitState(LoginErrorState(response.message));
+        }
       case Fail():
-        loginViewModel.emitState(LoginErrorState(response.error));
+        {
+          loginViewModel.emitState(CloseDialog());
+          loginViewModel.emitState(LoginErrorState(response.error));
+        }
     }
 
   }
@@ -60,5 +69,6 @@ class LoginActionHandler {
 
   void _navigateToSignUp(){
     loginViewModel.emitState(NavigateToSignUp());
+    loginViewModel.emitState(InitialScreenState());
   }
 }

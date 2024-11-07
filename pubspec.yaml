@@ -13,22 +13,28 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  retrofit: ^4.4.1
-  json_annotation: ^4.9.0
   cupertino_icons: ^1.0.6
   lottie: ^3.1.2
   google_fonts: ^6.2.1
   flutter_screenutil: ^5.9.3
-  dio: 
+  dio:
   intl: any
-  flutter_bloc: ^8.1.6
-  injectable: ^2.5.0
-  pretty_dio_logger:
-  get_it:
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
   isar: ^3.0.0
   isar_flutter_libs: ^3.0.0
+  flutter_bloc: ^8.1.6
+  dartz: ^0.10.1
+  injectable: ^2.5.0
+  get_it:
+  retrofit: ^4.4.1
+  logger: ^2.4.0  # for logging purpose
+  json_annotation: ^4.9.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  pretty_dio_logger: ^1.4.0
+  flutter_spinkit: ^5.2.1
+  persistent_bottom_nav_bar: ^6.2.1
+  fluttericon: ^2.0.0
+  fluttertoast: ^8.2.8
 
 dev_dependencies:
   flutter_test:
@@ -37,9 +43,10 @@ dev_dependencies:
 # add build runner if not already added
   flutter_lints: ^3.0.0
   isar_generator: ^3.0.0
-  build_runner:
   injectable_generator:
+  # add build runner if not already added
   retrofit_generator: '>=8.0.0 <10.0.0' # for Dart 3.3 use ^9.0.0
+  build_runner: ^2.3.3
   json_serializable: ^6.8.0
   hive_generator:
 

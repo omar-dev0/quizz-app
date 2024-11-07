@@ -76,6 +76,7 @@ class LoginButton extends StatelessWidget {
         listener: (context , state){
           if(state is NavigateToSignUp)
             {
+              Navigator.pop(context);
               Navigator.pushNamed(context, RegistrationScreen.route);
             }
         }),

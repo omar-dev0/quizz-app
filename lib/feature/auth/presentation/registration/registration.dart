@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/assets_manger.dart';
-import 'package:quizz_app/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/registration/viewmodel/registration_cubit.dart';
 import 'package:quizz_app/feature/auth/presentation/registration/viewmodel/registration_events.dart';
 import 'package:quizz_app/feature/auth/presentation/registration/viewmodel/state.dart';
 import 'package:quizz_app/feature/auth/presentation/registration/widget/sign_up_button.dart';
 
+import '../../../../core/di/di.dart';
 import '../../../../core/shared_widgets/dialogs.dart';
 
 class RegistrationScreen extends StatelessWidget {
@@ -34,7 +34,7 @@ class RegistrationScreen extends StatelessWidget {
             }
           else if(state is NavigateToLogin)
             {
-              Navigator.pushReplacementNamed(context, LoginScreen.route);
+              Navigator.pop(context);
             }
           else if (state is SuccessReg)
             {
