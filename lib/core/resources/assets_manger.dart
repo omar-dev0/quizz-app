@@ -6,7 +6,7 @@ const String _imagesPath = "assets/Images/";
 abstract class ImageAssets{
   static const String examItemImage = "${_imagesPath}Profit.png";
   static const String timerImage = "${_imagesPath}timer.png";
-  static const String timerEnd = "{$_imagesPath}timer_end.png";
+  static const String timerEnd = "assets/Images/end.png";
 }
 
 abstract class AnimationAssets{

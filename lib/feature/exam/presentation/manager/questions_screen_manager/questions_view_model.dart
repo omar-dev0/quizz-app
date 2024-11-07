@@ -47,6 +47,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
      }
   }
   void _checkAnswers(List<ExamQuestionsEntity> questions){
+     _saveAnswer();
       int correct = 0;
       for(int i = 0;i < questions.length; ++i){
           if(questions[i].correct == answers[i]){
@@ -54,7 +55,6 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
           }
       }
       emit(FinishedExamState(correct, questions.length - correct));
-      log("corrent in view model $correct");
   }
   void doAction(QuestionsScreenActions action){
     switch (action) {
