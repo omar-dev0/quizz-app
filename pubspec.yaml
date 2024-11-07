@@ -57,7 +57,4 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
-    - lib/core/resources/images/
-#    - assets/images/
-#    - assets/icons/
 

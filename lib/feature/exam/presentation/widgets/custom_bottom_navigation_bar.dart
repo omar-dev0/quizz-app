@@ -22,26 +22,23 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     final homeViewModel = context.read<HomeViewModel>();
-    return SizedBox(
-      height: 60,
-      child: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            widget._currentIndex = index;
-            homeViewModel.setCurrentFragmentIndex(widget._currentIndex);
-            homeViewModel.doAction(ChangeHomeCurrentFragmentAction());
-          });
-        },
-        backgroundColor: Colors.white,
-        unselectedItemColor: AppColors.grey10,
-        selectedItemColor: AppColors.primary,
-        currentIndex: widget._currentIndex,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Elusive.home), label: "Explore"),
-          BottomNavigationBarItem(icon: Icon(Elusive.edit), label: "Result"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-      ),
+    return BottomNavigationBar(
+      onTap: (index) {
+        setState(() {
+          widget._currentIndex = index;
+          homeViewModel.setCurrentFragmentIndex(widget._currentIndex);
+          homeViewModel.doAction(ChangeHomeCurrentFragmentAction());
+        });
+      },
+      backgroundColor: Colors.white,
+      unselectedItemColor: AppColors.grey10,
+      selectedItemColor: AppColors.primary,
+      currentIndex: widget._currentIndex,
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Elusive.home), label: "Explore"),
+        BottomNavigationBarItem(icon: Icon(Elusive.edit), label: "Result"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+      ],
     );
   }
 }

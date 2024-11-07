@@ -10,43 +10,37 @@ import 'package:quizz_app/core/resources/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
-import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
-
 import 'core/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/profile/profile_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/update_password/change_password.dart';
 import 'feature/auth/presentation/registration/registration.dart';
 
-void main() async{
+void main() async {
   configureDependencies();
-   await initHive();
-  Bloc.observer= SimpleBlocObserver();
+  await initHive();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
-Future<void> initHive()async{
-  await Hive.initFlutter();
-  Hive.registerAdapter(SubjectCachedModelAdapter());
-  Hive.registerAdapter(SubjectExamsCachedModelAdapter());
-  await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-  await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
 Future<void> initHive() async {
   try {
     await Hive.initFlutter();
     Hive.registerAdapter(LoginResponseAdapter());
     Hive.registerAdapter(SubjectCachedModelAdapter());
+    Hive.registerAdapter(SubjectExamsCachedModelAdapter());
     await Hive.openBox<LoginResponse>(HiveBox.userBox);
     await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
+    await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
+    await Hive.openBox<SubjectExamsCachedModel>(
+        AppConstant.kSubjectExamsHiveBox);
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
   }
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -57,20 +51,20 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_ , child)=> MaterialApp(
+      builder: (_, child) => MaterialApp(
         locale: const Locale('en'),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.light,
-        initialRoute: LoginScreen.route,
+        initialRoute: MainScreen.route,
         routes: {
-          LoginScreen.route : (context)=>LoginScreen(),
-          RegistrationScreen.route : (_)=>  RegistrationScreen(),
-          ProfileScreen.route : (_)=> ProfileScreen(),
-          ChangePassword.route : (_)=>ChangePassword(),
+          LoginScreen.route: (context) => LoginScreen(),
+          RegistrationScreen.route: (_) => RegistrationScreen(),
+          ProfileScreen.route: (_) => ProfileScreen(),
+          ChangePassword.route: (_) => ChangePassword(),
+          MainScreen.route : (_)=>MainScreen(),
         },
       ),
     );
   }
 }
-
