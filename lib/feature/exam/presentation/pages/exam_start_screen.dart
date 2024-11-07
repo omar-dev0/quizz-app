@@ -91,6 +91,7 @@ class ExamStartScreen extends StatelessWidget {
               ),
               ExamStartScreenBloc(
                 examId: exam.examId!,
+                duration: exam.duration??0,
               )
             ],
           ),

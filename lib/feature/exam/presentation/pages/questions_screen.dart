@@ -12,8 +12,8 @@ import '../widgets/questions_screen__widgets/question_answers_view_bloc.dart';
 
 class QuestionsScreen extends StatelessWidget {
   List<ExamQuestionsEntity> questions;
-
-  QuestionsScreen({super.key, required this.questions});
+  final int examDuration;
+  QuestionsScreen({super.key, required this.questions, required this.examDuration});
 
   final viewModel = getIt.get<QuestionsScreenViewModel>();
 
@@ -27,7 +27,7 @@ class QuestionsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
               children: <Widget>[
-                 QuesionsScreenAppBar(viewModel: viewModel,list: questions,),
+                 QuesionsScreenAppBar(viewModel: viewModel,list: questions,examDuration: examDuration,),
                 const SizedBox(
                   height: 20,
                 ),

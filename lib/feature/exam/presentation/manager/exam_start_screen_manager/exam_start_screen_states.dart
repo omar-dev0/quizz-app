@@ -14,5 +14,6 @@ class ExamFailState extends ExamStartScreenState{
 
 class NavigateToExamStartScreenState extends ExamStartScreenState{
   dynamic questions;
-  NavigateToExamStartScreenState(this.questions);
+  int duration;
+  NavigateToExamStartScreenState(this.questions, this.duration);
 }

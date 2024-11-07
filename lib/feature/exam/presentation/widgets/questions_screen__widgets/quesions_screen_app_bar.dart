@@ -15,7 +15,8 @@ import '../../../../../core/resources/colors.dart';
 class QuesionsScreenAppBar extends StatefulWidget {
   final QuestionsScreenViewModel viewModel;
   final List<ExamQuestionsEntity> list;
-  const QuesionsScreenAppBar({super.key, required this.viewModel,required this.list});
+  final int examDuration;
+  const QuesionsScreenAppBar({super.key, required this.viewModel,required this.list, required this.examDuration});
 
   @override
   State<QuesionsScreenAppBar> createState() => _QuesionsScreenAppBarState();
@@ -24,7 +25,7 @@ class QuesionsScreenAppBar extends StatefulWidget {
 class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
   Timer? _timer;
   int _minutes = 0;
-  int _seconds = 10;
+  int _seconds = 0;
 
   void _startTimer() {
     const oneSecond = Duration(seconds: 1);
@@ -55,6 +56,7 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
   @override
   void initState() {
     // TODO: implement initState
+    _minutes = widget.examDuration;
     _startTimer();
     super.initState();
   }
