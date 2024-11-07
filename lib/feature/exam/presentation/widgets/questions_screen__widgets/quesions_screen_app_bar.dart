@@ -26,11 +26,12 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
   Timer? _timer;
   int _minutes = 0;
   int _seconds = 0;
-
+  Color _timerColor = AppColors.timerColor;
   void _startTimer() {
     const oneSecond = Duration(seconds: 1);
     _timer = Timer.periodic(oneSecond, (Timer timer) {
       setState(() {
+        _timerColor = AppColors.error;
         if (_seconds == 0 && _minutes == 0) {
           showDialog(
             context: context,
@@ -57,6 +58,7 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
   void initState() {
     // TODO: implement initState
     _minutes = widget.examDuration;
+    _timerColor = AppColors.timerColor;
     _startTimer();
     super.initState();
   }
@@ -111,7 +113,7 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
                         .textTheme
                         .labelLarge!
                         .copyWith(
-                      color: AppColors.timerColor,
+                      color: _timerColor,
                     )),
               ],
             );
