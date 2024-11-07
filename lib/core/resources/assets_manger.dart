@@ -4,8 +4,11 @@ const String _iconsPath = "assets/icons/";
 const String _imagesPath = "assets/images/";
 
 abstract class ImageAssets{
-  static const String examItemImage = "lib/core/resources/images/Profit.png";
+  static const String examItemImage = "${_imagesPath}exam_icon.png";
+  static const String profileImage = '${_imagesPath}profile.png';
+
 }
+
 
 abstract class AnimationAssets{
   static const String error = '${_animationPath}error.json';
