@@ -2,7 +2,7 @@
 import 'package:hive/hive.dart';
 
 part 'subject_exams_model.g.dart';
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class SubjectExamsCachedModel{
   @HiveField(0)
   String? examId;

@@ -9,7 +9,7 @@ part of 'subject_exams_model.dart';
 class SubjectExamsCachedModelAdapter
     extends TypeAdapter<SubjectExamsCachedModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
   SubjectExamsCachedModel read(BinaryReader reader) {
