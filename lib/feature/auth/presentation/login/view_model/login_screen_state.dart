@@ -5,6 +5,7 @@ sealed class LoginScreenState{}
 class InitialScreenState extends LoginScreenState{}
 
 class LoadingState extends LoginScreenState{}
+class CloseDialog extends LoginScreenState{}
 
 class EmptyFiledState extends LoginScreenState{}
 

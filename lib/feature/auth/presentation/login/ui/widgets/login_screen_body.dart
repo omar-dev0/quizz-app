@@ -17,12 +17,6 @@ class LoginScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginViewModel = context.read<LoginViewModel>();
     return BlocConsumer<LoginViewModel, LoginScreenState>(
-      listenWhen: (previous, current) {
-        if (previous is LoadingState || previous is LoginErrorState) {
-          Navigator.pop(context);
-        }
-        return current is! InitialScreenState;
-      },
       listener: (context, state) {
         if (state is LoadingState) {
           showDialog(
@@ -41,7 +35,12 @@ class LoginScreenBody extends StatelessWidget {
                   ],
                 );
               });
-        } else if (state is LoginErrorState) {
+        }
+        else if (state is CloseDialog)
+          {
+            Navigator.pop(context);
+          }
+        else if (state is LoginErrorState) {
           showDialog(
               context: context,
               builder: (_) {
@@ -61,7 +60,8 @@ class LoginScreenBody extends StatelessWidget {
                   ],
                 );
               });
-        } else if (state is LoginSuccessState) {
+        }
+        else if (state is LoginSuccessState) {
           showDialog(
             context: context,
             builder: (_) {

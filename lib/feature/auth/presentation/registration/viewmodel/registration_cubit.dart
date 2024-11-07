@@ -73,6 +73,7 @@ class RegistrationViewModel extends Cubit<RegistrationState> {
 
   void _navigateToLogin(){
     emit(NavigateToLogin());
+    emit(InitReg());
   }
 
   String? emailValidator(String? val) {
