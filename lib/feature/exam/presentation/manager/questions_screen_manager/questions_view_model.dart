@@ -14,8 +14,13 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   void setExam(){
     _currentQuestion = 0;
   }
-  void nextQuestion(){
+  void nextQuestion(int totalQuestions){
     _currentQuestion++;
+    if(_currentQuestion == totalQuestions - 1){
+      emit(FinishedExamState());
+    }else{
+      emit(GoToNextQuestionState());
+    }
   }
   void prevQuestion(){
     if(_currentQuestion > 0) _currentQuestion--;
@@ -24,13 +29,15 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   void doAction(QuestionsScreenActions action){
     switch (action) {
       case SelectAnswerAction():
-        // TODO: Handle this case.
+        break;
       case GoToNextQuestionAction():
-           nextQuestion();
-           emit(GoToNextQuestionState());
+           nextQuestion(action.questions);
+           break;
       case GoToPreviousQuestionAction():
          prevQuestion();
          emit(GoToPreviousQuestionState());
+      case SubmitExamAction():
+        // TODO: Handle this case.
     }
   }
 }

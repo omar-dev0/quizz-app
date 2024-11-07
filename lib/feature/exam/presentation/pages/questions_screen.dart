@@ -4,6 +4,7 @@ import 'package:quizz_app/core/di/di.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/questions_screen__widgets/custom_button.dart';
 import '../widgets/questions_screen__widgets/quesions_screen_app_bar.dart';
@@ -18,6 +19,7 @@ class QuestionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String nextSubmitButtonText = "";
     return BlocProvider(
       create: (_) => viewModel,
       child: Scaffold(
@@ -30,7 +32,7 @@ class QuestionsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                QuestionAnswersView(questions: questions,),
+                QuestionAnswersView(questions: questions),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -38,19 +40,33 @@ class QuestionsScreen extends StatelessWidget {
                       text: "Back",
                       buttonColor: AppColors.white,
                       textColor: AppColors.primary,
-                      onPress: (){
+                      onPress: () {
                         viewModel.doAction(GoToPreviousQuestionAction());
                       },
                     ),
                     const SizedBox(
                       width: 16,
                     ),
-                    CustomButton(
-                      text: "Next",
-                      buttonColor: AppColors.primary,
-                      textColor: AppColors.white,
-                      onPress: (){
-                        viewModel.doAction(GoToNextQuestionAction(questions.length.toString()));
+                    BlocBuilder<QuestionsScreenViewModel,
+                        QuestionsScreenStates>(
+                      builder: (context, state) {
+                        if (state is FinishedExamState) {
+                           return CustomButton(
+                            text: "Submit",
+                            buttonColor: AppColors.primary,
+                            textColor: AppColors.white,
+                            onPress: () {},
+                          );
+                        }
+                        return CustomButton(
+                          text: "Next",
+                          buttonColor: AppColors.primary,
+                          textColor: AppColors.white,
+                          onPress: () {
+                            viewModel.doAction(
+                                GoToNextQuestionAction(questions.length));
+                          },
+                        );
                       },
                     )
                   ],

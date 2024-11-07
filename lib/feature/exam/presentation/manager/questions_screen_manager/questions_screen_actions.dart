@@ -4,7 +4,8 @@ class SelectAnswerAction extends QuestionsScreenActions{
   SelectAnswerAction(this.answerKey);
 }
 class GoToNextQuestionAction extends QuestionsScreenActions{
-  String? questions;
-  GoToNextQuestionAction(this.questions);
+   int questions;
+   GoToNextQuestionAction(this.questions);
 }
 class GoToPreviousQuestionAction extends QuestionsScreenActions{}
+class SubmitExamAction extends QuestionsScreenActions{}
