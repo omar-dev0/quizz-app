@@ -8,7 +8,10 @@ class GoToNextQuestionAction extends QuestionsScreenActions{
    GoToNextQuestionAction(this.questions);
 }
 class GoToPreviousQuestionAction extends QuestionsScreenActions{}
-class SubmitExamAction extends QuestionsScreenActions{}
+class SubmitExamAction<T> extends QuestionsScreenActions{
+  T data;
+  SubmitExamAction(this.data);
+}
 class GetQuestionTypeAction extends QuestionsScreenActions{
   String type;
   GetQuestionTypeAction(this.type);

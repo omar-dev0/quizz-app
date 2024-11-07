@@ -7,3 +7,8 @@ class GoToPreviousQuestionState extends QuestionsScreenStates{}
 class FinishedExamState extends QuestionsScreenStates{}
 class SingleChoiceQuestionState extends QuestionsScreenStates{}
 class MultipleChoiceQuestionState extends QuestionsScreenStates{}
+class ShowExamResultState extends QuestionsScreenStates{
+  int correct;
+  int notCorrect;
+  ShowExamResultState(this.correct, this.notCorrect);
+}

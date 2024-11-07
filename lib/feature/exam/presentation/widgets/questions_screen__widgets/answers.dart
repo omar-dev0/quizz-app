@@ -15,7 +15,7 @@ class Answers extends StatefulWidget {
 }
 
 class _AnswersState extends State<Answers> {
-  String? _selectedAnswer;
+  String? _selectedAnswerKey; // Store the selected answer key here
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,14 @@ class _AnswersState extends State<Answers> {
         itemCount: widget.questions[currentQuestion].answers!.length,
         itemBuilder: (context, index) {
           final answer = widget.questions[currentQuestion].answers![index];
-
           viewModel.doAction(GetQuestionTypeAction(widget.questions[currentQuestion].type!));
-
           return ChoiceItemCard(
             answer: answer,
-            isSelected: _selectedAnswer == answer.answer,
-            onSelected: (selectedAnswer) {
+            isSelected: _selectedAnswerKey == answer.key,
+            onSelected: (selectedKey) {
               setState(() {
-                _selectedAnswer = selectedAnswer; // Update the selected answer
+                _selectedAnswerKey = selectedKey;
+                viewModel.setLastChoice(selectedKey);
               });
             },
           );

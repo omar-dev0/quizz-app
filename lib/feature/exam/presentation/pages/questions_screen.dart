@@ -19,7 +19,6 @@ class QuestionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String nextSubmitButtonText = "";
     return BlocProvider(
       create: (_) => viewModel,
       child: Scaffold(
@@ -55,7 +54,9 @@ class QuestionsScreen extends StatelessWidget {
                             text: "Submit",
                             buttonColor: AppColors.primary,
                             textColor: AppColors.white,
-                            onPress: () {},
+                            onPress: () {
+                               viewModel.doAction(SubmitExamAction<List<ExamQuestionsEntity>>(questions));
+                            },
                           );
                         }
                         return CustomButton(
