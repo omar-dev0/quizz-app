@@ -1,30 +1,34 @@
+import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
-import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 
+import '../../../domain/use_cases/usecase.dart';
+import 'home_screen_actions.dart';
+
+@singleton
 class ActionHandler {
   late HomeViewModel _homeViewModel;
-  final HomeUseCase _homeUseCase;
+  final UseCase _useCase;
   List<SubjectItemEntity> subjectsList = [];
 
-  ActionHandler(this._homeUseCase, this._homeViewModel);
+  ActionHandler(this._useCase, this._homeViewModel);
 
   void handelActions(HomeActions action) {
     switch (action) {
       case GetSubjectsAction():
         _getSubjects();
         break;
-      case NavigateToSubjectScreen():
       case ChangeHomeCurrentFragmentAction():
         _homeViewModel.emitStat(ChangeHomeCurrentFragmentState());
+      case NavigateToSubjectExamsAction():
+        _homeViewModel.emitStat(NavigateToSubjectExamsState(action.subjectIndex));
     }
   }
 
   void _getSubjects() async {
     _homeViewModel.emitStat(LoadingState());
-    final response = await _homeUseCase.invoke();
+    final response = await _useCase.invoke();
     response.fold(
       (fail) {
         _homeViewModel.emitStat(FailState(fail.message));

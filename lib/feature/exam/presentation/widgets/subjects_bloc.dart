@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/colors.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/subjects_list_view.dart';
+import '../manager/home_managers/home_screen_states.dart';
+import '../pages/subject_exams_screen.dart';
 
 class SubjectsBloc extends StatelessWidget {
   const SubjectsBloc({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeViewModel, HomeScreenStates>(
+    final homeViewModel = context.read<HomeViewModel>();
+    return BlocConsumer<HomeViewModel, HomeScreenStates>(
       builder: (context, state) {
         if (state is SuccessState) {
           return const SubjectsListView();
@@ -24,8 +27,7 @@ class SubjectsBloc extends StatelessWidget {
             textColor: AppColors.white,
             toastLength: Toast.LENGTH_SHORT,
           );
-        }
-        else if(state is LoadingState){
+        } else if (state is LoadingState) {
           return SizedBox(
             height: 200,
             width: context.width,
@@ -37,6 +39,14 @@ class SubjectsBloc extends StatelessWidget {
           );
         }
         return const SubjectsListView();
+      },
+      listener: (context, state) {
+        if (state is NavigateToSubjectExamsState) {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => SubjectExamsScreen(
+                  subjectIndex: state.subjectIndex,
+                  homeViewModel: homeViewModel)));
+        }
       },
     );
   }

@@ -9,3 +9,8 @@ class FailState extends HomeScreenStates{
   FailState(this.message);
 }
 class ChangeHomeCurrentFragmentState extends HomeScreenStates{}
+
+class NavigateToSubjectExamsState extends HomeScreenStates{
+  int subjectIndex;
+  NavigateToSubjectExamsState(this.subjectIndex);
+}

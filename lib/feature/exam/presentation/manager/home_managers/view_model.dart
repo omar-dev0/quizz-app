@@ -1,18 +1,19 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/exam/domain/use_cases/home_usecase.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/action_handler.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/home_screen_states.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/action_handler.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
+
+import '../../../domain/use_cases/usecase.dart';
+import 'home_screen_actions.dart';
 
 @injectable
 class HomeViewModel extends Cubit<HomeScreenStates>{
   late final ActionHandler actionHandler;
   late int _currentSubjectListIndex;
   int _currentFragmentIndex = 0;
-  HomeViewModel(HomeUseCase homeUseCase) : super(InitialState()){
-     actionHandler = ActionHandler(homeUseCase, this);
+  HomeViewModel(UseCase useCase) : super(InitialState()){
+     actionHandler = ActionHandler(useCase, this);
   }
 
   void setCurrentFragmentIndex(int index){

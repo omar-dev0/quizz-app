@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
-import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/subject_cached_model.dart';
-import 'package:quizz_app/feature/exam/domain/entities/subject_item_entity.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 
 @Injectable(as : OfflineDataSource)
 class OfflineDataSourceImpl implements OfflineDataSource{
@@ -11,5 +11,23 @@ class OfflineDataSourceImpl implements OfflineDataSource{
   Future<List<SubjectCachedModel>> getSubjects() async{
      var box = Hive.box<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
      return box.values.toList();
+  }
+
+  @override
+  Future<List<SubjectExamsCachedModel>> getSubjectExams(String subjectId)async{
+     var box = Hive.box<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
+     List<SubjectExamsCachedModel> list = getSubjectExamsBySubjectId(box, subjectId);
+     return list;
+  }
+
+  List<SubjectExamsCachedModel> getSubjectExamsBySubjectId(Box<SubjectExamsCachedModel> box, String subjectId) {
+    var allCachedList = box.values.toList();
+    List<SubjectExamsCachedModel> list = [];
+    for(var exam in allCachedList){
+      if(exam.subjectId == subjectId){
+        list.add(exam);
+      }
+    }
+    return list;
   }
 }
