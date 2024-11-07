@@ -8,7 +8,7 @@ import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_m
 import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/custom_bottom_navigation_bar.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/home_screen_body.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/profile_fragment.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/resulte_fragment.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/resulte_fragment.dart';
 
 import '../manager/home_managers/home_screen_states.dart';
 
