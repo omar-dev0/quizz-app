@@ -7,8 +7,8 @@ import 'package:quizz_app/feature/exam/presentation/pages/questions_screen.dart'
 
 class ExamStartScreenBloc extends StatelessWidget {
   final String examId;
-
-  const ExamStartScreenBloc({super.key, required this.examId});
+  final int duration;
+  const ExamStartScreenBloc({super.key, required this.examId, required this.duration});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ExamStartScreenBloc extends StatelessWidget {
     return BlocListener<ExamStartScreenViewModel, ExamStartScreenState>(
       listener: (context, state) {
         if (state is SuccessGetExamState) {
-          viewModel.doAction(NavigateToExamScreenAction(state.questions));
+          viewModel.doAction(NavigateToExamScreenAction(state.questions,duration));
         } else if (state is ExamLoadingState) {
           showDialog(
               context: context,
@@ -36,7 +36,10 @@ class ExamStartScreenBloc extends StatelessWidget {
                 );
               });
         } else if (state is NavigateToExamStartScreenState) {
-           Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const QuestionsScreen()));
+          if(state.questions.isNotEmpty){
+            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>  QuestionsScreen(questions: state.questions,examDuration: state.duration,)));
+          }
+
         }
       },
       listenWhen: (previous, current) {

@@ -16,14 +16,14 @@ class SubjectExamsScreen extends StatelessWidget {
   ExamsViewModel examsViewModel = getIt.get<ExamsViewModel>();
   @override
   Widget build(BuildContext context) {
-    String subjectId =  homeViewModel.actionHandler.subjectsList[subjectIndex].id!;
-    String subjectName =  homeViewModel.actionHandler.subjectsList[subjectIndex].name!;
+    String subjectId =  homeViewModel.actionHandler.subjectsList[subjectIndex].id??"";
+    String subjectName =  homeViewModel.actionHandler.subjectsList[subjectIndex].name??"";
     return BlocProvider(
       create: (_)=> examsViewModel,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Language",
+             subjectName,
             style: Theme
                 .of(context)
                 .textTheme

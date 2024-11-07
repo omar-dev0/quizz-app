@@ -1,4 +1,6 @@
 
+import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
+
 class ExamStartScreenState{}
 class InitialState extends ExamStartScreenState{}
 class ExamLoadingState extends ExamStartScreenState{}
@@ -13,6 +15,7 @@ class ExamFailState extends ExamStartScreenState{
 }
 
 class NavigateToExamStartScreenState extends ExamStartScreenState{
-  dynamic questions;
-  NavigateToExamStartScreenState(this.questions);
+  List<ExamQuestionsEntity> questions;
+  int duration;
+  NavigateToExamStartScreenState(this.questions, this.duration);
 }
