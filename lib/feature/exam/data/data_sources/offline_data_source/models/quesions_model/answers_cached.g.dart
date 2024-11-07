@@ -8,7 +8,7 @@ part of 'answers_cached.dart';
 
 class AnswersCachedAdapter extends TypeAdapter<AnswersCached> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
   AnswersCached read(BinaryReader reader) {

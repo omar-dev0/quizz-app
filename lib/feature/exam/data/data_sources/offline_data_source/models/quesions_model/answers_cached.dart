@@ -1,7 +1,7 @@
 
 import 'package:hive/hive.dart';
 part 'answers_cached.g.dart';
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 class AnswersCached {
   @HiveField(0)
   String? answer;

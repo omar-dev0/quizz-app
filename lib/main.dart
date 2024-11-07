@@ -26,27 +26,18 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
-
-Future<void> initHive() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(SubjectCachedModelAdapter());
-  Hive.registerAdapter(SubjectExamsCachedModelAdapter());
-  Hive.registerAdapter(QuestionsCachedModelAdapter());
-  Hive.registerAdapter(AnswersCachedAdapter());
-  await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-  await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
-  await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
 Future<void> initHive() async {
   try {
     await Hive.initFlutter();
     Hive.registerAdapter(LoginResponseAdapter());
     Hive.registerAdapter(SubjectCachedModelAdapter());
     Hive.registerAdapter(SubjectExamsCachedModelAdapter());
+    Hive.registerAdapter(QuestionsCachedModelAdapter());
+    Hive.registerAdapter(AnswersCachedAdapter());
     await Hive.openBox<LoginResponse>(HiveBox.userBox);
     await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-    await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-    await Hive.openBox<SubjectExamsCachedModel>(
-        AppConstant.kSubjectExamsHiveBox);
+    await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
+    await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
