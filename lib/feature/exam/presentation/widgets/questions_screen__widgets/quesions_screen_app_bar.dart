@@ -31,7 +31,9 @@ class _QuesionsScreenAppBarState extends State<QuesionsScreenAppBar> {
     const oneSecond = Duration(seconds: 1);
     _timer = Timer.periodic(oneSecond, (Timer timer) {
       setState(() {
-        _timerColor = AppColors.error;
+       if(_minutes <= widget.examDuration / 2){
+         _timerColor = AppColors.error;
+       }
         if (_seconds == 0 && _minutes == 0) {
           showDialog(
             context: context,
