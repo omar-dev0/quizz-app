@@ -4,7 +4,7 @@ import 'package:fluttericon/elusive_icons.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 
-import '../manager/home_managers/home_screen_actions.dart';
+import '../../manager/home_managers/home_screen_actions.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
 

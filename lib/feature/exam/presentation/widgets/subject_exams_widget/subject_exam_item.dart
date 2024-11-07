@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_action.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/exams_bloc.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/subject_exams_widget/exams_bloc.dart';
 
 
 class SubjectExamItem extends StatelessWidget {

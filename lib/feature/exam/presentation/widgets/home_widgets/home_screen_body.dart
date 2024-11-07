@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/custom_search_bar.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/subjects_bloc.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/custom_search_bar.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/subjects_bloc.dart';
 
-import '../manager/home_managers/home_screen_actions.dart';
+import '../../manager/home_managers/home_screen_actions.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});

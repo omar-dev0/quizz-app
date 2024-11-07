@@ -4,13 +4,13 @@ import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_action_handler.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_states.dart';
 
-import '../../../domain/use_cases/usecase.dart';
+import '../../../domain/use_cases/usecases.dart';
 
 @injectable
 class ExamsViewModel extends Cubit<ExamsScreenStates>{
   late ExamsScreenActionHandler actionHandler;
   int? _currentExamIndex;
-  ExamsViewModel(UseCase useCase) : super(ExamsInitialState()){
+  ExamsViewModel(UseCases useCase) : super(ExamsInitialState()){
     actionHandler = ExamsScreenActionHandler(this, useCase);
   }
 

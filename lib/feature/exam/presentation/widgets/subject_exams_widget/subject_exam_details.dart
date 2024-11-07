@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 
-import '../../../../core/resources/assets_manger.dart';
-import '../../../../core/resources/colors.dart';
-import '../manager/subject_exam_manager/exams_view_model.dart';
+import '../../../../../core/resources/assets_manger.dart';
+import '../../../../../core/resources/colors.dart';
+import '../../manager/subject_exam_manager/exams_view_model.dart';
 
 class SubjectExamDetails extends StatelessWidget {
   const SubjectExamDetails({super.key});

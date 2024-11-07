@@ -6,9 +6,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/subjects_list_view.dart';
-import '../manager/home_managers/home_screen_states.dart';
-import '../pages/subject_exams_screen.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/subjects_list_view.dart';
+import '../../manager/home_managers/home_screen_states.dart';
+import '../../pages/subject_exams_screen.dart';
 
 class SubjectsBloc extends StatelessWidget {
   const SubjectsBloc({super.key});

@@ -9,7 +9,7 @@ import '../manager/home_managers/view_model.dart';
 class MainScreen extends StatelessWidget {
   static const String route = "MainScreen";
    MainScreen({super.key});
-  final homeViewModel = getIt<HomeViewModel>();
+  final homeViewModel = getIt.get<HomeViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

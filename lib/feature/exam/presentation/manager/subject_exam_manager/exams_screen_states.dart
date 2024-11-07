@@ -8,6 +8,7 @@ class ExamsFailState extends ExamsScreenStates{
   ExamsFailState(this.failMessage);
 }
 
-class NavigateToStartExamScreenState extends ExamsScreenStates{
-
+class NavigateToStartExamScreenState<T> extends ExamsScreenStates{
+  T exam;
+  NavigateToStartExamScreenState(this.exam);
 }

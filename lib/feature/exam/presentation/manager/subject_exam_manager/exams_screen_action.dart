@@ -4,7 +4,7 @@ class GetExamsBySubjectIdAction extends ExamsScreenActions{
   GetExamsBySubjectIdAction(this.subjectId);
 }
 
-class NavigateToStartExamScreenAction extends ExamsScreenActions{
-  String examId;
+class NavigateToStartExamScreenAction<T> extends ExamsScreenActions{
+  T examId;
   NavigateToStartExamScreenAction(this.examId);
 }

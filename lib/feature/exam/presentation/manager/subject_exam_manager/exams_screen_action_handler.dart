@@ -2,13 +2,13 @@ import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart';
-import '../../../domain/use_cases/usecase.dart';
+import '../../../domain/use_cases/usecases.dart';
 import 'exams_screen_action.dart';
 
 @singleton
 class ExamsScreenActionHandler{
   ExamsViewModel _examsViewModel;
-  UseCase _useCase;
+  UseCases _useCase;
   List<ExamEntity> list = [];
   ExamsScreenActionHandler(this._examsViewModel,this._useCase);
 
@@ -18,7 +18,7 @@ class ExamsScreenActionHandler{
       case GetExamsBySubjectIdAction():
         _getExamsBySubjectId(action.subjectId);
       case NavigateToStartExamScreenAction():
-        _examsViewModel.emitState(NavigateToStartExamScreenState());
+        _examsViewModel.emitState(NavigateToStartExamScreenState(action.examId));
     }
   }
 

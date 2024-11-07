@@ -7,6 +7,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:quizz_app/core/bloc_observer/simple_bloc_observer.dart';
 import 'package:quizz_app/core/constant/hive_box.dart';
 import 'package:quizz_app/core/resources/theme.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/quesions_model/answers_cached.dart';
+import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/quesions_model/questions_cached_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
@@ -24,18 +26,18 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
-
 Future<void> initHive() async {
   try {
     await Hive.initFlutter();
     Hive.registerAdapter(LoginResponseAdapter());
     Hive.registerAdapter(SubjectCachedModelAdapter());
     Hive.registerAdapter(SubjectExamsCachedModelAdapter());
+    Hive.registerAdapter(QuestionsCachedModelAdapter());
+    Hive.registerAdapter(AnswersCachedAdapter());
     await Hive.openBox<LoginResponse>(HiveBox.userBox);
     await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-    await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-    await Hive.openBox<SubjectExamsCachedModel>(
-        AppConstant.kSubjectExamsHiveBox);
+    await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
+    await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
