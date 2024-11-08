@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_scree_view_model.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../core/resources/colors.dart';
 
 class AnswerReusltCard extends StatelessWidget {
   final String answer;
@@ -9,14 +10,17 @@ class AnswerReusltCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<ResultScreenViewModel>();
     return Container(
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(top: 12,bottom: 12),
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: borderColor,
         border: Border.all(
           color: borderColor
         )
       ),
-      child: Text(answer),
+      child: Text(answer, style: Theme.of(context).textTheme.labelMedium,),
     );
   }
 }
