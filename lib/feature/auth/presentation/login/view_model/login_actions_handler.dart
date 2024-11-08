@@ -42,7 +42,7 @@ class LoginActionHandler {
     switch (response) {
       case Success():
         {
-          response.data!;
+         user =  response.data!;
           loginViewModel.emitState(CloseDialog());
           loginViewModel.emitState(LoginSuccessState(user));
         }

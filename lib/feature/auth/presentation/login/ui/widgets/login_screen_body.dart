@@ -7,6 +7,7 @@ import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actio
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/home.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 import '../../../../../../core/resources/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'login_form.dart';
@@ -63,7 +64,7 @@ class LoginScreenBody extends StatelessWidget {
               });
         }
         else if (state is LoginSuccessState) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> HomeScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen()));
           showDialog(
             context: context,
             builder: (_) {
