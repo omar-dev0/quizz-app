@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/reset_password_screen.dart';
 
-import '../../../auth/presentation/forget_password/widgets/reset_password_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
