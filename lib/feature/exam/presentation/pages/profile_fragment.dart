@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(
-                        "https://example.com/profile.jpg"), // Replace with your image URL
+                        "https://example.com/profile.jpg"),
                   ),
                   Positioned(
                     bottom: 0,
