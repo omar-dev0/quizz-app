@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/feature/exam/presentation/widgets/result_list_view.dart';
 
 import '../../../../core/di/di.dart';
 import '../manager/result_manager/result_scree_view_model.dart';
@@ -18,9 +19,9 @@ class ResulteFragment extends StatelessWidget {
         body: BlocBuilder<ResultScreenViewModel, ResultScreenStates>(
           builder: (context, state) {
             if (state is SuccessState) {
-              return Center(child: Text(state.exam.length.toString()));
+              return ResultListView(list: state.exam);
             }
-            return Center(child: Text("Result"));
+            return const Center(child: Text("Result"));
           },
         ),
       ),
