@@ -13,7 +13,10 @@ class FailState extends ResultScreenStates{
 
 class LoadingState extends ResultScreenStates{}
 
-class NavigateToResultScreenState extends ResultScreenStates{}
+class NavigateToResultScreenState extends ResultScreenStates{
+  CachedExamResultEntity exam;
+  NavigateToResultScreenState(this.exam);
+}
 class GetExamAnswersState extends ResultScreenStates{
 
 }

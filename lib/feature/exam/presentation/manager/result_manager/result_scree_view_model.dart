@@ -38,7 +38,7 @@ class ResultScreenViewModel extends Cubit<ResultScreenStates> {
         _getExamQuestion(action.examId);
         break;
       case NavigateToExamResultAction():
-        emit(NavigateToResultScreenState());
+        emit(NavigateToResultScreenState(action.exam));
     }
   }
 }

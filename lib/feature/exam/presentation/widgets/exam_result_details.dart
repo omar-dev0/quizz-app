@@ -14,6 +14,10 @@ class ExamResultDetails extends StatefulWidget {
 
 class _ExamResultDetailsState extends State<ExamResultDetails> {
   @override
+  void initState() {
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Center(

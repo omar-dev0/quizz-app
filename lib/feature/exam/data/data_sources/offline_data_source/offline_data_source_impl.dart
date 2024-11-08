@@ -54,6 +54,7 @@ class OfflineDataSourceImpl implements OfflineDataSource {
   @override
   Future<List<CachedExamResultEntity>>? getExamById() async{
     var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
+    var all = box.values.toList();
     return box.values.toList();
   }
 }

@@ -22,7 +22,7 @@ class ExamResultItemCartd extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            viewModel.doActions(NavigateToExamResultAction());
+            viewModel.doActions(NavigateToExamResultAction(exam));
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 16),
@@ -43,13 +43,6 @@ class ExamResultItemCartd extends StatelessWidget {
               child: SubjectResultDetails(exam: exam),
             ),
           ),
-        ),
-        BlocListener<ResultScreenViewModel, ResultScreenStates>(
-          listener: (context, state) {
-            // viewModel.doActions(GetExamQuestionsAction(exam.id!));
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ExamResultDetails(examResultEntity: exam)));
-          },
-          child: const SizedBox.shrink(),
         ),
       ],
     );

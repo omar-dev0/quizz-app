@@ -65,13 +65,13 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
       }
       var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
       CachedExamResultEntity exam ;
-      List<AnswerCachedEntity> answer = [];
+      List<AnswerCachedEntity> answerList = [];
       for(int i = 0; i < questions.length; ++i){
-        answer.add(
-          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId, questions[i].answers)
+        answerList.add(
+          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId,questions[i].answers)
         );
       }
-      exam = CachedExamResultEntity(answer, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);
+      exam = CachedExamResultEntity(answerList, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);
       box.add(exam);
       emit(FinishedExamState(correct, questions.length - correct));
   }

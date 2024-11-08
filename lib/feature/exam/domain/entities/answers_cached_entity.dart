@@ -1,7 +1,5 @@
 
 import 'package:hive/hive.dart';
-import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
-
 import 'answer_entity.dart';
 part 'answers_cached_entity.g.dart';
 @HiveType(typeId: 5)
