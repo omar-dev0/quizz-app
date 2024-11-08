@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.light,
-        initialRoute: MainScreen.route,
+        initialRoute: LoginScreen.route,
         routes: {
           LoginScreen.route: (context) => LoginScreen(),
           RegistrationScreen.route: (_) => RegistrationScreen(),

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
-import 'package:quizz_app/feature/auth/domain/model/user.dart';
+import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
 import '../../domain/common/api_result.dart';
@@ -40,7 +40,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<void>> signUp(User appUser, String password, String confirmPassword) {
+  Future<Result<void>> signUp(domaine.User appUser, String password, String confirmPassword) {
     return authOnlineDataSource.signUp(appUser, password, confirmPassword);
   }
 }
