@@ -5,10 +5,8 @@ import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_scree_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/subject_result_details.dart';
 
-import 'exam_result_details.dart';
 
 class ExamResultItemCartd extends StatelessWidget {
   final CachedExamResultEntity exam;

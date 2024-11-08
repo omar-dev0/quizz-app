@@ -24,13 +24,22 @@ class _ExamResultDetailsState extends State<ExamResultDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Result"),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
+      ),
       body: ListView.builder(
-            itemCount: widget.examResultEntity.answers!.length,
-            itemBuilder: (context, index) {
-              return AnswersResultList(
-                answerCachedEntity: widget.examResultEntity.answers![index],
-              );
-            }),
+          itemCount: widget.examResultEntity.answers!.length,
+          itemBuilder: (context, index) {
+            return AnswersResultList(
+              answerCachedEntity: widget.examResultEntity.answers![index],
+              question: widget.examResultEntity.question,
+            );
+          }),
     );
   }
 }

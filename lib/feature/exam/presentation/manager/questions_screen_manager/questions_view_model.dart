@@ -68,7 +68,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
       List<AnswerCachedEntity> answerList = [];
       for(int i = 0; i < questions.length; ++i){
         answerList.add(
-          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId,questions[i].answers)
+          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId,questions[i].answers,questions[i].question)
         );
       }
       exam = CachedExamResultEntity(answerList, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);

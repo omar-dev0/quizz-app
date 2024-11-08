@@ -12,5 +12,7 @@ class AnswerCachedEntity {
   String? examId;
   @HiveField(3)
   List<AnswersEntity>? answers;
-  AnswerCachedEntity(this.correctKey, this.userChoiceKey, this.examId, this.answers);
+  @HiveField(4)
+  String? question;
+  AnswerCachedEntity(this.correctKey, this.userChoiceKey, this.examId, this.answers, this.question);
 }

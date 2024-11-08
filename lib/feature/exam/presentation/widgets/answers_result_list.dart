@@ -8,8 +8,8 @@ import 'package:quizz_app/feature/exam/presentation/widgets/answer_reuslt_card.d
 
 class AnswersResultList extends StatelessWidget {
   final AnswerCachedEntity answerCachedEntity;
-
-  const AnswersResultList({super.key, required this.answerCachedEntity});
+  final String? question;
+  const AnswersResultList({super.key, required this.answerCachedEntity, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AnswersResultList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Container(
             padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 2,top: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.white,
@@ -30,21 +30,27 @@ class AnswersResultList extends StatelessWidget {
                 )
               ]
             ),
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: answerCachedEntity.answers!.length,
-              itemBuilder: (context, index) {
-                Color border = AppColors.lightBlue;
-                if(answerCachedEntity.answers![index].key == answerCachedEntity.correctKey){
-                  border = Colors.green;
-                }
-                else if(answerCachedEntity.answers![index].key == answerCachedEntity.userChoiceKey && answerCachedEntity.correctKey != answerCachedEntity.userChoiceKey){
-                  border = AppColors.error;
-                }
-                return AnswerReusltCard(
-                    answer: answerCachedEntity.answers![index].answer!, borderColor: border);
-              },),
+            child: Column(
+              children: [
+                Text(answerCachedEntity.question!, style: Theme.of(context).textTheme.labelMedium,),
+                const SizedBox(height: 12,),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: answerCachedEntity.answers!.length,
+                  itemBuilder: (context, index) {
+                    Color border = AppColors.lightBlue;
+                    if(answerCachedEntity.answers![index].key == answerCachedEntity.correctKey){
+                      border = Colors.green;
+                    }
+                    else if(answerCachedEntity.answers![index].key == answerCachedEntity.userChoiceKey && answerCachedEntity.correctKey != answerCachedEntity.userChoiceKey){
+                      border = AppColors.error;
+                    }
+                    return AnswerReusltCard(
+                        answer: answerCachedEntity.answers![index].answer!, borderColor: border);
+                  },),
+              ],
+            ),
           ),
         )
     );
