@@ -32,6 +32,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
     _currentQuestion = 0;
   }
   void _saveAnswer(){
+    if(_lastChoice.isEmpty) _lastChoice = "#";
     answers[_currentQuestion] = _lastChoice;
   }
   void _nextQuestion(int totalQuestions){
