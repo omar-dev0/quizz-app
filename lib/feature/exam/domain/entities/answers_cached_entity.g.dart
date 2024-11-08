@@ -28,11 +28,11 @@ class AnswerCachedEntityAdapter extends TypeAdapter<AnswerCachedEntity> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.answer)
-      ..writeByte(1)
       ..write(obj.correctKey)
+      ..writeByte(1)
+      ..write(obj.userChoiceKey)
       ..writeByte(2)
-      ..write(obj.userChoiceKey);
+      ..write(obj.examId);
   }
 
   @override

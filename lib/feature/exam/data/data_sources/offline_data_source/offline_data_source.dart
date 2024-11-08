@@ -6,4 +6,5 @@ abstract class OfflineDataSource{
   Future<List<SubjectCachedModel>> getSubjects();
   Future<List<SubjectExamsCachedModel>> getSubjectExams(String subjectId);
   Future<List<QuestionsCachedModel>> getQuestionsOnExamId(String examId);
+  Future<SubjectExamsCachedModel>? getExamById(String examId);
 }

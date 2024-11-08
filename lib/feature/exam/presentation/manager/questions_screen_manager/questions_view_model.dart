@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/core/resources/app_constant.dart';
+import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
@@ -10,10 +13,14 @@ import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_man
 class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   int _currentQuestion = 0;
   String _lastChoice = "";
+  String _currentExamId = "";
   Map<int,String> answers = {};
   QuestionsScreenViewModel(): super(InitialState());
 
-
+  void setCurrentExamId(String examId){
+    _currentExamId = examId;
+    log("in view model id $_currentExamId");
+  }
   void setLastChoice(String key){
     _lastChoice = key;
   }
@@ -54,6 +61,14 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
             correct++;
           }
       }
+      var box = Hive.box<AnswerCachedEntity>(AppConstant.kAnswersResultHiveBox);
+      List<AnswerCachedEntity> answer  = [];
+      for(int i = 0; i < questions.length; ++i){
+        answer.add(
+          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId)
+        );
+      }
+      box.addAll(answer);
       emit(FinishedExamState(correct, questions.length - correct));
   }
   void doAction(QuestionsScreenActions action){

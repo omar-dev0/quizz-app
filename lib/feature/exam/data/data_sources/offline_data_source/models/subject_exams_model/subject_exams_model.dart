@@ -14,6 +14,5 @@ class SubjectExamsCachedModel{
   String? subjectId;
   @HiveField(4)
   int? numberOfQuestions;
-
   SubjectExamsCachedModel(this.examId, this.title, this.duration, this.subjectId, this.numberOfQuestions);
 }

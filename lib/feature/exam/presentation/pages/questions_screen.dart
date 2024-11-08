@@ -1,12 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/di/di.dart';
-import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
-import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/questions_screen__widgets/custom_button.dart';
 import '../widgets/questions_screen__widgets/quesions_screen_app_bar.dart';
 import '../widgets/questions_screen__widgets/question_answers_view_bloc.dart';
 
@@ -20,7 +18,11 @@ class QuestionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => viewModel,
+      create: (context){
+        viewModel.setCurrentExamId(questions[0].exam!.examId!);
+        log("in question screen ui ${questions[0].exam!.examId}");
+        return viewModel;
+      },
       child: Scaffold(
         body: SafeArea(
           child: Padding(

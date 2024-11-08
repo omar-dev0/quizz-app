@@ -14,6 +14,7 @@ import 'package:quizz_app/feature/auth/data/api/model/response/login/login_respo
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
+import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 import 'core/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/profile/profile_screen.dart';
@@ -33,9 +34,11 @@ Future<void> initHive() async {
     Hive.registerAdapter(SubjectExamsCachedModelAdapter());
     Hive.registerAdapter(QuestionsCachedModelAdapter());
     Hive.registerAdapter(AnswersCachedAdapter());
+    Hive.registerAdapter(AnswerCachedEntityAdapter());
     await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
     await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
     await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
+    await Hive.openBox<AnswerCachedEntity>(AppConstant.kAnswersResultHiveBox);
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
