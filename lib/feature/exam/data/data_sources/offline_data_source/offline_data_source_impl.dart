@@ -6,6 +6,7 @@ import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/mod
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 
 @Injectable(as: OfflineDataSource)
 class OfflineDataSourceImpl implements OfflineDataSource {
@@ -51,19 +52,8 @@ class OfflineDataSourceImpl implements OfflineDataSource {
   }
 
   @override
-  Future<List<SubjectExamsCachedModel>>? getExamById() async{
-    var box = Hive.box<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
-    var box2 = Hive.box<AnswerCachedEntity>(AppConstant.kAnswersResultHiveBox);
-    List<SubjectExamsCachedModel> list1 = box.values.toList();
-    List<AnswerCachedEntity> list2 = box2.values.toList();
-    List<SubjectExamsCachedModel> ret = [];
-    for(var item in list1){
-      for(var item2 in list2){
-        if(item.examId == item2.examId){
-          ret.add(item);
-        }
-      }
-    }
-    return ret;
+  Future<List<CachedExamResultEntity>>? getExamById() async{
+    var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
+    return box.values.toList();
   }
 }

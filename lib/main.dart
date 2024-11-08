@@ -15,6 +15,8 @@ import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 import 'core/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/profile/profile_screen.dart';
@@ -27,6 +29,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
+
 Future<void> initHive() async {
   try {
     await Hive.initFlutter();
@@ -35,10 +38,28 @@ Future<void> initHive() async {
     Hive.registerAdapter(QuestionsCachedModelAdapter());
     Hive.registerAdapter(AnswersCachedAdapter());
     Hive.registerAdapter(AnswerCachedEntityAdapter());
-    await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
-    await Hive.openBox<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
-    await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
-    await Hive.openBox<AnswerCachedEntity>(AppConstant.kAnswersResultHiveBox);
+    Hive.registerAdapter(CachedExamResultEntityAdapter());
+    Hive.registerAdapter(ExamEntityAdapter());
+    if (!Hive.isBoxOpen(AppConstant.kSubjectsHiveBox)) {
+      await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
+    }
+    if (!Hive.isBoxOpen(AppConstant.kSubjectExamsHiveBox)) {
+      await Hive.openBox<SubjectExamsCachedModel>(
+          AppConstant.kSubjectExamsHiveBox);
+    }
+    if (!Hive.isBoxOpen(AppConstant.kQuestionsHiveBox)) {
+      await Hive.openBox<QuestionsCachedModel>(AppConstant.kQuestionsHiveBox);
+    }
+    if (!Hive.isBoxOpen(AppConstant.kExamResult)) {
+      await Hive.openBox<CachedExamResultEntity>(
+          AppConstant.kExamResult); // Use the model type, not the adapter
+    }
+    if (!Hive.isBoxOpen(AppConstant.kAnswersResultHiveBox)) {
+      await Hive.openBox<AnswerCachedEntity>(AppConstant.kAnswersResultHiveBox);
+    }
+    if(!Hive.isBoxOpen(AppConstant.kExamEntity)){
+      await Hive.openBox<ExamEntity>(AppConstant.kExamEntity);
+    }
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
@@ -65,7 +86,7 @@ class MyApp extends StatelessWidget {
           RegistrationScreen.route: (_) => RegistrationScreen(),
           ProfileScreen.route: (_) => ProfileScreen(),
           ChangePassword.route: (_) => ChangePassword(),
-          MainScreen.route : (_)=>MainScreen(),
+          MainScreen.route: (_) => MainScreen(),
         },
       ),
     );

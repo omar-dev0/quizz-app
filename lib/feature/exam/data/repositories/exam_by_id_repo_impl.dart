@@ -1,12 +1,10 @@
 
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
-import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/exam_by_id_repo.dart';
 
 import '../apis/DTO/dto.dart';
@@ -18,10 +16,10 @@ class ExamByIdRepoImpl implements ExamByIdRepo{
   @factory
   ExamByIdRepoImpl(this._onlineDataSource, this._offlineDataSource);
   @override
-  Future<Either<String, List<ExamEntity>>> getExamById() async {
+  Future<Either<String, List<CachedExamResultEntity>>> getExamById() async {
     try{
       final exam = await _offlineDataSource.getExamById();
-      return Right(DTOs.getResultsExam(exam));
+      return Right(exam!);
     }on Exception catch(e){
       return const Left("Error");
     }

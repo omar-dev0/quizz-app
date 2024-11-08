@@ -9,6 +9,8 @@ import 'package:quizz_app/feature/exam/domain/repositories/exam_repo.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/exams_quesions_repo.dart';
 import 'package:quizz_app/feature/exam/domain/repositories/home_repo.dart';
 
+import '../entities/cached_exam_result_entity.dart';
+
 @injectable
 class UseCases{
   HomeRepo _homeRepo;
@@ -25,7 +27,7 @@ class UseCases{
     return await _examRepo.getExam(subjectId);
   }
 
-  Future<Either<String,List<ExamEntity>>> invokeExamById() async{
+  Future<Either<String,List<CachedExamResultEntity>>> invokeExamById() async{
       return await _examByIdRepo.getExamById();
   }
 
