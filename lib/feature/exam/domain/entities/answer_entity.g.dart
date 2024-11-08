@@ -1,41 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'answers_cached_entity.dart';
+part of 'answer_entity.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AnswerCachedEntityAdapter extends TypeAdapter<AnswerCachedEntity> {
+class AnswersEntityAdapter extends TypeAdapter<AnswersEntity> {
   @override
-  final int typeId = 5;
+  final int typeId = 7;
 
   @override
-  AnswerCachedEntity read(BinaryReader reader) {
+  AnswersEntity read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return AnswerCachedEntity(
+    return AnswersEntity(
       fields[0] as String?,
       fields[1] as String?,
-      fields[2] as String?,
-      (fields[3] as List?)?.cast<AnswersEntity>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, AnswerCachedEntity obj) {
+  void write(BinaryWriter writer, AnswersEntity obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.correctKey)
-      ..writeByte(1)
-      ..write(obj.userChoiceKey)
       ..writeByte(2)
-      ..write(obj.examId)
-      ..writeByte(3)
-      ..write(obj.answers);
+      ..writeByte(0)
+      ..write(obj.answer)
+      ..writeByte(1)
+      ..write(obj.key);
   }
 
   @override
@@ -44,7 +38,7 @@ class AnswerCachedEntityAdapter extends TypeAdapter<AnswerCachedEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AnswerCachedEntityAdapter &&
+      other is AnswersEntityAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

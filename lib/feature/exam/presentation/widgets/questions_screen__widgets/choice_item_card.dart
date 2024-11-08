@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/resources/colors.dart';
-import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
+
+import '../../../domain/entities/answer_entity.dart';
 
 class ChoiceItemCard extends StatelessWidget {
   final AnswersEntity answer;

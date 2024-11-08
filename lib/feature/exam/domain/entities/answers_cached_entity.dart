@@ -1,5 +1,8 @@
 
 import 'package:hive/hive.dart';
+import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
+
+import 'answer_entity.dart';
 part 'answers_cached_entity.g.dart';
 @HiveType(typeId: 5)
 class AnswerCachedEntity {
@@ -9,6 +12,7 @@ class AnswerCachedEntity {
   String? userChoiceKey;
   @HiveField(2)
   String? examId;
-
-  AnswerCachedEntity(this.correctKey, this.userChoiceKey, this.examId);
+  @HiveField(3)
+  List<AnswersEntity>? answers;
+  AnswerCachedEntity(this.correctKey, this.userChoiceKey, this.examId, this.answers);
 }

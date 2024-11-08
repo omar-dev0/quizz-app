@@ -12,6 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quizz_app/feature/auth/presentation/login/ui/login_screen.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
+import 'package:quizz_app/feature/exam/domain/entities/answer_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
@@ -38,6 +39,7 @@ Future<void> initHive() async {
     Hive.registerAdapter(AnswerCachedEntityAdapter());
     Hive.registerAdapter(CachedExamResultEntityAdapter());
     Hive.registerAdapter(ExamEntityAdapter());
+    Hive.registerAdapter(AnswersEntityAdapter());
     if (!Hive.isBoxOpen(AppConstant.kSubjectsHiveBox)) {
       await Hive.openBox<SubjectCachedModel>(AppConstant.kSubjectsHiveBox);
     }
@@ -57,6 +59,9 @@ Future<void> initHive() async {
     }
     if(!Hive.isBoxOpen(AppConstant.kExamEntity)){
       await Hive.openBox<ExamEntity>(AppConstant.kExamEntity);
+    }
+    if(!Hive.isBoxOpen(AppConstant.kAnsewrEntity)){
+      await Hive.openBox<AnswersEntityAdapter>(AppConstant.kAnsewrEntity);
     }
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {

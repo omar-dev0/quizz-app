@@ -12,3 +12,8 @@ class FailState extends ResultScreenStates{
 }
 
 class LoadingState extends ResultScreenStates{}
+
+class NavigateToResultScreenState extends ResultScreenStates{}
+class GetExamAnswersState extends ResultScreenStates{
+
+}

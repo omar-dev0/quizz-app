@@ -4,6 +4,7 @@ import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/mod
 import 'package:quizz_app/feature/exam/data/models/exam_question_models/exam_questions_reponse_model.dart';
 import 'package:quizz_app/feature/exam/data/models/subject_models/subject_response.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
+import '../../../domain/entities/answer_entity.dart';
 import '../../../domain/entities/exam_entity.dart';
 import '../../../domain/entities/subject_item_entity.dart';
 import '../../models/exam_by_subject_id_models/exams_by_subject_response.dart';

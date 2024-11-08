@@ -5,4 +5,5 @@ abstract class AppConstant{
   static const String kAnswersResultHiveBox = "exam answers";
   static const String kExamResult = "exam result";
   static const String kExamEntity = "exam entity";
+  static const String kAnsewrEntity = "answer entity";
 }
