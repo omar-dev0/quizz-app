@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/reset_password_screen.dart';
 
 import '../../../auth/presentation/forget_password/widgets/reset_password_screen.dart';
 
@@ -106,6 +107,8 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+
+// Inside the _buildPasswordField method
   Widget _buildPasswordField(String label, BuildContext context) {
     return Row(
       children: [
@@ -122,10 +125,11 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {// Change password action
+          onPressed: () {
+            // Navigate to the Reset Password screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ResetPasswordScreen()),
+              MaterialPageRoute(builder: (context) => const ResetPasswordScreenUi()),
             );
           },
           child: Text("Change"),
@@ -133,4 +137,5 @@ class ProfileScreen extends StatelessWidget {
       ],
     );
   }
+
 }
