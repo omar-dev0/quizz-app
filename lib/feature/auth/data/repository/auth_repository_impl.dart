@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/core/resources/app_constant.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
+import 'package:quizz_app/feature/auth/data/data_source/cached_token.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
@@ -23,9 +26,12 @@ class AuthRepositoryImpl implements AuthRepository {
       var user = await authOnlineDataSource.login(email, password);
       var loginUser;
       if(user is Success<LoginResponse?>){
+        var box = Hive.box<CachedToken>(AppConstant.ktoken);
+          box.add(CachedToken(user.data!.token));
          loginUser = user.data;
       }
       loginUser.toString();
+
       return Success(DTO.userDto(loginUser));
     } on Exception catch (e) {
       if(e is DioException) {

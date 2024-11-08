@@ -6,4 +6,5 @@ abstract class AppConstant{
   static const String kExamResult = "exam result";
   static const String kExamEntity = "exam entity";
   static const String kAnsewrEntity = "answer entity";
+  static const String ktoken = "token";
 }
