@@ -6,6 +6,7 @@ import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
 import '../../domain/common/api_result.dart';
+import '../api/DTO.dart';
 import '../api/model/response/login/Otp_code_response.dart';
 
 @Injectable(as: AuthRepository)
@@ -17,15 +18,15 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.authOnlineDataSource, this.authOfflineDataSource);
 
   @override
-  Future<Result<LoginResponse?>> login(String email, String password) async {
-    var user;
+  Future<Result<domaine.User?>> login(String email, String password) async {
     try {
-      user = authOfflineDataSource.login();
-      if (user.isNotEmpty) {
-        return Success(user.first);
+      var user = await authOnlineDataSource.login(email, password);
+      var loginUser;
+      if(user is Success<LoginResponse?>){
+         loginUser = user.data;
       }
-      user = await authOnlineDataSource.login(email, password);
-      return user;
+      loginUser.toString();
+      return Success(DTO.userDto(loginUser));
     } on Exception catch (e) {
       if(e is DioException) {
         return ServerFailure.fromDioError(e);
