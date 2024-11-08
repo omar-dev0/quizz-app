@@ -89,7 +89,6 @@ class MyApp extends StatelessWidget {
           RegistrationScreen.route: (_) => RegistrationScreen(),
           ProfileScreen.route: (_) => ProfileScreen(),
           ChangePassword.route: (_) => ChangePassword(),
-          MainScreen.route: (_) => MainScreen(),
         },
       ),
     );

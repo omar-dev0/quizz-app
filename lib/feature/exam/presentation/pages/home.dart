@@ -16,15 +16,16 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
 
-  List<Widget> body = [
-    const HomeScreenBody(),
-     ResulteFragment(),
-     ProfileScreen()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
     final homeViewModel = context.read<HomeViewModel>();
+    List<Widget> body = [
+      const HomeScreenBody(),
+      ResulteFragment(),
+      ProfileScreen(user: homeViewModel.user,)
+    ];
     return Scaffold(
         appBar: AppBar(
           title: Text(

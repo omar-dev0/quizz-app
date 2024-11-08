@@ -4,7 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/action_handler.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
 
-import '../../../domain/use_cases/usecases.dart';
+import '../../../../auth/domain/model/user.dart' as domain;
+import '../../../domain/use_cases/usecases.dart' ;
 import 'home_screen_actions.dart';
 
 @injectable
@@ -12,10 +13,14 @@ class HomeViewModel extends Cubit<HomeScreenStates>{
   late final ActionHandler actionHandler;
   late int _currentSubjectListIndex;
   int _currentFragmentIndex = 0;
+
   HomeViewModel(UseCases useCase) : super(InitialState()){
      actionHandler = ActionHandler(useCase, this);
   }
-
+  late domain.User user;
+  void setUser(domain.User user){
+    this.user = user;
+  }
   void setCurrentFragmentIndex(int index){
     _currentFragmentIndex = index;
   }

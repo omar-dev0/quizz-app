@@ -64,7 +64,7 @@ class LoginScreenBody extends StatelessWidget {
               });
         }
         else if (state is LoginSuccessState) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen(user: state.user!)));
           showDialog(
             context: context,
             builder: (_) {

@@ -4,6 +4,6 @@ import 'package:quizz_app/feature/auth/domain/model/user.dart' as domain;
 abstract class DTO{
 
    static domain.User userDto(LoginResponse response){
-    return domain.User(email: response.user?.email, username: response.user?.username, token: response.token,firstName: response.user?.firstName);
+    return domain.User(email: response.user?.email, username: response.user?.username, token: response.token,firstName: response.user?.firstName,lastName: response.user!.lastName, phone: response.user!.phone);
    }
 }

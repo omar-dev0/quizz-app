@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/feature/auth/domain/model/user.dart' as domain;
 import 'package:quizz_app/feature/exam/presentation/pages/reset_password_screen.dart';
 
 
 class ProfileScreen extends StatelessWidget {
+  final domain.User user;
+  ProfileScreen({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,29 +52,29 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             // Username Field
-            _buildTextField("User name", "Mohamed_Ahmed123"),
+            _buildTextField("User name", user.username??""),
             SizedBox(height: 10),
             // First Name and Last Name
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField("First name", "Mohamed"),
+                  child: _buildTextField("First name", user.firstName??""),
                 ),
                 SizedBox(width: 10),
                 Expanded(
-                  child: _buildTextField("Last name", "Ahmed"),
+                  child: _buildTextField("Last name", user.lastName??""),
                 ),
               ],
             ),
             SizedBox(height: 10),
             // Email Field
-            _buildTextField("Email", "Mohamed098@gmail.com"),
+            _buildTextField("Email", user.email??""),
             SizedBox(height: 10),
             // Password Field with Change Button
             _buildPasswordField("Password", context),
             SizedBox(height: 10),
             // Phone Number Field
-            _buildTextField("Phone number", "1234567890987"),
+            _buildTextField("Phone number", user.phone??""),
             SizedBox(height: 30),
             // Update Button
             SizedBox(
