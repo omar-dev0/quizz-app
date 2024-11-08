@@ -50,16 +50,8 @@ class OfflineDataSourceImpl implements OfflineDataSource {
   }
 
   @override
-  Future<SubjectExamsCachedModel>? getExamById(String examId) async{
+  Future<List<SubjectExamsCachedModel>>? getExamById() async{
     var box = Hive.box<SubjectExamsCachedModel>(AppConstant.kSubjectExamsHiveBox);
-    var allCached = box.values.toList();
-    SubjectExamsCachedModel? returnedExam;
-    for(var exam in allCached){
-      if(exam.examId == examId){
-        returnedExam = exam;
-        break;
-      }
-    }
-    return returnedExam!;
+    return box.values.toList();
   }
 }

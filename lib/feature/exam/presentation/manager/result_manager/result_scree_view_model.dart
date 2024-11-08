@@ -9,13 +9,20 @@ class ResultScreenViewModel extends Cubit<ResultScreenStates>{
   UseCases _useCases;
   ResultScreenViewModel(this._useCases): super(InitialState());
 
-
-
+  void _getExam() async{
+    var response = await _useCases.invokeExamById();
+    response.fold((fail){
+      emit(FailState(fail));
+    }, (exam){
+      emit(SuccessState(exam));
+    });
+  }
   void doActions(ResultScreenActions action){
     switch (action) {
-
       case GetResultExamByIdAction():
-        _useCases.invokeExamById(action.examId);
+       emit(LoadingState());
+       _getExam();
+       break;
     }
   }
 }

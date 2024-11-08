@@ -18,9 +18,9 @@ class ExamByIdRepoImpl implements ExamByIdRepo{
   @factory
   ExamByIdRepoImpl(this._onlineDataSource, this._offlineDataSource);
   @override
-  Future<Either<String, ExamEntity>> getExamById(String id) async {
+  Future<Either<String, List<ExamEntity>>> getExamById() async {
     try{
-      final exam = await _offlineDataSource.getExamById(id);
+      final exam = await _offlineDataSource.getExamById();
       return Right(DTOs.getResultsExam(exam));
     }on Exception catch(e){
       return const Left("Error");

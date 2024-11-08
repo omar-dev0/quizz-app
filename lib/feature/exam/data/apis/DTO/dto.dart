@@ -81,7 +81,13 @@ abstract class DTOs {
     }).toList()??[];
   }
 
-  static ExamEntity getResultsExam(SubjectExamsCachedModel? exam){
-    return ExamEntity(exam!.examId, exam.title, exam.duration, exam.subjectId, exam.numberOfQuestions);
+  static List<ExamEntity> getResultsExam(List<SubjectExamsCachedModel>? exam){
+    List<ExamEntity> list = [];
+    for(var item in exam!){
+      list.add(
+        ExamEntity(item.examId, item.title, item.duration, item.subjectId, item.numberOfQuestions)
+      );
+    }
+    return list;
   }
 }

@@ -25,8 +25,8 @@ class UseCases{
     return await _examRepo.getExam(subjectId);
   }
 
-  Future<Either<String,ExamEntity>> invokeExamById(String examId) async{
-      return await _examByIdRepo.getExamById(examId);
+  Future<Either<String,List<ExamEntity>>> invokeExamById() async{
+      return await _examByIdRepo.getExamById();
   }
 
   Future<Either<ServerFailure,List<ExamQuestionsEntity>>> invokeExamQuestions(String examId) async{
