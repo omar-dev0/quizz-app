@@ -29,7 +29,7 @@ class ExamRepoImpl implements ExamRepo {
       if (cachedExams.isNotEmpty) {
         return Right(DTOs.examsCachedByIdDto(cachedExams));
       }
-      final response = await _onlineDataSource.getExamById(subjectId);
+      final response = await _onlineDataSource.getExamBySubjectId(subjectId);
       CachingData.cachedSubjectExams(response);
       List<ExamEntity> examsList = DTOs.examsResponseByIdDto(response);
       return Right(examsList);

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/local/local.dart';
@@ -6,8 +7,11 @@ import 'package:quizz_app/feature/auth/presentation/login/ui/widgets/remember_me
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_actions.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/home.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 import '../../../../../../core/resources/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/shared_widgets/dialogs.dart';
 import 'login_form.dart';
 
 class LoginScreenBody extends StatelessWidget {
@@ -19,22 +23,7 @@ class LoginScreenBody extends StatelessWidget {
     return BlocConsumer<LoginViewModel, LoginScreenState>(
       listener: (context, state) {
         if (state is LoadingState) {
-          showDialog(
-              context: context,
-              builder: (_) {
-                return  AlertDialog(
-                  title: const CircularProgressIndicator(),
-                  actions: [
-                    InkWell(
-                      onTap: () {
-                        loginViewModel.doAction(InitialScreenAction());
-                        Navigator.pop(context);
-                      },
-                      child: const Text(AppStrings.cancel),
-                    )
-                  ],
-                );
-              });
+          Dialogs.loading(context: context);
         }
         else if (state is CloseDialog)
           {
@@ -62,16 +51,12 @@ class LoginScreenBody extends StatelessWidget {
               });
         }
         else if (state is LoginSuccessState) {
-          showDialog(
-            context: context,
-            builder: (_) {
-              return const AlertDialog(
-                backgroundColor: Colors.green,
-                title: Text("Success"),
-                actions: [],
-              );
-            },
-          );
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen(user: state.user!)));
+          });
+
+         Dialogs.successDialog(context: context);
         }
       },
       builder: (BuildContext context, LoginScreenState state) {

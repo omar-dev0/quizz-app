@@ -1,14 +1,18 @@
 
 import 'package:hive/hive.dart';
+import 'answer_entity.dart';
 part 'answers_cached_entity.g.dart';
 @HiveType(typeId: 5)
 class AnswerCachedEntity {
   @HiveField(0)
-  String? answer;
-  @HiveField(1)
   String? correctKey;
-  @HiveField(2)
+  @HiveField(1)
   String? userChoiceKey;
-
-  AnswerCachedEntity(this.answer, this.correctKey, this.userChoiceKey);
+  @HiveField(2)
+  String? examId;
+  @HiveField(3)
+  List<AnswersEntity>? answers;
+  @HiveField(4)
+  String? question;
+  AnswerCachedEntity(this.correctKey, this.userChoiceKey, this.examId, this.answers, this.question);
 }

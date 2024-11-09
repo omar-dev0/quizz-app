@@ -4,7 +4,7 @@ import 'package:quizz_app/feature/auth/data/api/excute_api_call.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/login/login_request.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/sin_up/sign_up_request.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
-import 'package:quizz_app/feature/auth/domain/model/user.dart';
+import 'package:quizz_app/feature/auth/domain/model/user.dart' as domine;
 
 import '../../../domain/common/api_result.dart';
 import '../../api/model/request/login/Otp_code_request.dart';
@@ -36,7 +36,7 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   }
 
   @override
-  Future<Result<void>> signUp(User appUser, String password, String confirmPassword)async{
+  Future<Result<void>> signUp(domine.User appUser, String password, String confirmPassword)async{
     return await executeApiCall<void>((){
       final SignUpRequest request = SignUpRequest(
           email: appUser.email!,

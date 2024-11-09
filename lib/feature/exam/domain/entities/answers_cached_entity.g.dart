@@ -20,19 +20,25 @@ class AnswerCachedEntityAdapter extends TypeAdapter<AnswerCachedEntity> {
       fields[0] as String?,
       fields[1] as String?,
       fields[2] as String?,
+      (fields[3] as List?)?.cast<AnswersEntity>(),
+      fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AnswerCachedEntity obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.answer)
-      ..writeByte(1)
       ..write(obj.correctKey)
+      ..writeByte(1)
+      ..write(obj.userChoiceKey)
       ..writeByte(2)
-      ..write(obj.userChoiceKey);
+      ..write(obj.examId)
+      ..writeByte(3)
+      ..write(obj.answers)
+      ..writeByte(4)
+      ..write(obj.question);
   }
 
   @override

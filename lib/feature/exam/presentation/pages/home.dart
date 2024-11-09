@@ -7,8 +7,8 @@ import 'package:quizz_app/core/resources/colors.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/custom_bottom_navigation_bar.dart';
 import 'package:quizz_app/feature/exam/presentation/widgets/home_widgets/home_screen_body.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/profile_fragment.dart';
-import 'package:quizz_app/feature/exam/presentation/widgets/resulte_fragment.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/profile_fragment.dart';
+import 'package:quizz_app/feature/exam/presentation/pages/resulte_fragment.dart';
 
 import '../manager/home_managers/home_screen_states.dart';
 
@@ -16,15 +16,16 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
 
-  List<Widget> body = [
-    const HomeScreenBody(),
-    const ResulteFragment(),
-    const ProfileFragment()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
     final homeViewModel = context.read<HomeViewModel>();
+    List<Widget> body = [
+      const HomeScreenBody(),
+      ResulteFragment(),
+      ProfileScreen(user: homeViewModel.user,)
+    ];
     return Scaffold(
         appBar: AppBar(
           title: Text(

@@ -5,6 +5,8 @@ import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/mod
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subject_exams_model/subject_exams_model.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/offline_data_source.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/offline_data_source/models/subjects_model/subject_cached_model.dart';
+import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 
 @Injectable(as: OfflineDataSource)
 class OfflineDataSourceImpl implements OfflineDataSource {
@@ -47,5 +49,12 @@ class OfflineDataSourceImpl implements OfflineDataSource {
       }
     }
     return questions;
+  }
+
+  @override
+  Future<List<CachedExamResultEntity>>? getExamById() async{
+    var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
+    var all = box.values.toList();
+    return box.values.toList();
   }
 }

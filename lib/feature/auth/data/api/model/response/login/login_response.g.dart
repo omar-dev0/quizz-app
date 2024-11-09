@@ -3,50 +3,6 @@
 part of 'login_response.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class LoginResponseAdapter extends TypeAdapter<LoginResponse> {
-  @override
-  final int typeId = 0;
-
-  @override
-  LoginResponse read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return LoginResponse(
-      message: fields[0] as String?,
-      token: fields[1] as String?,
-      code: fields[2] as int?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, LoginResponse obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.message)
-      ..writeByte(1)
-      ..write(obj.token)
-      ..writeByte(2)
-      ..write(obj.code);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LoginResponseAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
@@ -54,12 +10,38 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     LoginResponse(
       message: json['message'] as String?,
       token: json['token'] as String?,
-      code: (json['code'] as num?)?.toInt(),
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
       'token': instance.token,
-      'code': instance.code,
+      'user': instance.user,
+    };
+
+User _$UserFromJson(Map<String, dynamic> json) => User(
+      Id: json['_id'] as String?,
+      username: json['username'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
+      role: json['role'] as String?,
+      isVerified: json['isVerified'] as bool?,
+      createdAt: json['createdAt'] as String?,
+    );
+
+Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+      '_id': instance.Id,
+      'username': instance.username,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'phone': instance.phone,
+      'role': instance.role,
+      'isVerified': instance.isVerified,
+      'createdAt': instance.createdAt,
     };

@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'exam_entity.dart';
-part 'cached_exam_result_entity.g.dart';
 
+part 'cached_exam_result_entity.g.dart';
 
 @HiveType(typeId: 4)
 class CachedExamResultEntity {
@@ -19,13 +19,6 @@ class CachedExamResultEntity {
   @HiveField(5)
   ExamEntity? exam;
 
-  CachedExamResultEntity(
-    this.answers,
-    this.type,
-    this.id,
-    this.question,
-    this.correct,
-    this.exam,
-  );
+  CachedExamResultEntity(this.answers, this.type, this.id, this.question,
+      this.correct, this.exam,);
 }
-

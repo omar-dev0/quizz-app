@@ -1,7 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/core/resources/app_constant.dart';
+import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_states.dart';
@@ -10,10 +14,14 @@ import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_man
 class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   int _currentQuestion = 0;
   String _lastChoice = "";
+  String _currentExamId = "";
   Map<int,String> answers = {};
   QuestionsScreenViewModel(): super(InitialState());
 
-
+  void setCurrentExamId(String examId){
+    _currentExamId = examId;
+    log("in view model id $_currentExamId");
+  }
   void setLastChoice(String key){
     _lastChoice = key;
   }
@@ -24,6 +32,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
     _currentQuestion = 0;
   }
   void _saveAnswer(){
+    if(_lastChoice.isEmpty) _lastChoice = "#";
     answers[_currentQuestion] = _lastChoice;
   }
   void _nextQuestion(int totalQuestions){
@@ -54,6 +63,16 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
             correct++;
           }
       }
+      var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
+      CachedExamResultEntity exam ;
+      List<AnswerCachedEntity> answerList = [];
+      for(int i = 0; i < questions.length; ++i){
+        answerList.add(
+          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId,questions[i].answers,questions[i].question)
+        );
+      }
+      exam = CachedExamResultEntity(answerList, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);
+      box.add(exam);
       emit(FinishedExamState(correct, questions.length - correct));
   }
   void doAction(QuestionsScreenActions action){
