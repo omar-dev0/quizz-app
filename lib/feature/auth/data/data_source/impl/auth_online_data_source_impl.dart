@@ -51,4 +51,9 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
     });
   }
 
+  @override
+  Future<String> logout(String token)async {
+    return await apiServices.logout(token);
+  }
+
 }

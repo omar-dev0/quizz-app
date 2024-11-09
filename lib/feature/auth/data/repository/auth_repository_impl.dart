@@ -50,4 +50,17 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Result<void>> signUp(domaine.User appUser, String password, String confirmPassword) {
     return authOnlineDataSource.signUp(appUser, password, confirmPassword);
   }
+
+  @override
+  Future<Result<String>> logout(String token)async {
+    try{
+      var response = await authOnlineDataSource.logout(token);
+      return Success(response);
+    }on Exception catch(e){
+      if(e is DioException){
+        return ServerFailure.fromDioError(e);
+      }
+      return ServerFailure("unkown");
+    }
+  }
 }

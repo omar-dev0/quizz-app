@@ -8,6 +8,7 @@ abstract class AuthOnlineDataSource{
   Future<Result<LoginResponse?>> login(String email,String password);
   Future<Result<OtpCodeResponse?>> getOtpCode(String email);
   Future<Result<void>> signUp(domain.User appUser, String password , String confirmPassword);
+  Future<String> logout(String token);
 }
 
 abstract class AuthOfflineDataSource{
