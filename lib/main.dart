@@ -17,11 +17,12 @@ import 'package:quizz_app/feature/exam/domain/entities/answer_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
-import 'package:quizz_app/feature/exam/presentation/pages/main_screen.dart';
 import 'core/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/profile/profile_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/update_password/change_password.dart';
 import 'feature/auth/presentation/registration/registration.dart';
+import 'feature/exam/presentation/pages/home.dart';
+import 'feature/exam/presentation/pages/main_screen.dart';
 
 void main() async {
   configureDependencies();
@@ -68,6 +69,7 @@ Future<void> initHive() async {
     if(!Hive.isBoxOpen(AppConstant.ktoken)){
       await Hive.openBox<CachedToken>(AppConstant.ktoken);
     }
+
     print("Hive initialized and boxes opened successfully.");
   } catch (e) {
     print("Error initializing Hive: $e");
@@ -76,9 +78,10 @@ Future<void> initHive() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+    var tokenBox = Hive.box<CachedToken>(AppConstant.ktoken);
+    bool isStillLogin = tokenBox.isNotEmpty;
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,

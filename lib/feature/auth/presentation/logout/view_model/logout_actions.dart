@@ -1,3 +1,2 @@
-sealed class LogoutActions{
-}
-class LogoutStateAction extends LogoutActions{}
+sealed class LogoutActions{}
+class LogoutNeededAction extends LogoutActions{}

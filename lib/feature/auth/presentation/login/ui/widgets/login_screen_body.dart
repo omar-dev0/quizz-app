@@ -51,7 +51,7 @@ class LoginScreenBody extends StatelessWidget {
               });
         }
         else if (state is LoginSuccessState) {
-          Future.delayed(Duration(seconds: 2), () {
+          Future.delayed(const Duration(seconds: 1), () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen(user: state.user!)));
           });
