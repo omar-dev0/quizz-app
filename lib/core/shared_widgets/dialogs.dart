@@ -60,4 +60,11 @@ abstract class Dialogs {
             ),
         barrierDismissible: false);
   }
+
+  static void logout({required BuildContext context}){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: Lottie.asset(height: MediaQuery.of(context).size.height*.2, AnimationAssets.logout),
+    ),  barrierDismissible: false
+    );
+  }
 }

@@ -9,20 +9,25 @@ import 'model/request/login/login_request.dart';
 import 'model/response/login/Otp_code_response.dart';
 
 part 'api_services.g.dart';
+
 @singleton
 @injectable
 @RestApi(baseUrl: EndPoints.authBaseUrl)
-abstract class ApiServices{
-
+abstract class ApiServices {
   @factoryMethod
   factory ApiServices(Dio dio) = _ApiServices;
 
   @POST(EndPoints.loginEndPoint)
-  Future<LoginResponse> login(@Body()  LoginRequest loginRequest);
+  Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
   @POST(EndPoints.forgetPasswordEntPoint)
   Future<OtpCodeResponse> getOtpCode(@Body() OtpCodeRequest otpRequest);
-@POST(EndPoints.signUp)
-Future<void> signUp(@Body() SignUpRequest request);
 
+  @POST(EndPoints.signUp)
+  Future<void> signUp(@Body() SignUpRequest request);
+
+
+
+  @GET("/${EndPoints.logout}")
+  Future<String> logout(@Header("token") String token);
 }

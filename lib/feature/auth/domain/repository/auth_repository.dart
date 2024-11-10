@@ -7,5 +7,6 @@ import '../model/user.dart' as domain;
 abstract class AuthRepository{
   Future<Result<domain.User?>> login(String email,String password);
   Future<Result<void>> signUp(domain.User appUser, String password, String confirmPassword);
-    Future<Result<OtpCodeResponse?>> getOtpCode(String email);
+  Future<Result<OtpCodeResponse?>> getOtpCode(String email);
+  Future<Result<String>> logout(String token);
 }

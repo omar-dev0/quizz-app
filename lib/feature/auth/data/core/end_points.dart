@@ -3,4 +3,5 @@ abstract class EndPoints{
   static const String loginEndPoint = "signin";
   static const String forgetPasswordEntPoint = "forgetPassword";
   static const String signUp = 'signup';
+  static const String logout = "logout";
 }
