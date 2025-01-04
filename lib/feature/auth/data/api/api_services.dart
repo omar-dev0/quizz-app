@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/sin_up/sign_up_request.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/verify_otp_code_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/verify_otp_response_model.dart';
 import 'package:quizz_app/feature/auth/data/core/end_points.dart';
 import 'package:retrofit/retrofit.dart';
 import 'model/request/login/Otp_code_request.dart';
@@ -29,4 +31,7 @@ abstract class ApiServices {
 
   @GET("/${EndPoints.logout}")
   Future<String> logout(@Header("token") String token);
+
+  @POST(EndPoints.verifyOtp)
+  Future<VerifyOtpResponseModel> verifyOtp(@Body() VeriftOtpCodeReuestModel verifyOtpCodeReuestModel);
 }

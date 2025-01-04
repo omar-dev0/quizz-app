@@ -8,6 +8,7 @@ import 'package:quizz_app/feature/auth/data/data_source/cached_token.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
 import 'package:quizz_app/feature/auth/domain/model/Otp_respones_entity.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
+import 'package:quizz_app/feature/auth/domain/model/verify_otp_entity.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
 import '../../domain/common/api_result.dart';
@@ -67,5 +68,13 @@ class AuthRepositoryImpl implements AuthRepository {
       }
       return ServerFailure("unkown");
     }
+  }
+
+  @override
+  Future<Result<VerifyOtpCodeEntity>> verifyOtp(String otpCode) async {
+    return executeApiCall<VerifyOtpCodeEntity>(() async{
+       var response = await authOnlineDataSource.verifyOtp(otpCode);
+       return response.toDomain();
+    });
   }
 }
