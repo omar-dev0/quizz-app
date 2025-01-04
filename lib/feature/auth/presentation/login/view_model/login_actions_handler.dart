@@ -51,11 +51,6 @@ class LoginActionHandler {
           loginViewModel.emitState(CloseDialog());
           loginViewModel.emitState(LoginErrorState(response.message));
         }
-      case Fail():
-        {
-          loginViewModel.emitState(CloseDialog());
-          loginViewModel.emitState(LoginErrorState(response.error));
-        }
     }
 
   }

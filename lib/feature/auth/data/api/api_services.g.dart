@@ -14,7 +14,7 @@ class _ApiServices implements ApiServices {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://exam.elevateegy.com//api/v1/auth/';
+    baseUrl ??= 'https://exam.elevateegy.com/api/v1/auth/';
   }
 
   final Dio _dio;
@@ -71,7 +71,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'forgetPassword',
+          'forgotPassword',
           queryParameters: queryParameters,
           data: _data,
         )

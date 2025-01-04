@@ -9,6 +9,6 @@ Future<Result<T>> executeApiCall<T>(Future<T> Function()  apiCall) async{
       if (e is DioException) {
         return ServerFailure.fromDioError(e);
       }
-      return Fail(e.toString());
+      return ServerFailure(e.toString());
     }
 }

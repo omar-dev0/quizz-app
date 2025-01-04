@@ -10,13 +10,6 @@ class Success<T> implements Result<T>
   Success(this.data);
 }
 
-class Fail<T> implements Result<T>
-{
-  String? error;
-  Fail(this.error);
-}
-
-
 class ServerFailure<T> implements Result<T>{
   String? message;
   ServerFailure(this.message);

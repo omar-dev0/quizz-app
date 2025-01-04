@@ -4,18 +4,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'Otp_code_request.g.dart';
 @JsonSerializable()
 class OtpCodeRequest {
-  OtpCodeRequest({
-      this.email,});
+  @JsonKey(name: "email")
+  final String? email;
 
-  OtpCodeRequest.fromJson(dynamic json) {
-    email = json['email'];
+  OtpCodeRequest ({
+    this.email,
+  });
+
+  factory OtpCodeRequest.fromJson(Map<String, dynamic> json) {
+    return _$OtpCodeRequestFromJson(json);
   }
-  String? email;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['email'] = email;
-    return map;
+    return _$OtpCodeRequestToJson(this);
   }
 
 }

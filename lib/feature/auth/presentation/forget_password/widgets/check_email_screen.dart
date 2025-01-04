@@ -14,56 +14,70 @@ class CheckEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final forgetPasswordViewModel = context.read<ForgetPasswordViewModel>();
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SizedBox(
-          width: context.width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Text(
-                "Forget password",
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                "Please enter your email associated to your account",
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                    hintText: "Enter your email", labelText: "Email"),
-              ),
-              const SizedBox(
-                height: 48,
-              ),
-              SizedBox(
-                width: context.width,
-                child: ElevatedButton(
-                  onPressed: () {
-                    forgetPasswordViewModel
-                        .doAction(NavigateToVerificationEmailScreenAction());
-                  },
-                  child: Text(
-                    "Continue",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium
-                        ?.copyWith(color: AppColors.white),
+    return BlocBuilder<ForgetPasswordViewModel,ForgetPasswordScreenState>(
+      builder: (context,state){
+       return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            width: context.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Forget password",
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Please enter your email associated to your account",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Form(
+                  key: forgetPasswordViewModel.emailFormKey,
+                  child: TextFormField(
+                    controller: forgetPasswordViewModel.emailController,
+                    decoration: const InputDecoration(
+                        hintText: "Enter your email", labelText: "Email"),
+                    validator: (value) {
+                      return forgetPasswordViewModel.emailValidation();
+                    },
+                    onChanged: (value){
+                      forgetPasswordViewModel.doAction(CheckValidationInputAction());
+                    },
                   ),
                 ),
-              )
-            ],
+                const SizedBox(
+                  height: 48,
+                ),
+                SizedBox(
+                  width: context.width,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        disabledBackgroundColor: AppColors.grey
+                    ),
+                    onPressed: ()=>forgetPasswordViewModel.isButtonEnabled?forgetPasswordViewModel.doAction(SentOtpCodeAction()):null,
+                    child: Text(
+                      "Continue",
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+        );
+      },
     );
   }
 }

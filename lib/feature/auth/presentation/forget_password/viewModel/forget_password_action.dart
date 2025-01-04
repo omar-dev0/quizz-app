@@ -6,3 +6,4 @@ class NavigateToResetPasswordScreenAction extends ForgetPasswordActions{}
 class NavigateBackAction extends ForgetPasswordActions{}
 class SentOtpCodeAction extends ForgetPasswordActions{}
 class NavigateToLoginScreenAction extends ForgetPasswordActions{}
+class CheckValidationInputAction extends ForgetPasswordActions{}

@@ -27,7 +27,6 @@ abstract class ApiServices {
   Future<void> signUp(@Body() SignUpRequest request);
 
 
-
   @GET("/${EndPoints.logout}")
   Future<String> logout(@Header("token") String token);
 }

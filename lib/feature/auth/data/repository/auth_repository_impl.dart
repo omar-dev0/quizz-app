@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
+import 'package:quizz_app/feature/auth/data/api/excute_api_call.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/data/data_source/cached_token.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
+import 'package:quizz_app/feature/auth/domain/model/Otp_respones_entity.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
@@ -42,8 +44,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<OtpCodeResponse?>> getOtpCode(String email) async {
-    return await authOnlineDataSource.getOtpCode(email);
+  Future<Result<OtpResponesEntity>> getOtpCode(String email) async {
+    return await executeApiCall<OtpResponesEntity>(()async{
+       var response = await authOnlineDataSource.getOtpCode(email);
+       return response.toDomain();
+    });
   }
 
   @override

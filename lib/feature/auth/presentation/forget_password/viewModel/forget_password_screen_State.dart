@@ -1,15 +1,16 @@
 sealed class ForgetPasswordScreenState{}
 
-class InitialScreenState extends ForgetPasswordScreenState{}
+class InitialForgetPasswordScreenState extends ForgetPasswordScreenState{}
 class NavigateToEmailVerificationScreenState extends ForgetPasswordScreenState{}
 class NavigateToResetPasswordScreenState extends ForgetPasswordScreenState{}
 class NavigateToLoginScreenState extends ForgetPasswordScreenState{}
 class NavigateBackState extends ForgetPasswordScreenState{}
-class OtpSendingSuccess extends ForgetPasswordScreenState{
+class ForgetPasswordSuccessState extends ForgetPasswordScreenState{}
+class ForgetPasswordFailState extends ForgetPasswordScreenState{
   String? message;
-  OtpSendingSuccess(this.message);
+  ForgetPasswordFailState(this.message);
 }
-class OtpSendingFail extends ForgetPasswordScreenState{
-  String? message;
-  OtpSendingFail(this.message);
+class ForgetPasswordLoadingState extends ForgetPasswordScreenState{
 }
+class SuccessInputValidation extends ForgetPasswordScreenState{}
+class FailInputValidation extends ForgetPasswordScreenState {}

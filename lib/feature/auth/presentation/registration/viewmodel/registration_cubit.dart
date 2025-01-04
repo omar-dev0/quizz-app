@@ -59,11 +59,6 @@ class RegistrationViewModel extends Cubit<RegistrationState> {
             emit(SuccessReg());
             Future.delayed(const Duration(seconds: 2) ,()=>emit(NavigateToLogin()) );
           }
-        case Fail():
-          {
-            emit(HideLoadingDialog());
-            emit(FailReg(error: result.error));
-          }
         case ServerFailure<void>():
           emit(HideLoadingDialog());
           emit(FailReg(error: result.message));

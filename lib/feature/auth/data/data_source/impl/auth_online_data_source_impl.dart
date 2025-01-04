@@ -14,25 +14,22 @@ import '../contracts/auth_data_source.dart';
 @Injectable(as: AuthOnlineDataSource)
 class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
 
-  ApiServices apiServices;
+  ApiServices _apiServices;
   @factoryMethod
-  AuthOnlineDataSourceImpl(this.apiServices);
+  AuthOnlineDataSourceImpl(this._apiServices);
 
   @override
   Future<Result<LoginResponse?>> login(String email, String password) async {
      LoginRequest loginRequest = LoginRequest(email: email, password: password);
      return await executeApiCall<LoginResponse?>((){
-       return apiServices.login(loginRequest);
+       return _apiServices.login(loginRequest);
      });
 
   }
 
   @override
-  Future<Result<OtpCodeResponse?>> getOtpCode(String email) async {
-    OtpCodeRequest otpCodeRequest = OtpCodeRequest(email: email);
-    return await executeApiCall<OtpCodeResponse?>((){
-      return apiServices.getOtpCode(otpCodeRequest);
-    });
+  Future<OtpCodeResponse> getOtpCode(String email) async {
+    return await _apiServices.getOtpCode(OtpCodeRequest(email: email));
   }
 
   @override
@@ -46,14 +43,14 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
           firstName: appUser.firstName!,
           userName: appUser.username!,
           phone: appUser.phone!);
-      final response = apiServices.signUp(request);
+      final response = _apiServices.signUp(request);
       return response;
     });
   }
 
   @override
   Future<String> logout(String token)async {
-    return await apiServices.logout(token);
+    return await _apiServices.logout(token);
   }
 
 }
