@@ -1,5 +1,6 @@
 
 import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_screen_state.dart';
 import 'package:quizz_app/feature/auth/presentation/login/view_model/login_view_model.dart';
 import '../../../domain/model/user.dart';
@@ -9,7 +10,7 @@ import 'login_actions.dart';
 class LoginActionHandler {
   final LoginUseCase loginUseCase;
   final LoginViewModel loginViewModel;
-  late User user;
+  late UserEntity user;
   late String? errorMessage;
   LoginActionHandler(this.loginUseCase,
       this.loginViewModel);
@@ -51,7 +52,7 @@ class LoginActionHandler {
     switch (response) {
       case Success():
         {
-         user =  response.data!;
+          user =  response.data!.user!;
           loginViewModel.emitState(CloseDialog());
           loginViewModel.emitState(LoginSuccessState(user));
           break;

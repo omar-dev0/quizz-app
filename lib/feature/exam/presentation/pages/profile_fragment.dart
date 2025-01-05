@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
 import 'package:quizz_app/feature/auth/data/data_source/cached_token.dart';
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domain;
 import 'package:quizz_app/feature/auth/presentation/logout/logout_button.dart';
 import 'package:quizz_app/feature/exam/presentation/pages/reset_password_screen.dart';
@@ -12,7 +13,7 @@ import '../../../../core/resources/colors.dart';
 
 
 class ProfileScreen extends StatelessWidget {
-  final domain.User user;
+  final UserEntity user;
   ProfileScreen({required this.user});
   @override
   Widget build(BuildContext context) {
@@ -20,18 +21,6 @@ class ProfileScreen extends StatelessWidget {
     var box = Hive.box<CachedToken>(AppConstant.ktoken);
     log("${box.values.toList().first.token.toString()}");
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Profile"),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

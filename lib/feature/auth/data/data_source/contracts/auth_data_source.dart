@@ -8,7 +8,7 @@ import '../../../domain/common/api_result.dart';
 import '../../api/model/response/login/Otp_code_response.dart';
 
 abstract class AuthOnlineDataSource{
-  Future<Result<LoginResponse?>> login(String email,String password);
+  Future<LoginResponse> login(String email,String password);
   Future<OtpCodeResponse> getOtpCode(String email);
   Future<Result<void>> signUp(domain.User appUser, String password , String confirmPassword);
   Future<String> logout(String token);
@@ -17,5 +17,7 @@ abstract class AuthOnlineDataSource{
 }
 
 abstract class AuthOfflineDataSource{
-  List<LoginResponse> login();
+   Future<void> saveToken(String token);
+   Future<void> deleteToken();
+   Future<String> getToken();
 }

@@ -1,4 +1,6 @@
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/core/helpers/shared_pref_hepler.dart';
+import 'package:quizz_app/core/helpers/shared_pref_key.dart';
 import 'package:quizz_app/feature/exam/data/apis/DTO/logout_response_model.dart';
 import 'package:quizz_app/feature/exam/data/apis/api_services.dart';
 import 'package:quizz_app/feature/exam/data/apis/apis_const.dart';
@@ -18,22 +20,26 @@ class OnlineDataSourceImpl implements OnlineDataSource{
   OnlineDataSourceImpl(this._apiServices);
   @override
   Future<SubjectResponse> getSubjects() async{
-    return await _apiServices.getSubjects(ApiConst.testToken);
+    String? token = await SharedPrefHelper.getSecureString(SharedPrefKeys.token);
+    return await _apiServices.getSubjects(token??"");
   }
 
   @override
   Future<ExamsBySubjectResponse> getExamBySubjectId(String id) async{
-    return await _apiServices.getExamsBySubjectId(ApiConst.testToken,id );
+    String? token = await SharedPrefHelper.getSecureString(SharedPrefKeys.token);
+    return await _apiServices.getExamsBySubjectId(token??"",id );
   }
 
   @override
   Future<ExamQuestionsReponseModel> getExamQuestionsByExamId(String id) async{
-    return await _apiServices.getExamQuestionsByExamId(ApiConst.testToken, id);
+    String? token = await SharedPrefHelper.getSecureString(SharedPrefKeys.token);
+    return await _apiServices.getExamQuestionsByExamId(token??"", id);
   }
 
   @override
   Future<ExamByIdResponseModel> getExamById(String id) async{
-    return await _apiServices.getExamById(ApiConst.testToken, id);
+    String? token = await SharedPrefHelper.getSecureString(SharedPrefKeys.token);
+    return await _apiServices.getExamById(token??"", id);
   }
 
   @override

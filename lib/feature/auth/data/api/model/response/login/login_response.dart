@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
 
 part 'login_response.g.dart';
 
@@ -23,6 +24,13 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() {
     return _$LoginResponseToJson(this);
+  }
+  LoginResponseEntity toDomain(){
+    return LoginResponseEntity(
+      message: message,
+      token: token,
+      user: user?.toDomain(),
+    );
   }
 }
 
@@ -65,6 +73,19 @@ class User {
 
   Map<String, dynamic> toJson() {
     return _$UserToJson(this);
+  }
+  UserEntity toDomain() {
+    return UserEntity(
+      Id: Id,
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      role: role,
+      isVerified: isVerified,
+      createdAt: createdAt,
+    );
   }
 }
 

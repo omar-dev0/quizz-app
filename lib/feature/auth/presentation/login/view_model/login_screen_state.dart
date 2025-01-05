@@ -1,3 +1,5 @@
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
+
 import '../../../domain/model/user.dart';
 
 sealed class LoginScreenState{}
@@ -23,7 +25,7 @@ class LoginErrorState extends LoginScreenState{
 class NavigateToForgetPasswordScreenState extends LoginScreenState{}
 
 class LoginSuccessState extends LoginScreenState{
-  User? user;
+  UserEntity? user;
   LoginSuccessState(this.user);
 }
 

@@ -23,12 +23,8 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   AuthOnlineDataSourceImpl(this._apiServices);
 
   @override
-  Future<Result<LoginResponse?>> login(String email, String password) async {
-     LoginRequest loginRequest = LoginRequest(email: email, password: password);
-     return await executeApiCall<LoginResponse?>((){
-       return _apiServices.login(loginRequest);
-     });
-
+  Future<LoginResponse> login(String email, String password) async {
+    return _apiServices.login(LoginRequest(email: email,password: password));
   }
 
   @override

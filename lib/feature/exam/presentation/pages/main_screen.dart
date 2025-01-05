@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domain;
 import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_scree_view_model.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/result_screen_details/result_screen_viewmodel.dart';
@@ -11,7 +12,7 @@ import '../manager/home_managers/view_model.dart';
 
 class MainScreen extends StatelessWidget {
   static const String route = "MainScreen";
-   final domain.User user;
+   final UserEntity user;
    MainScreen({super.key,required this.user});
   final homeViewModel = getIt.get<HomeViewModel>();
   @override

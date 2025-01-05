@@ -25,13 +25,8 @@ class LogoutViewModel extends Cubit<LogoutStates> {
 
   void _logout() async {
     emit(LogoutLoadingState());
-    var tokenBox = Hive.box<CachedToken>(AppConstant.ktoken);
-    var resultBox = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
-    String token = tokenBox.values.toList().first.token.toString();
-    var result = await _logoutUseCase.logout(token);
+    var result = await _logoutUseCase.logout();
     if (result is Success) {
-      tokenBox.clear();
-      resultBox.clear();
       emit(LogoutSuccessState());
     } else {
       emit(LogoutFailedState());

@@ -1,6 +1,7 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/auth/domain/model/login_response_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/action_handler.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/home_managers/home_screen_states.dart';
 
@@ -17,8 +18,8 @@ class HomeViewModel extends Cubit<HomeScreenStates>{
   HomeViewModel(UseCases useCase) : super(InitialState()){
      actionHandler = ActionHandler(useCase, this);
   }
-  late domain.User user;
-  void setUser(domain.User user){
+  late UserEntity user;
+  void setUser(UserEntity user){
     this.user = user;
   }
   void setCurrentFragmentIndex(int index){

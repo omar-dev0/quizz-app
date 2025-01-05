@@ -7,8 +7,8 @@ import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 class LogoutUseCase{
   AuthRepository authRepository;
   LogoutUseCase(this.authRepository);
-  Future<Result<String>> logout(String token) async{
-    return await authRepository.logout(token);
+  Future<Result<String>> logout() async{
+    return await authRepository.logout();
   }
 
 }
