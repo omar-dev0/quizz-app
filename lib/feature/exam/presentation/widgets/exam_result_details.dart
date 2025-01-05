@@ -36,6 +36,7 @@ class _ExamResultDetailsState extends State<ExamResultDetails> {
           itemCount: widget.examResultEntity.answers!.length,
           itemBuilder: (context, index) {
             return AnswersResultList(
+              questionIndex: index,
               answerCachedEntity: widget.examResultEntity.answers![index],
               question: widget.examResultEntity.question,
             );

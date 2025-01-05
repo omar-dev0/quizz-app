@@ -13,12 +13,13 @@ import 'package:quizz_app/feature/exam/presentation/widgets/answer_reuslt_card.d
 class AnswersResultList extends StatelessWidget {
   final AnswerCachedEntity answerCachedEntity;
   final String? question;
-
+  final int questionIndex;
   const AnswersResultList(
-      {super.key, required this.answerCachedEntity, required this.question});
+      {super.key, required this.answerCachedEntity, required this.question,required this.questionIndex});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<ResultDetailsViewModel>();
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -55,18 +56,21 @@ class AnswersResultList extends StatelessWidget {
                       answerCachedEntity.correctKey) {
                     border = Colors.green;
                     background = AppColors.lightGreen;
+                    viewModel.selectedAnswers[questionIndex] = index;
+
                   } else if (answerCachedEntity.answers![index].key ==
                           answerCachedEntity.userChoiceKey &&
                       answerCachedEntity.correctKey !=
                           answerCachedEntity.userChoiceKey) {
                     border = AppColors.error;
                     background = AppColors.lightRed;
+                    viewModel.selectedAnswers[questionIndex] = index;
                   }
                   return AnswerReusltCard(
                     answer: answerCachedEntity.answers![index].answer!,
                     borderColor: border,
                     backGroundColor: background,
-                    index: index,
+                    index: questionIndex,
                   );
                 },
               ),
