@@ -21,7 +21,6 @@ class _AnswersState extends State<Answers> {
   Widget build(BuildContext context) {
     final viewModel = context.read<QuestionsScreenViewModel>();
     int currentQuestion = viewModel.getCurrentQuestion();
-
     return SizedBox(
       height: 380,
       child: ListView.builder(
@@ -31,11 +30,13 @@ class _AnswersState extends State<Answers> {
           final answer = widget.questions[currentQuestion].answers![index];
           viewModel.doAction(GetQuestionTypeAction(widget.questions[currentQuestion].type!));
           return ChoiceItemCard(
+            answerIndex: index,
+            index: currentQuestion,
             answer: answer,
-            isSelected: _selectedAnswer == answer.answer,
-            onSelected: (selectedAnswer) {
+            isSelected: viewModel.groupedValue[currentQuestion] == index,
+            onSelected: (int? value) {
               setState(() {
-                _selectedAnswer = selectedAnswer;
+                  viewModel.groupedValue[currentQuestion] = value!;
               });
             },
           );

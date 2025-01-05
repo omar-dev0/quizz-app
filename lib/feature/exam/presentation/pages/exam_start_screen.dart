@@ -77,21 +77,18 @@ class ExamStartScreen extends StatelessWidget {
                   onPressed: () {
                     viewModel.doAction(GetExamByIdAction(exam.examId!));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    child: Text(
-                      "Start",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: AppColors.white),
-                    ),
+                  child: Text(
+                    "Start",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: AppColors.white),
                   ),
                 ),
               ),
               ExamStartScreenBloc(
                 examId: exam.examId!,
-                duration: exam.duration??0,
+                duration: exam.duration ?? 0,
               )
             ],
           ),

@@ -54,11 +54,13 @@ class LoginActionHandler {
          user =  response.data!;
           loginViewModel.emitState(CloseDialog());
           loginViewModel.emitState(LoginSuccessState(user));
+          break;
         }
       case ServerFailure():
         {
           loginViewModel.emitState(CloseDialog());
           loginViewModel.emitState(LoginErrorState(response.message));
+          break;
         }
     }
 

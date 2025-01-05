@@ -11,4 +11,5 @@ abstract class AppColors{
   static const Color error = Color(0xFFCC1010);
   static const Color timerColor = Color(0xff11CE19);
   static const Color lightBlue = Color(0xffEDEFF3);
+  static const Color blue10 = Color(0xffABBCDE);
 }

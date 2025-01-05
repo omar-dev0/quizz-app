@@ -17,7 +17,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   String _currentExamId = "";
   Map<int,String> answers = {};
   QuestionsScreenViewModel(): super(InitialState());
-
+  List<int> groupedValue = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
   void setCurrentExamId(String examId){
     _currentExamId = examId;
     log("in view model id $_currentExamId");

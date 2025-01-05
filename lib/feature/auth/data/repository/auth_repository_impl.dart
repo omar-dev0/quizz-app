@@ -36,7 +36,6 @@ class AuthRepositoryImpl implements AuthRepository {
          loginUser = user.data;
       }
       loginUser.toString();
-
       return Success(DTO.userDto(loginUser));
     } on Exception catch (e) {
       if(e is DioException) {
