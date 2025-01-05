@@ -19,7 +19,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var box = Hive.box<CachedToken>(AppConstant.ktoken);
-    log("${box.values.toList().first.token.toString()}");
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -137,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
             // Navigate to the Reset Password screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ResetPasswordScreenUi()),
+              MaterialPageRoute(builder: (context) =>  ResetPasswordScreenUi()),
             );
           },
           child: Text("Change"),
