@@ -53,7 +53,7 @@ class ForgetPasswordScreenBody extends StatelessWidget {
         if (state is ForgetPasswordSuccessState) {
           currentSankBar =  customStackBar(
               title: "Success",
-              content: "Otp sent successfully",
+              content: state.message!,
               contentType: ContentType.success);
           forgetPasswordViewModel.doAction(GotToNextStateAction());
         }

@@ -5,7 +5,10 @@ class NavigateToEmailVerificationScreenState extends ForgetPasswordScreenState{}
 class NavigateToResetPasswordScreenState extends ForgetPasswordScreenState{}
 class NavigateToLoginScreenState extends ForgetPasswordScreenState{}
 class NavigateBackState extends ForgetPasswordScreenState{}
-class ForgetPasswordSuccessState extends ForgetPasswordScreenState{}
+class ForgetPasswordSuccessState extends ForgetPasswordScreenState{
+  String? message;
+  ForgetPasswordSuccessState(this.message);
+}
 class ForgetPasswordFailState extends ForgetPasswordScreenState{
   String? message;
   ForgetPasswordFailState(this.message);

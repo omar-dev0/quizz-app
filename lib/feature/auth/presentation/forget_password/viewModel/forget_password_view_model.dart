@@ -38,7 +38,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
       final result = await _forgetPasswordUseCase.invoke(emailController.text);
       switch (result) {
         case Success<OtpResponesEntity>():
-          emit(ForgetPasswordSuccessState());
+          emit(ForgetPasswordSuccessState("Otp code sent successfully"));
           break;
         case ServerFailure<OtpResponesEntity>():
           emit(ForgetPasswordFailState(result.message));
@@ -63,7 +63,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
     var result = await _forgetPasswordUseCase.verifyOtp(otp);
     switch (result) {
       case Success<VerifyOtpCodeEntity>():
-         emit(ForgetPasswordSuccessState());
+         emit(ForgetPasswordSuccessState("Otp code verified successfully"));
          break;
       case ServerFailure<VerifyOtpCodeEntity>():
         emit(ForgetPasswordFailState(result.message));
@@ -78,7 +78,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
           emailController.text, newPasswordController.text);
       switch (result) {
         case Success<ResetPasswordEntity>():
-          emit(NavigateToLoginScreenState());
+          emit(ForgetPasswordSuccessState("Password reset successfully"));
           break;
         case ServerFailure<ResetPasswordEntity>():
           emit(ForgetPasswordFailState(result.message));
