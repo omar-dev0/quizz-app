@@ -14,3 +14,4 @@ class GotToNextStateAction extends ForgetPasswordActions{}
 class GoToPreviousStatAction extends ForgetPasswordActions{}
 class ResetPasswordAction extends ForgetPasswordActions{}
 class ChangePasswordVisibilityAction extends ForgetPasswordActions{}
+class ValidateNewPasswordFieldsAction extends ForgetPasswordActions{}

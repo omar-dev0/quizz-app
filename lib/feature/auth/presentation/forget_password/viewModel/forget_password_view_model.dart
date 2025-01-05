@@ -15,13 +15,14 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
   ForgetPasswordViewModel(this._forgetPasswordUseCase): super(InitialForgetPasswordScreenState());
   TextEditingController emailController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmNewPasswordController = TextEditingController();
   GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
   CurrentScreenState currentScreenState = CurrentScreenState.CheckEmailScreen;
   bool isButtonEnabled = false;
   bool isObscureText = true;
   String? emailValidation(){
-    if(emailController.text.isEmpty || !emailController.text.contains("@")){
+    if(emailController.text.isEmpty || !emailController.text.contains("@") || !emailController.text.contains(".")){
       emit(FailInputValidation());
       isButtonEnabled = false;
       return "invalid email";
@@ -71,15 +72,18 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
   }
 
   _resetPassword() async{
-    emit(ForgetPasswordLoadingState());
-    var result = await _forgetPasswordUseCase.resetPassword(emailController.text, newPasswordController.text);
-    switch (result) {
-      case Success<ResetPasswordEntity>():
-         emit(NavigateToLoginScreenState());
-         break;
-      case ServerFailure<ResetPasswordEntity>():
-        emit(ForgetPasswordFailState(result.message));
-        break;
+    if(_resetPasswordValidationForm()) {
+      emit(ForgetPasswordLoadingState());
+      var result = await _forgetPasswordUseCase.resetPassword(
+          emailController.text, newPasswordController.text);
+      switch (result) {
+        case Success<ResetPasswordEntity>():
+          emit(NavigateToLoginScreenState());
+          break;
+        case ServerFailure<ResetPasswordEntity>():
+          emit(ForgetPasswordFailState(result.message));
+          break;
+      }
     }
   }
   _goToNextState(){
@@ -118,6 +122,35 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
     isObscureText = !isObscureText;
     emit(ChangePasswordVisibilityState());
   }
+
+  String? passwordValidation(){
+       if(newPasswordController.text.isEmpty || newPasswordController.text.length < 6) {
+         emit(FailInputValidation());
+         return "invalid password";
+       }
+       return null;
+  }
+  String? confirmPasswordValidation(){
+    if(confirmNewPasswordController.text.isEmpty){
+      emit(FailInputValidation());
+      return "invalid password";
+    }
+    if(confirmNewPasswordController.text != newPasswordController.text) {
+      emit(FailInputValidation());
+      return "password not match";
+    }
+    return null;
+  }
+
+ bool _resetPasswordValidationForm(){
+    if(newPasswordFormKey.currentState!.validate()){
+        emit(SuccessInputValidation());
+        return true;
+    }
+    emit(FailInputValidation());
+    return false;
+
+  }
   void doAction(ForgetPasswordActions action){
     switch (action) {
       case InitialScreenAction():
@@ -149,6 +182,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
       case ChangePasswordVisibilityAction():
         _changePasswordVisibility();
         break;
+      case ValidateNewPasswordFieldsAction():
+         _resetPasswordValidationForm();
+         break;
     }
   }
 }
