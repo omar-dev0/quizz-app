@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/domain/use_cases/usecases.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_screen_actions.dart';
@@ -11,12 +12,14 @@ class ResultScreenViewModel extends Cubit<ResultScreenStates> {
 
   ResultScreenViewModel(this._useCases) : super(InitialState());
   List<ExamQuestionsEntity> list = [];
+  List<CachedExamResultEntity> examList = [];
 
   void _getExam() async {
     var response = await _useCases.invokeExamById();
     response.fold((fail) {
       emit(FailState(fail));
     }, (exam) {
+      examList = exam;
       emit(SuccessState(exam));
     });
   }

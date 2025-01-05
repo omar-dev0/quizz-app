@@ -17,10 +17,15 @@ import 'package:quizz_app/feature/exam/domain/entities/answer_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/answers_cached_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_entity.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/exam_start_screen_manager/exam_start_screen_actions.dart';
+import 'package:quizz_app/feature/exam/presentation/manager/result_manager/result_screen_actions.dart';
 import 'core/di/di.dart';
 import 'package:quizz_app/feature/auth/presentation/profile/profile_screen.dart';
 import 'package:quizz_app/feature/auth/presentation/update_password/change_password.dart';
 import 'feature/auth/presentation/registration/registration.dart';
+import 'feature/exam/presentation/manager/home_managers/view_model.dart';
+import 'feature/exam/presentation/manager/result_manager/result_scree_view_model.dart';
+import 'feature/exam/presentation/manager/result_screen_details/result_screen_viewmodel.dart';
 import 'feature/exam/presentation/pages/home.dart';
 import 'feature/exam/presentation/pages/main_screen.dart';
 
@@ -82,22 +87,38 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var tokenBox = Hive.box<CachedToken>(AppConstant.ktoken);
     bool isStillLogin = tokenBox.isNotEmpty;
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, child) => MaterialApp(
-        locale: const Locale('en'),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme.light,
-        initialRoute: LoginScreen.route,
-        routes: {
-          LoginScreen.route: (context) => LoginScreen(),
-          RegistrationScreen.route: (_) => RegistrationScreen(),
-          ProfileScreen.route: (_) => ProfileScreen(),
-          ChangePassword.route: (_) => ChangePassword(),
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ResultDetailsViewModel>(
+          create: (_) => getIt.get<ResultDetailsViewModel>(),
+        ),
+        BlocProvider<ResultScreenViewModel>(
+          create: (context){
+            getIt.get<ResultScreenViewModel>().doActions(GetResultExamByIdAction());
+            return getIt.get<ResultScreenViewModel>();
+          },
+        ),
+        BlocProvider<HomeViewModel>(
+          create: (_) => getIt.get<HomeViewModel>(),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) => MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.light,
+          initialRoute: LoginScreen.route,
+          routes: {
+            LoginScreen.route: (context) => LoginScreen(),
+            RegistrationScreen.route: (_) => RegistrationScreen(),
+            ProfileScreen.route: (_) => ProfileScreen(),
+            ChangePassword.route: (_) => ChangePassword(),
+          },
+        ),
       ),
     );
   }

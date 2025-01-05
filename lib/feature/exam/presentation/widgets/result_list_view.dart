@@ -12,20 +12,23 @@ class ResultListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return ExamResultItemCartd(
-                exam: list[index],
-              );
-            },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 42),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return ExamResultItemCartd(
+                  exam: list[index],
+                );
+              },
+            ),
           ),
-        ),
-        const QuestionsResultBloc()
-      ],
+          const QuestionsResultBloc()
+        ],
+      ),
     );
   }
 }

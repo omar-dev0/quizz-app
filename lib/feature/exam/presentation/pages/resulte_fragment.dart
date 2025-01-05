@@ -9,22 +9,20 @@ import '../manager/result_manager/result_screen_actions.dart';
 import '../manager/result_manager/result_screen_states.dart';
 
 class ResulteFragment extends StatelessWidget {
-  const ResulteFragment({Key? key}) : super(key: key);
-
+   ResulteFragment({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ResultScreenViewModel>()..doActions(GetResultExamByIdAction()),
-      child: Scaffold(
+    final viewModel = context.read<ResultScreenViewModel>();
+    viewModel.doActions(GetResultExamByIdAction());
+    return Scaffold(
         body: BlocBuilder<ResultScreenViewModel, ResultScreenStates>(
           builder: (context, state) {
-            if (state is SuccessState) {
-              return ResultListView(list: state.exam);
-            }
-            return const Center(child: Text("Result"));
+              if(state is SuccessState) {
+                return ResultListView(list: viewModel.examList);
+              }
+              return const Center(child: CircularProgressIndicator());
           },
         ),
-      ),
     );
   }
 }

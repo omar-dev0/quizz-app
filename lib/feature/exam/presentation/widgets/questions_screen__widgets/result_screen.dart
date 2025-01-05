@@ -37,7 +37,7 @@ class ResultScreen extends StatelessWidget {
                 lineWidth: 6,
                 percent: percent,
                 center: Text(
-                  "${percent * 100}%",
+                  "${(percent * 100).toInt()}%",
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 progressColor: AppColors.primary,
@@ -110,15 +110,12 @@ class ResultScreen extends StatelessWidget {
           width: context.width,
           child: ElevatedButton(
             onPressed: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: Text(
-                "Show results",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: AppColors.white),
-              ),
+            child: Text(
+              "Show results",
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: AppColors.white),
             ),
           ),
         ),
@@ -134,15 +131,12 @@ class ResultScreen extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.white,
                 side: const BorderSide(color: AppColors.primary)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: Text(
-                "Start again",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: AppColors.primary),
-              ),
+            child: Text(
+              "Start again",
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: AppColors.primary),
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,20 +20,22 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ElevatedButton(
-        onPressed: onPress,
-        style: ElevatedButton.styleFrom(
-            side: const BorderSide(color: AppColors.primary),
-            backgroundColor: buttonColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
-        child: Text(
-          text,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(color: textColor),
+      child: FadeInUp(
+        child: ElevatedButton(
+          onPressed: onPress,
+          style: ElevatedButton.styleFrom(
+              side: const BorderSide(color: AppColors.primary),
+              backgroundColor: buttonColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              )),
+          child: Text(
+            text,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: textColor),
+          ),
         ),
       ),
     );

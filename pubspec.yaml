@@ -37,6 +37,7 @@ dependencies:
   fluttertoast: ^8.2.8
   percent_indicator: ^4.2.3
   awesome_snackbar_content: ^0.1.4
+  animate_do: ^3.3.4
 
 dev_dependencies:
   flutter_test:

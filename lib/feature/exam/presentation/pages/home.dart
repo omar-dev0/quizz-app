@@ -14,10 +14,6 @@ import '../manager/home_managers/home_screen_states.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
-
-
-
   @override
   Widget build(BuildContext context) {
     final homeViewModel = context.read<HomeViewModel>();
