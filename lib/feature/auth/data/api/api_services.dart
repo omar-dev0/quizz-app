@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/sin_up/sign_up_request.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/update_password_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/verify_otp_code_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/update_password_response_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/verify_otp_response_model.dart';
 import 'package:quizz_app/feature/auth/data/core/end_points.dart';
 import 'package:retrofit/retrofit.dart';
@@ -40,4 +42,6 @@ abstract class ApiServices {
 
   @PUT(EndPoints.resetPassword)
   Future<ResetPasswordResponseModel> resetPassword(@Body() ResetPasswordRequestModel resetPasswordRequestModel);
+  @PATCH(EndPoints.updatePassword)
+  Future<UpdatePasswordResponesModel> updatePassword(@Header("token") String token,@Body() UpdatePasswordRequestModel updatePasswordRequestModel);
 }

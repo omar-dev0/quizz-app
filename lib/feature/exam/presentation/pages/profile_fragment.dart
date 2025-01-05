@@ -85,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(100),
                     ), backgroundColor: Colors.grey, // Button color
                   ),
                   child: Text("Update"),

@@ -1,6 +1,8 @@
 import 'package:quizz_app/feature/auth/data/api/model/request/reset_password_request_model.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/update_password_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/reset_password_response_model.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/update_password_response_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/verify_otp_response_model.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domain;
 
@@ -14,6 +16,7 @@ abstract class AuthOnlineDataSource{
   Future<String> logout(String token);
   Future<VerifyOtpResponseModel> verifyOtp(String otpCode);
   Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel resetPasswordRequestModel);
+  Future<UpdatePasswordResponesModel> updatePassword(String token, UpdatePasswordRequestModel updatePasswordReuqestModel);
 }
 
 abstract class AuthOfflineDataSource{

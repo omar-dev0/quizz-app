@@ -46,7 +46,7 @@ class LogoutButton extends StatelessWidget {
             },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(100),
               ),
               backgroundColor: Colors.red, // Button color
             ),

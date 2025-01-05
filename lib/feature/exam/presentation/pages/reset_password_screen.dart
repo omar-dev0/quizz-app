@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -79,7 +80,7 @@ class ResetPasswordScreenUi extends StatelessWidget {
                             disabledBackgroundColor: AppColors.grey,
                             backgroundColor: AppColors.primary,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(100),
                             ), // Button color
                           ),
                           child: const Text(
@@ -95,11 +96,42 @@ class ResetPasswordScreenUi extends StatelessWidget {
             );
           },
           listener: (context, state) {
+            var currentSankBar = null;
             if (state is SuccessState) {
+              currentSankBar = customStackBar(
+                  title: "Success",
+                  content: state.message!,
+                  contentType: ContentType.success);
+              Navigator.pop(context);
             } else if (state is LoadingState) {
-            } else if (state is FailureState) {}
+              currentSankBar = customStackBar(
+                  title: "Loading",
+                  content: "InProgress",
+                  contentType: ContentType.help);
+            } else if (state is FailureState) {
+              currentSankBar = customStackBar(
+                  title: "Error",
+                  content: state.message!,
+                  contentType: ContentType.failure);
+            }
           },
         ),
+      ),
+    );
+  }
+
+  Widget customStackBar(
+      {required String title,
+      required String content,
+      required ContentType contentType}) {
+    return SnackBar(
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      behavior: SnackBarBehavior.floating,
+      content: AwesomeSnackbarContent(
+        title: title,
+        contentType: contentType,
+        message: content,
       ),
     );
   }

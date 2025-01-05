@@ -7,12 +7,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/core/helpers/app_regex.dart';
+import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
+import 'package:quizz_app/feature/auth/domain/model/update_password_entity.dart';
+import 'package:quizz_app/feature/auth/domain/use_cases/update_password_use_case.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/reset_password/reset_password_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/reset_password/reset_password_states.dart';
 
 @injectable
 class ResetPasswordViewModel extends Cubit<ResetPasswordState>{
-  ResetPasswordViewModel():super(InitialState());
+  final UpdatePasswordUseCase _updatePasswordUseCase;
+  ResetPasswordViewModel(this._updatePasswordUseCase):super(InitialState());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
@@ -50,7 +54,6 @@ class ResetPasswordViewModel extends Cubit<ResetPasswordState>{
        return true;
      }
      isActiveButton = false;
-     log("Active button is $isActiveButton");
      emit(FailureValidationState());
      return false;
    }
@@ -58,12 +61,32 @@ class ResetPasswordViewModel extends Cubit<ResetPasswordState>{
      isPasswordObscure = !isPasswordObscure;
       emit(PasswordObscureState());
    }
+
+  _updatePassword()async{
+     if(_validateFields()){
+       log("Active button is $isActiveButton");
+       emit(LoadingState());
+       String oldPassword = currentPasswordController.text;
+        String newPassword = newPasswordController.text;
+        String rePassword = confirmPasswordController.text;
+       var result = await _updatePasswordUseCase.updatePassword(oldPassword, newPassword, rePassword);
+       switch (result) {
+         case Success<UpdatePasswordEntity>():
+           emit(SuccessState(message: "Password updated successfully"));
+           break;
+         case ServerFailure<UpdatePasswordEntity>():
+           emit(FailureState(message: result.message));
+           break;
+       }
+     }
+  }
    void doAction(ResetPasswordActions action){
       switch (action) {
         case ValidateFieldsAction():
           _validateFields();
           break;
         case UpdatePasswordAction():
+          _updatePassword();
            break;
         case ChangePasswordObscureAction():
            _changePasswordObscure();
