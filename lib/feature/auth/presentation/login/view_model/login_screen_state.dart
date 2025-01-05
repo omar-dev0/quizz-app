@@ -27,4 +27,8 @@ class LoginSuccessState extends LoginScreenState{
   LoginSuccessState(this.user);
 }
 
-class NavigateToSignUp extends LoadingState{}
+class NavigateToSignUp extends LoginScreenState{}
+class ChangePasswordVisibilityState extends LoginScreenState{
+  bool isObscureText;
+  ChangePasswordVisibilityState(this.isObscureText);
+}

@@ -14,6 +14,12 @@ class LoginActionHandler {
   LoginActionHandler(this.loginUseCase,
       this.loginViewModel);
 
+
+  _changePasswordVisibility() {
+    loginViewModel.isObscureText = !loginViewModel.isObscureText;
+    loginViewModel.emitState(ChangePasswordVisibilityState(loginViewModel.isObscureText));
+  }
+
   void handleAction(LoginScreenActions action) {
     switch (action) {
       case LoginAction():
@@ -31,6 +37,9 @@ class LoginActionHandler {
       case ClickedSignUpButton():
        _navigateToSignUp();
            break;
+      case ChangePasswordVisibilityAction():
+        _changePasswordVisibility();
+        break;
     }
   }
 

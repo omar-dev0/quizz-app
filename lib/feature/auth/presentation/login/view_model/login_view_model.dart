@@ -20,7 +20,7 @@ class LoginViewModel extends Cubit<LoginScreenState> {
     actionHandler = LoginActionHandler(
         loginUseCase, this);
   }
-
+  bool isObscureText = true;
   TextEditingController getFieldController(String field) {
     return controllersManager.getFieldController(field);
   }
