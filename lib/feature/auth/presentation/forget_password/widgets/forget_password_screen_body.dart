@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +22,18 @@ class ForgetPasswordScreenBody extends StatelessWidget {
     return BlocConsumer<ForgetPasswordViewModel, ForgetPasswordScreenState>(
       builder: (context, state) {
         Widget currentBodyWidget = const CheckEmailScreen();
-        switch (state) {
-          case InitialForgetPasswordScreenState():
-            currentBodyWidget = const CheckEmailScreen();
-            break;
-          case NavigateToEmailVerificationScreenState():
+        switch (forgetPasswordViewModel.currentScreenState) {
+          case CurrentScreenState.CheckEmailScreen:
+             currentBodyWidget = const CheckEmailScreen();
+             break;
+          case CurrentScreenState.OtpVerificationScreen:
             currentBodyWidget = const OtpVerificationScreen();
             break;
-          case NavigateToResetPasswordScreenState():
-            currentBodyWidget = const ResetPasswordScreen();
-            break;
-          default:
-            currentBodyWidget = const CheckEmailScreen();
+          case CurrentScreenState.ResetPasswordScreen:
+             currentBodyWidget = const ResetPasswordScreen();
+             break;
         }
+        log(currentBodyWidget.toString());
         return currentBodyWidget;
       },
       listener: (context, state) {
@@ -54,27 +55,16 @@ class ForgetPasswordScreenBody extends StatelessWidget {
               title: "Success",
               content: "Otp sent successfully",
               contentType: ContentType.success);
-          forgetPasswordViewModel.doAction(NavigateToVerificationEmailScreenAction());
+          forgetPasswordViewModel.doAction(GotToNextStateAction());
         }
         if (currentSankBar != null) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(currentSankBar);
         }
-      },
-      listenWhen: (previous, current) {
-        if (current is NavigateBackState) {
-          if (previous is NavigateToResetPasswordScreenState) {
-            forgetPasswordViewModel
-                .doAction(NavigateToVerificationEmailScreenAction());
-          } else if (previous is NavigateToEmailVerificationScreenState) {
-            forgetPasswordViewModel.doAction(InitialScreenAction());
-          } else if (previous is InitialForgetPasswordScreenState) {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => LoginScreen()));
-          }
+        if(state is NavigateToLoginScreenState){
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
         }
-        return true;
       },
     );
   }

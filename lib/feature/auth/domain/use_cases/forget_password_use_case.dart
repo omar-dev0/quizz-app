@@ -6,6 +6,7 @@ import 'package:quizz_app/feature/auth/domain/model/verify_otp_entity.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
 
 import '../../data/api/model/response/login/Otp_code_response.dart';
+import '../model/reset_password_entity.dart';
 
 @injectable
 class ForgetPasswordUseCase{
@@ -17,5 +18,9 @@ class ForgetPasswordUseCase{
 
   Future<Result<VerifyOtpCodeEntity>> verifyOtp(String otpCode)async {
     return await authRepository.verifyOtp(otpCode);
+  }
+
+  Future<Result<ResetPasswordEntity>> resetPassword(String email, String newPassword)async{
+    return await authRepository.resetPassword(email, newPassword);
   }
 }

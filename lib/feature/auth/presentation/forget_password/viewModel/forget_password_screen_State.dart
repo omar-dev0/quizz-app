@@ -14,3 +14,6 @@ class ForgetPasswordLoadingState extends ForgetPasswordScreenState{
 }
 class SuccessInputValidation extends ForgetPasswordScreenState{}
 class FailInputValidation extends ForgetPasswordScreenState {}
+class GoToNextState extends ForgetPasswordScreenState{}
+class PreviousState extends ForgetPasswordScreenState{}
+class ChangePasswordVisibilityState extends ForgetPasswordScreenState{}

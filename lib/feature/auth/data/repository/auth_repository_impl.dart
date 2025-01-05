@@ -3,10 +3,12 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/core/resources/app_constant.dart';
 import 'package:quizz_app/feature/auth/data/api/excute_api_call.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/reset_password_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
 import 'package:quizz_app/feature/auth/data/data_source/cached_token.dart';
 import 'package:quizz_app/feature/auth/data/data_source/contracts/auth_data_source.dart';
 import 'package:quizz_app/feature/auth/domain/model/Otp_respones_entity.dart';
+import 'package:quizz_app/feature/auth/domain/model/reset_password_entity.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/model/verify_otp_entity.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
@@ -75,6 +77,14 @@ class AuthRepositoryImpl implements AuthRepository {
     return executeApiCall<VerifyOtpCodeEntity>(() async{
        var response = await authOnlineDataSource.verifyOtp(otpCode);
        return response.toDomain();
+    });
+  }
+
+  @override
+  Future<Result<ResetPasswordEntity>> resetPassword(String email, String newPassword) async{
+    return executeApiCall<ResetPasswordEntity>(()async{
+      var response = await authOnlineDataSource.resetPassword(ResetPasswordRequestModel(email: email,newPassword: newPassword));
+      return response.toDomain();
     });
   }
 }

@@ -2,9 +2,11 @@ import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/data/api/api_services.dart';
 import 'package:quizz_app/feature/auth/data/api/excute_api_call.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/login/login_request.dart';
+import 'package:quizz_app/feature/auth/data/api/model/request/reset_password_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/sin_up/sign_up_request.dart';
 import 'package:quizz_app/feature/auth/data/api/model/request/verify_otp_code_request_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/login/login_response.dart';
+import 'package:quizz_app/feature/auth/data/api/model/response/reset_password_response_model.dart';
 import 'package:quizz_app/feature/auth/data/api/model/response/verify_otp_response_model.dart';
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domine;
 
@@ -58,6 +60,12 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   @override
   Future<VerifyOtpResponseModel> verifyOtp(String otpCode) async{
     return await _apiServices.verifyOtp(VeriftOtpCodeReuestModel(resetCode: otpCode));
+  }
+
+
+  @override
+  Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel resetPasswordRequestModel) async{
+    return await _apiServices.resetPassword(resetPasswordRequestModel);
   }
 
 }

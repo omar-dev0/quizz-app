@@ -16,7 +16,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         appBar: AppBar(
           leading:  InkWell(
                onTap: (){
-                 forgetPasswordViewModel.doAction(NavigateBackAction());
+                 forgetPasswordViewModel.doAction(GoToPreviousStatAction());
                },
               child: const Icon(Icons.arrow_back_ios_new)
           ),
@@ -26,7 +26,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
           ),
         ),
-         body:  ForgetPasswordScreenBody(),
+         body:  const ForgetPasswordScreenBody(),
       ),
     );
   }

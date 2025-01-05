@@ -11,67 +11,68 @@
 import 'package:dio/dio.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i16;
+import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i9;
 
-import '../../feature/auth/data/api/api_services.dart' as _i20;
+import '../../feature/auth/data/api/api_services.dart' as _i12;
 import '../../feature/auth/data/data_source/contracts/auth_data_source.dart'
     as _i3;
 import '../../feature/auth/data/data_source/impl/auth_offline_data_source_impl.dart'
     as _i4;
 import '../../feature/auth/data/data_source/impl/auth_online_data_source_impl.dart'
-    as _i22;
-import '../../feature/auth/domain/repository/auth_repository.dart' as _i8;
+    as _i14;
+import '../../feature/auth/data/repository/auth_repository_impl.dart' as _i16;
+import '../../feature/auth/domain/repository/auth_repository.dart' as _i15;
 import '../../feature/auth/domain/use_cases/forget_password_use_case.dart'
-    as _i7;
-import '../../feature/auth/domain/use_cases/login_use_case.dart' as _i10;
-import '../../feature/auth/domain/use_cases/logout_use_case.dart' as _i12;
-import '../../feature/auth/presentation/forget_password/viewModel/forget_password_view_model.dart'
-    as _i9;
-import '../../feature/auth/presentation/login/view_model/login_view_model.dart'
-    as _i11;
-import '../../feature/auth/presentation/logout/view_model/logout_view_model.dart'
-    as _i13;
-import '../../feature/auth/presentation/profile/view_model/profile_view_model.dart'
     as _i17;
+import '../../feature/auth/domain/use_cases/login_use_case.dart' as _i19;
+import '../../feature/auth/domain/use_cases/logout_use_case.dart' as _i21;
+import '../../feature/auth/presentation/forget_password/viewModel/forget_password_view_model.dart'
+    as _i18;
+import '../../feature/auth/presentation/login/view_model/login_view_model.dart'
+    as _i20;
+import '../../feature/auth/presentation/logout/view_model/logout_view_model.dart'
+    as _i22;
+import '../../feature/auth/presentation/profile/view_model/profile_view_model.dart'
+    as _i10;
 import '../../feature/auth/presentation/registration/viewmodel/registration_cubit.dart'
-    as _i19;
+    as _i25;
 import '../../feature/auth/presentation/update_password/view_model/change_password_viewmodel.dart'
     as _i5;
-import '../../feature/exam/data/apis/api_services.dart' as _i21;
+import '../../feature/exam/data/apis/api_services.dart' as _i13;
 import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source.dart'
-    as _i14;
+    as _i7;
 import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source_impl.dart'
-    as _i15;
+    as _i8;
 import '../../feature/exam/data/data_sources/online_data_source/online_data_source.dart'
     as _i23;
 import '../../feature/exam/data/data_sources/online_data_source/online_data_source_impl.dart'
     as _i24;
-import '../../feature/exam/data/repositories/exam_by_id_repo_impl.dart' as _i26;
+import '../../feature/exam/data/repositories/exam_by_id_repo_impl.dart' as _i27;
 import '../../feature/exam/data/repositories/exam_questions_repo_impl.dart'
-    as _i28;
-import '../../feature/exam/data/repositories/exam_repo_impl.dart' as _i30;
-import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i32;
-import '../../feature/exam/domain/repositories/exam_by_id_repo.dart' as _i25;
-import '../../feature/exam/domain/repositories/exam_repo.dart' as _i29;
+    as _i29;
+import '../../feature/exam/data/repositories/exam_repo_impl.dart' as _i31;
+import '../../feature/exam/data/repositories/home_repo_impl.dart' as _i33;
+import '../../feature/exam/domain/repositories/exam_by_id_repo.dart' as _i26;
+import '../../feature/exam/domain/repositories/exam_repo.dart' as _i30;
 import '../../feature/exam/domain/repositories/exams_quesions_repo.dart'
-    as _i27;
-import '../../feature/exam/domain/repositories/home_repo.dart' as _i31;
-import '../../feature/exam/domain/use_cases/usecases.dart' as _i33;
+    as _i28;
+import '../../feature/exam/domain/repositories/home_repo.dart' as _i32;
+import '../../feature/exam/domain/use_cases/usecases.dart' as _i34;
 import '../../feature/exam/presentation/manager/exam_start_screen_manager/exam_start_view_model.dart'
-    as _i34;
-import '../../feature/exam/presentation/manager/home_managers/action_handler.dart'
-    as _i38;
-import '../../feature/exam/presentation/manager/home_managers/view_model.dart'
-    as _i36;
-import '../../feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart'
-    as _i18;
-import '../../feature/exam/presentation/manager/result_manager/result_scree_view_model.dart'
-    as _i37;
-import '../../feature/exam/presentation/manager/subject_exam_manager/exams_screen_action_handler.dart'
-    as _i39;
-import '../../feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart'
     as _i35;
-import '../dio/dio_provider.dart' as _i40;
+import '../../feature/exam/presentation/manager/home_managers/action_handler.dart'
+    as _i39;
+import '../../feature/exam/presentation/manager/home_managers/view_model.dart'
+    as _i37;
+import '../../feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart'
+    as _i11;
+import '../../feature/exam/presentation/manager/result_manager/result_scree_view_model.dart'
+    as _i38;
+import '../../feature/exam/presentation/manager/subject_exam_manager/exams_screen_action_handler.dart'
+    as _i40;
+import '../../feature/exam/presentation/manager/subject_exam_manager/exams_view_model.dart'
+    as _i36;
+import '../dio/dio_provider.dart' as _i41;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -90,72 +91,76 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i5.ChangePasswordViewModel>(
         () => _i5.ChangePasswordViewModel());
     gh.lazySingleton<_i6.Dio>(() => dioProvider.dioProvider());
-    gh.factory<_i7.ForgetPasswordUseCase>(
-        () => _i7.ForgetPasswordUseCase(gh<_i8.AuthRepository>()));
-    gh.factory<_i9.ForgetPasswordViewModel>(
-        () => _i9.ForgetPasswordViewModel(gh<_i7.ForgetPasswordUseCase>()));
-    gh.factory<_i10.LoginUseCase>(
-        () => _i10.LoginUseCase(gh<_i8.AuthRepository>()));
-    gh.factory<_i11.LoginViewModel>(
-        () => _i11.LoginViewModel(gh<_i10.LoginUseCase>()));
-    gh.factory<_i12.LogoutUseCase>(
-        () => _i12.LogoutUseCase(gh<_i8.AuthRepository>()));
-    gh.factory<_i13.LogoutViewModel>(
-        () => _i13.LogoutViewModel(gh<_i12.LogoutUseCase>()));
-    gh.factory<_i14.OfflineDataSource>(() => _i15.OfflineDataSourceImpl());
-    gh.lazySingleton<_i16.PrettyDioLogger>(() => dioProvider.providePretty());
-    gh.factory<_i17.ProfileViewModel>(() => _i17.ProfileViewModel());
-    gh.factory<_i18.QuestionsScreenViewModel>(
-        () => _i18.QuestionsScreenViewModel());
-    gh.factory<_i19.RegistrationViewModel>(
-        () => _i19.RegistrationViewModel(gh<_i8.AuthRepository>()));
-    gh.singleton<_i20.ApiServices>(() => _i20.ApiServices(gh<_i6.Dio>()));
-    gh.lazySingleton<_i21.ApiServices>(() => _i21.ApiServices(gh<_i6.Dio>()));
+    gh.factory<_i7.OfflineDataSource>(() => _i8.OfflineDataSourceImpl());
+    gh.lazySingleton<_i9.PrettyDioLogger>(() => dioProvider.providePretty());
+    gh.factory<_i10.ProfileViewModel>(() => _i10.ProfileViewModel());
+    gh.factory<_i11.QuestionsScreenViewModel>(
+        () => _i11.QuestionsScreenViewModel());
+    gh.singleton<_i12.ApiServices>(() => _i12.ApiServices(gh<_i6.Dio>()));
+    gh.lazySingleton<_i13.ApiServices>(() => _i13.ApiServices(gh<_i6.Dio>()));
     gh.factory<_i3.AuthOnlineDataSource>(
-        () => _i22.AuthOnlineDataSourceImpl(gh<_i20.ApiServices>()));
+        () => _i14.AuthOnlineDataSourceImpl(gh<_i12.ApiServices>()));
+    gh.factory<_i15.AuthRepository>(() => _i16.AuthRepositoryImpl(
+          gh<_i3.AuthOnlineDataSource>(),
+          gh<_i3.AuthOfflineDataSource>(),
+        ));
+    gh.factory<_i17.ForgetPasswordUseCase>(
+        () => _i17.ForgetPasswordUseCase(gh<_i15.AuthRepository>()));
+    gh.factory<_i18.ForgetPasswordViewModel>(
+        () => _i18.ForgetPasswordViewModel(gh<_i17.ForgetPasswordUseCase>()));
+    gh.factory<_i19.LoginUseCase>(
+        () => _i19.LoginUseCase(gh<_i15.AuthRepository>()));
+    gh.factory<_i20.LoginViewModel>(
+        () => _i20.LoginViewModel(gh<_i19.LoginUseCase>()));
+    gh.factory<_i21.LogoutUseCase>(
+        () => _i21.LogoutUseCase(gh<_i15.AuthRepository>()));
+    gh.factory<_i22.LogoutViewModel>(
+        () => _i22.LogoutViewModel(gh<_i21.LogoutUseCase>()));
     gh.factory<_i23.OnlineDataSource>(
-        () => _i24.OnlineDataSourceImpl(gh<_i21.ApiServices>()));
-    gh.factory<_i25.ExamByIdRepo>(() => _i26.ExamByIdRepoImpl(
+        () => _i24.OnlineDataSourceImpl(gh<_i13.ApiServices>()));
+    gh.factory<_i25.RegistrationViewModel>(
+        () => _i25.RegistrationViewModel(gh<_i15.AuthRepository>()));
+    gh.factory<_i26.ExamByIdRepo>(() => _i27.ExamByIdRepoImpl(
           gh<_i23.OnlineDataSource>(),
-          gh<_i14.OfflineDataSource>(),
+          gh<_i7.OfflineDataSource>(),
         ));
-    gh.factory<_i27.ExamQuestionsRepo>(() => _i28.ExamQuestionsRepoImpl(
+    gh.factory<_i28.ExamQuestionsRepo>(() => _i29.ExamQuestionsRepoImpl(
           gh<_i23.OnlineDataSource>(),
-          gh<_i14.OfflineDataSource>(),
+          gh<_i7.OfflineDataSource>(),
         ));
-    gh.factory<_i29.ExamRepo>(() => _i30.ExamRepoImpl(
+    gh.factory<_i30.ExamRepo>(() => _i31.ExamRepoImpl(
           gh<_i23.OnlineDataSource>(),
-          gh<_i14.OfflineDataSource>(),
+          gh<_i7.OfflineDataSource>(),
         ));
-    gh.factory<_i31.HomeRepo>(() => _i32.HomeRepoImpl(
+    gh.factory<_i32.HomeRepo>(() => _i33.HomeRepoImpl(
           gh<_i23.OnlineDataSource>(),
-          gh<_i14.OfflineDataSource>(),
+          gh<_i7.OfflineDataSource>(),
         ));
-    gh.factory<_i33.UseCases>(() => _i33.UseCases(
-          gh<_i31.HomeRepo>(),
-          gh<_i29.ExamRepo>(),
-          gh<_i27.ExamQuestionsRepo>(),
-          gh<_i25.ExamByIdRepo>(),
+    gh.factory<_i34.UseCases>(() => _i34.UseCases(
+          gh<_i32.HomeRepo>(),
+          gh<_i30.ExamRepo>(),
+          gh<_i28.ExamQuestionsRepo>(),
+          gh<_i26.ExamByIdRepo>(),
         ));
-    gh.factory<_i34.ExamStartScreenViewModel>(
-        () => _i34.ExamStartScreenViewModel(gh<_i33.UseCases>()));
-    gh.factory<_i35.ExamsViewModel>(
-        () => _i35.ExamsViewModel(gh<_i33.UseCases>()));
-    gh.factory<_i36.HomeViewModel>(
-        () => _i36.HomeViewModel(gh<_i33.UseCases>()));
-    gh.factory<_i37.ResultScreenViewModel>(
-        () => _i37.ResultScreenViewModel(gh<_i33.UseCases>()));
-    gh.singleton<_i38.ActionHandler>(() => _i38.ActionHandler(
-          gh<_i33.UseCases>(),
-          gh<_i36.HomeViewModel>(),
+    gh.factory<_i35.ExamStartScreenViewModel>(
+        () => _i35.ExamStartScreenViewModel(gh<_i34.UseCases>()));
+    gh.factory<_i36.ExamsViewModel>(
+        () => _i36.ExamsViewModel(gh<_i34.UseCases>()));
+    gh.factory<_i37.HomeViewModel>(
+        () => _i37.HomeViewModel(gh<_i34.UseCases>()));
+    gh.factory<_i38.ResultScreenViewModel>(
+        () => _i38.ResultScreenViewModel(gh<_i34.UseCases>()));
+    gh.singleton<_i39.ActionHandler>(() => _i39.ActionHandler(
+          gh<_i34.UseCases>(),
+          gh<_i37.HomeViewModel>(),
         ));
-    gh.singleton<_i39.ExamsScreenActionHandler>(
-        () => _i39.ExamsScreenActionHandler(
-              gh<_i35.ExamsViewModel>(),
-              gh<_i33.UseCases>(),
+    gh.singleton<_i40.ExamsScreenActionHandler>(
+        () => _i40.ExamsScreenActionHandler(
+              gh<_i36.ExamsViewModel>(),
+              gh<_i34.UseCases>(),
             ));
     return this;
   }
 }
 
-class _$DioProvider extends _i40.DioProvider {}
+class _$DioProvider extends _i41.DioProvider {}

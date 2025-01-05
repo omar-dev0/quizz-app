@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quizz_app/feature/auth/domain/common/api_result.dart';
 import 'package:quizz_app/feature/auth/domain/model/Otp_respones_entity.dart';
+import 'package:quizz_app/feature/auth/domain/model/reset_password_entity.dart';
+import 'package:quizz_app/feature/auth/domain/model/verify_otp_entity.dart';
 import 'package:quizz_app/feature/auth/domain/use_cases/forget_password_use_case.dart';
 import 'package:quizz_app/feature/auth/presentation/forget_password/viewModel/forget_password_action.dart';
 import 'forget_password_screen_State.dart';
@@ -12,8 +14,12 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
   final ForgetPasswordUseCase _forgetPasswordUseCase;
   ForgetPasswordViewModel(this._forgetPasswordUseCase): super(InitialForgetPasswordScreenState());
   TextEditingController emailController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
+  CurrentScreenState currentScreenState = CurrentScreenState.CheckEmailScreen;
   bool isButtonEnabled = false;
+  bool isObscureText = true;
   String? emailValidation(){
     if(emailController.text.isEmpty || !emailController.text.contains("@")){
       emit(FailInputValidation());
@@ -42,7 +48,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
 
   bool? formValidation(){
     if(emailFormKey.currentState!.validate()){
-      bool isButtonEnabled = true;
+      isButtonEnabled = true;
       emit(SuccessInputValidation());
       return true;
     }
@@ -51,16 +57,71 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
     return false;
   }
 
+  _verifyOtpCode(String otp)async{
+    emit(ForgetPasswordLoadingState());
+    var result = await _forgetPasswordUseCase.verifyOtp(otp);
+    switch (result) {
+      case Success<VerifyOtpCodeEntity>():
+         emit(ForgetPasswordSuccessState());
+         break;
+      case ServerFailure<VerifyOtpCodeEntity>():
+        emit(ForgetPasswordFailState(result.message));
+        break;
+    }
+  }
+
+  _resetPassword() async{
+    emit(ForgetPasswordLoadingState());
+    var result = await _forgetPasswordUseCase.resetPassword(emailController.text, newPasswordController.text);
+    switch (result) {
+      case Success<ResetPasswordEntity>():
+         emit(NavigateToLoginScreenState());
+         break;
+      case ServerFailure<ResetPasswordEntity>():
+        emit(ForgetPasswordFailState(result.message));
+        break;
+    }
+  }
+  _goToNextState(){
+    switch (currentScreenState) {
+      case CurrentScreenState.CheckEmailScreen:
+         currentScreenState = CurrentScreenState.OtpVerificationScreen;
+         emit(GoToNextState());
+         break;
+      case CurrentScreenState.OtpVerificationScreen:
+        currentScreenState = CurrentScreenState.ResetPasswordScreen;
+        emit(GoToNextState());
+        break;
+      case CurrentScreenState.ResetPasswordScreen:
+        emit(NavigateToLoginScreenState());
+        break;
+    }
+  }
+
+  _goToPreviousState(){
+    switch (currentScreenState) {
+      case CurrentScreenState.CheckEmailScreen:
+        emit(NavigateToLoginScreenState());
+        break;
+      case CurrentScreenState.OtpVerificationScreen:
+        currentScreenState = CurrentScreenState.CheckEmailScreen;
+        emit(PreviousState());
+        break;
+      case CurrentScreenState.ResetPasswordScreen:
+        currentScreenState = CurrentScreenState.CheckEmailScreen;
+        emit(PreviousState());
+        break;
+    }
+  }
+
+  _changePasswordVisibility(){
+    isObscureText = !isObscureText;
+    emit(ChangePasswordVisibilityState());
+  }
   void doAction(ForgetPasswordActions action){
     switch (action) {
       case InitialScreenAction():
          break;
-      case NavigateToVerificationEmailScreenAction():
-        emit(NavigateToEmailVerificationScreenState());
-        break;
-      case NavigateToResetPasswordScreenAction():
-        emit(NavigateToResetPasswordScreenState());
-        break;
       case NavigateBackAction():
         emit(NavigateBackState());
         break;
@@ -73,7 +134,26 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
       case CheckValidationInputAction():
         formValidation();
         break;
+      case VerifyOtpCodeAction():
+        _verifyOtpCode(action.otp!);
+        break;
+      case GotToNextStateAction():
+        _goToNextState();
+        break;
+      case GoToPreviousStatAction():
+        _goToPreviousState();
+        break;
+      case ResetPasswordAction():
+        _resetPassword();
+        break;
+      case ChangePasswordVisibilityAction():
+        _changePasswordVisibility();
+        break;
     }
   }
 }
-
+enum CurrentScreenState{
+  CheckEmailScreen,
+  OtpVerificationScreen,
+  ResetPasswordScreen
+}

@@ -5,4 +5,5 @@ abstract class EndPoints{
   static const String signUp = 'signup';
   static const String logout = "logout";
   static const String verifyOtp = "verifyResetCode";
+  static const String resetPassword = "resetPassword";
 }

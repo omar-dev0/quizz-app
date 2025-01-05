@@ -8,7 +8,9 @@ import 'package:quizz_app/feature/auth/data/core/end_points.dart';
 import 'package:retrofit/retrofit.dart';
 import 'model/request/login/Otp_code_request.dart';
 import 'model/request/login/login_request.dart';
+import 'model/request/reset_password_request_model.dart';
 import 'model/response/login/Otp_code_response.dart';
+import 'model/response/reset_password_response_model.dart';
 
 part 'api_services.g.dart';
 
@@ -34,4 +36,8 @@ abstract class ApiServices {
 
   @POST(EndPoints.verifyOtp)
   Future<VerifyOtpResponseModel> verifyOtp(@Body() VeriftOtpCodeReuestModel verifyOtpCodeReuestModel);
+
+
+  @PUT(EndPoints.resetPassword)
+  Future<ResetPasswordResponseModel> resetPassword(@Body() ResetPasswordRequestModel resetPasswordRequestModel);
 }
