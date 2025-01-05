@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/data/apis/DTO/logout_response_model.dart';
 import 'package:quizz_app/feature/exam/data/apis/api_services.dart';
 import 'package:quizz_app/feature/exam/data/apis/apis_const.dart';
 import 'package:quizz_app/feature/exam/data/data_sources/online_data_source/online_data_source.dart';
@@ -35,5 +36,9 @@ class OnlineDataSourceImpl implements OnlineDataSource{
     return await _apiServices.getExamById(ApiConst.testToken, id);
   }
 
+  @override
+  Future<LogoutResponseModel> logout(String token) async{
+    return await _apiServices.logout(token);
+  }
 
 }

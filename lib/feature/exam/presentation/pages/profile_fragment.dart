@@ -32,81 +32,83 @@ class ProfileScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Profile Picture
-            const Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(
-                        "https://example.com/profile.jpg"),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      radius: 16,
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: Colors.white,
-                        size: 16,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Profile Picture
+              const Center(
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                          "https://example.com/profile.jpg"),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        radius: 16,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                          size: 16,
+                        ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              // Username Field
+              _buildTextField("User name", user.username??""),
+              SizedBox(height: 10),
+              // First Name and Last Name
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildTextField("First name", user.firstName??""),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: _buildTextField("Last name", user.lastName??""),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 20),
-            // Username Field
-            _buildTextField("User name", user.username??""),
-            SizedBox(height: 10),
-            // First Name and Last Name
-            Row(
-              children: [
-                Expanded(
-                  child: _buildTextField("First name", user.firstName??""),
+              SizedBox(height: 10),
+              // Email Field
+              _buildTextField("Email", user.email??""),
+              SizedBox(height: 10),
+              // Password Field with Change Button
+              _buildPasswordField("Password", context),
+              SizedBox(height: 10),
+              // Phone Number Field
+              _buildTextField("Phone number", user.phone??""),
+              SizedBox(height: 30),
+              // Update Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Update action
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ), backgroundColor: Colors.grey, // Button color
+                  ),
+                  child: Text("Update"),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: _buildTextField("Last name", user.lastName??""),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            // Email Field
-            _buildTextField("Email", user.email??""),
-            SizedBox(height: 10),
-            // Password Field with Change Button
-            _buildPasswordField("Password", context),
-            SizedBox(height: 10),
-            // Phone Number Field
-            _buildTextField("Phone number", user.phone??""),
-            SizedBox(height: 30),
-            // Update Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Update action
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ), backgroundColor: Colors.grey, // Button color
-                ),
-                child: Text("Update"),
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-             LogoutButton()
-          ],
+              const SizedBox(
+                height: 12,
+              ),
+               LogoutButton()
+            ],
+          ),
         ),
       ),
     );

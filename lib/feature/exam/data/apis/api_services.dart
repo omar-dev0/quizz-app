@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quizz_app/feature/exam/data/apis/DTO/logout_response_model.dart';
 import 'package:quizz_app/feature/exam/data/models/exam_by_examid/exam_by_response_model.dart';
 import 'package:quizz_app/feature/exam/data/models/exam_by_subject_id_models/exams_by_subject_response.dart';
 import 'package:quizz_app/feature/exam/data/models/exam_question_models/exam_questions_reponse_model.dart';
@@ -27,6 +28,6 @@ abstract class ApiServices{
 
   @GET("/${ApiConst.exam}/{examId}")
   Future<ExamByIdResponseModel> getExamById(@Header("token") String token, @Path("examId") String id);
-
-
+  @GET("/${ApiConst.logout}")
+  Future<LogoutResponseModel> logout(@Header("token") String token);
 }

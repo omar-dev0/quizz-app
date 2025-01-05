@@ -1,3 +1,4 @@
+import 'package:quizz_app/feature/exam/data/apis/DTO/logout_response_model.dart';
 import 'package:quizz_app/feature/exam/data/models/exam_by_examid/exam_by_response_model.dart';
 import 'package:quizz_app/feature/exam/data/models/exam_question_models/exam_questions_reponse_model.dart';
 import 'package:quizz_app/feature/exam/data/models/subject_models/subject_response.dart';
@@ -10,4 +11,5 @@ abstract class OnlineDataSource{
   Future<ExamsBySubjectResponse> getExamBySubjectId(String id);
   Future<ExamQuestionsReponseModel> getExamQuestionsByExamId(String id);
   Future<ExamByIdResponseModel> getExamById(String id);
+  Future<LogoutResponseModel> logout(String token);
 }
