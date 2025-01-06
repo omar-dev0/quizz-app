@@ -34,7 +34,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
 
   _sentOptCode() async{
     if(emailFormKey.currentState!.validate()){
-      emit(ForgetPasswordLoadingState());
+      emit(ForgetPasswordLoadingState(message: "Sending Otp"));
       final result = await _forgetPasswordUseCase.invoke(emailController.text);
       switch (result) {
         case Success<OtpResponesEntity>():
@@ -59,7 +59,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
   }
 
   _verifyOtpCode(String otp)async{
-    emit(ForgetPasswordLoadingState());
+    emit(ForgetPasswordLoadingState(message: "Verifying Otp"));
     var result = await _forgetPasswordUseCase.verifyOtp(otp);
     switch (result) {
       case Success<VerifyOtpCodeEntity>():
@@ -73,7 +73,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
 
   _resetPassword() async{
     if(_resetPasswordValidationForm()) {
-      emit(ForgetPasswordLoadingState());
+      emit(ForgetPasswordLoadingState(message: "Resetting password"));
       var result = await _forgetPasswordUseCase.resetPassword(
           emailController.text, newPasswordController.text);
       switch (result) {
@@ -185,6 +185,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordScreenState>{
       case ValidateNewPasswordFieldsAction():
          _resetPasswordValidationForm();
          break;
+      case CheckPasswordValidation():
+        passwordValidation();
+        break;
     }
   }
 }

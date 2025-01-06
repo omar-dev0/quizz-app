@@ -14,6 +14,8 @@ class ForgetPasswordFailState extends ForgetPasswordScreenState{
   ForgetPasswordFailState(this.message);
 }
 class ForgetPasswordLoadingState extends ForgetPasswordScreenState{
+  String? message;
+  ForgetPasswordLoadingState({this.message});
 }
 class SuccessInputValidation extends ForgetPasswordScreenState{}
 class FailInputValidation extends ForgetPasswordScreenState {}

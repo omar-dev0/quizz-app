@@ -39,6 +39,9 @@ class ServerFailure<T> implements Result<T>{
 
 
   factory ServerFailure.fromResponse(int statuesCode, dynamic response){
+    if(statuesCode == 400) {
+      return ServerFailure("Reset code is invalid or has expired");
+    }
     if(statuesCode == 401){
       return ServerFailure("Incorrect email or password");
     }

@@ -15,9 +15,12 @@ class ResetPasswordForm extends StatelessWidget {
         children: [
           TextFormField(
             controller: viewModel.newPasswordController,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               labelText: "New password",
-              hintText: "Enter your password"
+              hintText: "Enter your password",
+              suffixIcon: IconButton(onPressed: (){
+
+              }, icon: Icon(Icons.remove_red_eye)),
             ),
 
             validator: (value)=> viewModel.passwordValidation(),

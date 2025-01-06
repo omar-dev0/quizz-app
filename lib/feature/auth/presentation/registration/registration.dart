@@ -34,7 +34,7 @@ class RegistrationScreen extends StatelessWidget {
             }
           else if(state is NavigateToLogin)
             {
-              Navigator.pop(context);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> LoginScreen()));
             }
           else if (state is SuccessReg)
             {
