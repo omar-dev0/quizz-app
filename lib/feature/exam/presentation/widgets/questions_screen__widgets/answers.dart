@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_screen_actions.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
@@ -24,7 +27,7 @@ class _AnswersState extends State<Answers> {
     int currentQuestion = viewModel.getCurrentQuestion();
     return FadeInLeft(
       child: SizedBox(
-        height: 380,
+        height: 380.h,
         child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widget.questions[currentQuestion].answers!.length,
@@ -38,8 +41,9 @@ class _AnswersState extends State<Answers> {
               isSelected: viewModel.groupedValue[currentQuestion] == index,
               onSelected: (int? value) {
                 setState(() {
+                  log("question $currentQuestion value $value");
                     viewModel.groupedValue[currentQuestion] = value!;
-                    viewModel.setLastChoice(widget.questions[currentQuestion].answers![value].key!);
+                    viewModel.chooseAnswer[currentQuestion] = value;
                 });
               },
             );

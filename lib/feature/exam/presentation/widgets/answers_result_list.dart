@@ -56,8 +56,9 @@ class AnswersResultList extends StatelessWidget {
                       answerCachedEntity.correctKey) {
                     border = Colors.green;
                     background = AppColors.lightGreen;
-                    viewModel.selectedAnswers[questionIndex] = index;
-
+                    if(answerCachedEntity.answers![index].key == answerCachedEntity.userChoiceKey){
+                      viewModel.selectedAnswers[questionIndex] = index;
+                    }
                   } else if (answerCachedEntity.answers![index].key ==
                           answerCachedEntity.userChoiceKey &&
                       answerCachedEntity.correctKey !=
@@ -70,7 +71,8 @@ class AnswersResultList extends StatelessWidget {
                     answer: answerCachedEntity.answers![index].answer!,
                     borderColor: border,
                     backGroundColor: background,
-                    index: questionIndex,
+                    questionIndex: questionIndex,
+                    answerIndex: index,
                   );
                 },
               ),

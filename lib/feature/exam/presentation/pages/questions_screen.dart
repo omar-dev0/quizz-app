@@ -19,6 +19,7 @@ class QuestionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context){
+        viewModel.chooseAnswer.clear();
         viewModel.setCurrentExamId(questions[0].exam!.examId!);
         log("in question screen ui ${questions[0].exam!.examId}");
         return viewModel;

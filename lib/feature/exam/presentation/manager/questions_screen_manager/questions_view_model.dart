@@ -13,17 +13,13 @@ import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_man
 @injectable
 class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   int _currentQuestion = 0;
-  String _lastChoice = "";
   String _currentExamId = "";
-  Map<int,String> answers = {};
+  Map<int,int> chooseAnswer = {};
   QuestionsScreenViewModel(): super(InitialState());
   List<int> groupedValue = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
   void setCurrentExamId(String examId){
     _currentExamId = examId;
     log("in view model id $_currentExamId");
-  }
-  void setLastChoice(String key){
-    _lastChoice = key;
   }
   int getCurrentQuestion(){
     return _currentQuestion;
@@ -31,12 +27,7 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   void setExam(){
     _currentQuestion = 0;
   }
-  void _saveAnswer(){
-    if(_lastChoice.isEmpty) _lastChoice = "#";
-    answers[_currentQuestion] = _lastChoice;
-  }
   void _nextQuestion(int totalQuestions){
-    _saveAnswer();
     _currentQuestion++;
     if(_currentQuestion + 1 == totalQuestions){
       emit(LastQuestionState());
@@ -56,19 +47,28 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
      }
   }
   void _checkAnswers(List<ExamQuestionsEntity> questions){
-     _saveAnswer();
       int correct = 0;
-      for(int i = 0;i < questions.length; ++i){
-          if(questions[i].correct == answers[i]){
+      for(int i = 0;i < questions.length; ++i) {
+        if (chooseAnswer.containsKey(i)) {
+          if (questions[i].correct == questions[i].answers?[chooseAnswer[i]!].key) {
             correct++;
           }
+        }
+        else{
+          chooseAnswer[i] = -1;
+        }
       }
       var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
       CachedExamResultEntity exam ;
       List<AnswerCachedEntity> answerList = [];
       for(int i = 0; i < questions.length; ++i){
+        int index = chooseAnswer[i]!;
+        String? choice = "#";
+        if(index != -1){
+           choice =  questions[i].answers?[index].key!;
+        }
         answerList.add(
-          AnswerCachedEntity(questions[i].correct, answers[i], _currentExamId,questions[i].answers,questions[i].question)
+          AnswerCachedEntity(questions[i].correct, choice, _currentExamId,questions[i].answers,questions[i].question)
         );
       }
       exam = CachedExamResultEntity(answerList, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);

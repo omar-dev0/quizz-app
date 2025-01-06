@@ -14,6 +14,7 @@ import 'package:quizz_app/feature/auth/domain/model/update_password_entity.dart'
 import 'package:quizz_app/feature/auth/domain/model/user.dart' as domaine;
 import 'package:quizz_app/feature/auth/domain/model/verify_otp_entity.dart';
 import 'package:quizz_app/feature/auth/domain/repository/auth_repository.dart';
+import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
 
 import '../../domain/common/api_result.dart';
 import '../api/DTO.dart';
@@ -57,6 +58,8 @@ class AuthRepositoryImpl implements AuthRepository {
     String token = await authOfflineDataSource.getToken();
     return await executeApiCall<String>(()async{
       var response = await authOnlineDataSource.logout(token);
+      var box = Hive.box<CachedExamResultEntity>(AppConstant.kExamResult);
+      box.clear();
       return response;
     });
   }

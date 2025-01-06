@@ -12,8 +12,9 @@ class AnswerReusltCard extends StatelessWidget {
   final String answer;
   final Color borderColor;
   final Color backGroundColor;
-  final int index;
-  const AnswerReusltCard({super.key, required this.answer, required this.borderColor,required this.backGroundColor,required this.index});
+  final int questionIndex;
+  final int answerIndex;
+  const AnswerReusltCard({super.key, required this.answer, required this.borderColor,required this.backGroundColor,required this.questionIndex,required this.answerIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,9 @@ class AnswerReusltCard extends StatelessWidget {
         children: [
           Radio<int>(
             activeColor: borderColor,
-            value: index, groupValue:viewModel.selectedAnswers[index], onChanged: (value) {},
+            value: answerIndex, groupValue:viewModel.selectedAnswers[questionIndex], onChanged: (value) {},
           ),
-          Text(answer, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal),overflow:TextOverflow.ellipsis,softWrap: true,),
+          Text(answer, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal),overflow:TextOverflow.ellipsis,softWrap: true,maxLines: 2,),
         ],
       ),
     );

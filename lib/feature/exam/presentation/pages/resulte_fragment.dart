@@ -13,14 +13,13 @@ class ResulteFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<ResultScreenViewModel>();
-
+    viewModel.doActions(GetResultExamByIdAction());
     return Scaffold(
         body: BlocBuilder<ResultScreenViewModel, ResultScreenStates>(
           builder: (context, state) {
               if(state is SuccessState) {
                 return ResultListView(list: viewModel.examList);
               }
-              viewModel.doActions(GetResultExamByIdAction());
               return const Center(child: CircularProgressIndicator());
           },
         ),

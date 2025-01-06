@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizz_app/feature/exam/domain/entities/exam_question_entity.dart';
 import 'package:quizz_app/feature/exam/presentation/manager/questions_screen_manager/questions_view_model.dart';
 import '../../../../../core/resources/colors.dart';
@@ -30,12 +31,12 @@ class QuestionsAnswerView extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 3,
+         SizedBox(
+          height: 3.h,
         ),
         const LinearProgressBar(),
-        const SizedBox(
-          height: 24,
+         SizedBox(
+          height: 24.h,
         ),
         Text(
          questions[viewModel.getCurrentQuestion()].question ?? "",
@@ -62,6 +63,7 @@ class QuestionsAnswerView extends StatelessWidget {
               buttonColor: AppColors.white,
               textColor: AppColors.primary,
               onPress: () {
+                if(viewModel.getCurrentQuestion() == 0) return;
                 viewModel.doAction(GoToPreviousQuestionAction());
               },
             ),
