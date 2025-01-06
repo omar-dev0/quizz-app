@@ -20,3 +20,4 @@ class NavigateToResultScreenState extends ResultScreenStates{
 class GetExamAnswersState extends ResultScreenStates{
 
 }
+class GoToResultScreenState extends ResultScreenStates{}

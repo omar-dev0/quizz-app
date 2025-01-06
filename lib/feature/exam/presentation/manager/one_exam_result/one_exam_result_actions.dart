@@ -1,0 +1,2 @@
+sealed class OneExamResultActions{}
+class GoToExamResultDetailsAction extends OneExamResultActions{}

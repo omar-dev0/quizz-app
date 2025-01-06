@@ -73,7 +73,8 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
       }
       exam = CachedExamResultEntity(answerList, questions[0].type, questions[0].id, questions[0].question, questions[0].correct, questions[0].exam);
       box.add(exam);
-      emit(FinishedExamState(correct, questions.length - correct));
+
+      emit(FinishedExamState(correct, questions.length - correct,exam));
   }
   void doAction(QuestionsScreenActions action){
     switch (action) {

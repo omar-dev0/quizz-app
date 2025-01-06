@@ -20,6 +20,7 @@ class ResulteFragment extends StatelessWidget {
               if(state is SuccessState) {
                 return ResultListView(list: viewModel.examList);
               }
+              viewModel.doActions(GetResultExamByIdAction());
               return const Center(child: CircularProgressIndicator());
           },
         ),

@@ -35,7 +35,7 @@ class AnswerReusltCard extends StatelessWidget {
             activeColor: borderColor,
             value: answerIndex, groupValue:viewModel.selectedAnswers[questionIndex], onChanged: (value) {},
           ),
-          Text(answer, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal),overflow:TextOverflow.ellipsis,softWrap: true,maxLines: 2,),
+          Flexible(child: Text(answer, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.normal),overflow:TextOverflow.ellipsis,softWrap: true,maxLines: 2,)),
         ],
       ),
     );

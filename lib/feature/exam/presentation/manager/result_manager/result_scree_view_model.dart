@@ -42,6 +42,7 @@ class ResultScreenViewModel extends Cubit<ResultScreenStates> {
         break;
       case NavigateToExamResultAction():
         emit(NavigateToResultScreenState(action.exam));
+
     }
   }
 }

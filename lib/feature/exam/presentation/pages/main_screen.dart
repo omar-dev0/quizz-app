@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeViewModel>(
-          create: (context) => homeViewModel..user = user,
+          create: (context) => homeViewModel..user = user
         ),
         BlocProvider<ResultDetailsViewModel>(
           create: (context)=>getIt.get<ResultDetailsViewModel>(),

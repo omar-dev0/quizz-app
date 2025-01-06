@@ -4,12 +4,15 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
 import 'package:quizz_app/core/resources/colors.dart';
 
+import '../../../domain/entities/cached_exam_result_entity.dart';
+import '../exam_result_details.dart';
+
 class ResultScreen extends StatelessWidget {
   final int correctAnswers;
   final int wrongAnswers;
-
+  final CachedExamResultEntity lastExam;
   const ResultScreen(
-      {super.key, required this.correctAnswers, required this.wrongAnswers});
+      {super.key, required this.correctAnswers, required this.wrongAnswers,required this.lastExam});
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +112,9 @@ class ResultScreen extends StatelessWidget {
         SizedBox(
           width: context.width,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ExamResultDetails(examResultEntity: lastExam,)));
+            },
             child: Text(
               "Show results",
               style: Theme.of(context)
