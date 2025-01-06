@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class SubjectsBloc extends StatelessWidget {
     return BlocConsumer<HomeViewModel, HomeScreenStates>(
       builder: (context, state) {
         if (state is SuccessState) {
-          return const SubjectsListView();
+          return FadeInUp(child: const SubjectsListView());
         } else if (state is FailState) {
           Fluttertoast.showToast(
             msg: state.message,

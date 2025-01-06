@@ -67,4 +67,11 @@ abstract class Dialogs {
     ),  barrierDismissible: false
     );
   }
+
+  static void errorDialog({required BuildContext context}) {
+    showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(title: Lottie.asset(AnimationAssets.error)));
+  }
 }

@@ -32,8 +32,8 @@ class AnswersResultList extends StatelessWidget {
               boxShadow: const [
                 BoxShadow(
                   color: AppColors.grey10,
-                  blurRadius: 5,
-                  spreadRadius: 4,
+                  blurRadius: 4,
+                  spreadRadius: 0,
                 )
               ]),
           child: Column(

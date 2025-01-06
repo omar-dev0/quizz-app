@@ -30,28 +30,10 @@ class LoginScreenBody extends StatelessWidget {
             Navigator.pop(context);
           }
         else if (state is LoginErrorState) {
-          showDialog(
-              context: context,
-              builder: (_) {
-                return AlertDialog(
-                  backgroundColor: AppColors.error,
-                  title: Text(
-                    state.message!,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.white),
-                  ),
-                  actions: [
-                    InkWell(
-                      onTap: () {
-                        loginViewModel.doAction(InitialScreenAction());
-                      },
-                      child: const Text(AppStrings.cancel),
-                    )
-                  ],
-                );
-              });
+          Dialogs.errorDialog(context: context);
         }
         else if (state is LoginSuccessState) {
-          Future.delayed(const Duration(seconds: 1), () {
+          Future.delayed(const Duration(seconds: 2), () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(builder: (_)=> MainScreen(user: state.user!)));
           });

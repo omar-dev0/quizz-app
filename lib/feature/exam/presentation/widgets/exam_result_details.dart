@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/feature/exam/domain/entities/cached_exam_result_entity.dart';
@@ -32,15 +33,17 @@ class _ExamResultDetailsState extends State<ExamResultDetails> {
             },
             icon: const Icon(Icons.arrow_back_ios_new)),
       ),
-      body: ListView.builder(
-          itemCount: widget.examResultEntity.answers!.length,
-          itemBuilder: (context, index) {
-            return AnswersResultList(
-              questionIndex: index,
-              answerCachedEntity: widget.examResultEntity.answers![index],
-              question: widget.examResultEntity.question,
-            );
-          }),
+      body: FadeInUpBig(
+        child: ListView.builder(
+            itemCount: widget.examResultEntity.answers!.length,
+            itemBuilder: (context, index) {
+              return AnswersResultList(
+                questionIndex: index,
+                answerCachedEntity: widget.examResultEntity.answers![index],
+                question: widget.examResultEntity.question,
+              );
+            }),
+      ),
     );
   }
 }

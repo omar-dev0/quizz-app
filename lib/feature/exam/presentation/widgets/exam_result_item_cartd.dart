@@ -24,7 +24,7 @@ class ExamResultItemCartd extends StatelessWidget {
             viewModel.doActions(NavigateToExamResultAction(exam));
           },
           child: Container(
-            margin: const EdgeInsets.only(bottom: 16),
+            margin: const EdgeInsets.only(bottom: 12,left: 4,right: 4),
             height: 103.h,
             width: context.width,
             decoration: BoxDecoration(

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/extensions/build_context_extensions.dart';
@@ -35,11 +36,13 @@ class SubjectItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SizedBox(
-              height: 48,
-              width: 48,
-              child: Image.network(
-                  homeViewModel.actionHandler.subjectsList[index].icon!),
+            FadeIn(
+              child: SizedBox(
+                height: 48,
+                width: 48,
+                child: Image.network(
+                    homeViewModel.actionHandler.subjectsList[index].icon!),
+              ),
             ),
             const SizedBox(
               width: 8,

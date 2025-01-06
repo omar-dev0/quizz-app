@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i10;
 
-import '../../feature/auth/data/api/api_services.dart' as _i15;
+import '../../feature/auth/data/api/api_services.dart' as _i14;
 import '../../feature/auth/data/data_source/contracts/auth_data_source.dart'
     as _i3;
 import '../../feature/auth/data/data_source/impl/auth_offline_data_source_impl.dart'
@@ -40,7 +40,7 @@ import '../../feature/auth/presentation/registration/viewmodel/registration_cubi
     as _i27;
 import '../../feature/auth/presentation/update_password/view_model/change_password_viewmodel.dart'
     as _i5;
-import '../../feature/exam/data/apis/api_services.dart' as _i14;
+import '../../feature/exam/data/apis/api_services.dart' as _i15;
 import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source.dart'
     as _i7;
 import '../../feature/exam/data/data_sources/offline_data_source/offline_data_source_impl.dart'
@@ -110,10 +110,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i12.QuestionsScreenViewModel());
     gh.factory<_i13.ResultDetailsViewModel>(
         () => _i13.ResultDetailsViewModel());
-    gh.lazySingleton<_i14.ApiServices>(() => _i14.ApiServices(gh<_i6.Dio>()));
-    gh.singleton<_i15.ApiServices>(() => _i15.ApiServices(gh<_i6.Dio>()));
+    gh.singleton<_i14.ApiServices>(() => _i14.ApiServices(gh<_i6.Dio>()));
+    gh.lazySingleton<_i15.ApiServices>(() => _i15.ApiServices(gh<_i6.Dio>()));
     gh.factory<_i3.AuthOnlineDataSource>(
-        () => _i16.AuthOnlineDataSourceImpl(gh<_i15.ApiServices>()));
+        () => _i16.AuthOnlineDataSourceImpl(gh<_i14.ApiServices>()));
     gh.factory<_i17.AuthRepository>(() => _i18.AuthRepositoryImpl(
           gh<_i3.AuthOnlineDataSource>(),
           gh<_i3.AuthOfflineDataSource>(),
@@ -131,7 +131,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i24.LogoutViewModel>(
         () => _i24.LogoutViewModel(gh<_i23.LogoutUseCase>()));
     gh.factory<_i25.OnlineDataSource>(
-        () => _i26.OnlineDataSourceImpl(gh<_i14.ApiServices>()));
+        () => _i26.OnlineDataSourceImpl(gh<_i15.ApiServices>()));
     gh.factory<_i27.RegistrationViewModel>(
         () => _i27.RegistrationViewModel(gh<_i17.AuthRepository>()));
     gh.factory<_i28.UpdatePasswordUseCase>(

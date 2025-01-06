@@ -20,7 +20,7 @@ class AnswerReusltCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<ResultDetailsViewModel>();
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(2),
       margin: const EdgeInsets.only(top: 12,bottom: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
