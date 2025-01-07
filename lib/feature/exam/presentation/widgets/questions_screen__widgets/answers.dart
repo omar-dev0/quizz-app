@@ -19,7 +19,7 @@ class Answers extends StatefulWidget {
 }
 
 class _AnswersState extends State<Answers> {
-  String? _selectedAnswer;
+  int? _selectedAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,6 @@ class _AnswersState extends State<Answers> {
           itemCount: widget.questions[currentQuestion].answers!.length,
           itemBuilder: (context, index) {
             final answer = widget.questions[currentQuestion].answers![index];
-            viewModel.doAction(GetQuestionTypeAction(widget.questions[currentQuestion].type!));
             return ChoiceItemCard(
               answerIndex: index,
               index: currentQuestion,

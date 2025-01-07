@@ -19,7 +19,6 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
   List<int> groupedValue = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
   void setCurrentExamId(String examId){
     _currentExamId = examId;
-    log("in view model id $_currentExamId");
   }
   int getCurrentQuestion(){
     return _currentQuestion;
@@ -76,6 +75,13 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
 
       emit(FinishedExamState(correct, questions.length - correct,exam));
   }
+
+  _reset(){
+    chooseAnswer.clear();
+    groupedValue = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+    emit(ResetExamState());
+  }
+
   void doAction(QuestionsScreenActions action){
     switch (action) {
       case SelectAnswerAction():
@@ -92,6 +98,9 @@ class QuestionsScreenViewModel extends Cubit<QuestionsScreenStates>{
         break;
       case GetQuestionTypeAction():
         // _getQuestionAnswersType(action.type);
+        break;
+      case ResetExamAction():
+        _reset();
         break;
     }
   }

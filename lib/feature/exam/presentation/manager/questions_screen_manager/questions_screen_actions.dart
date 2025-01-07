@@ -16,3 +16,4 @@ class GetQuestionTypeAction extends QuestionsScreenActions{
   String type;
   GetQuestionTypeAction(this.type);
 }
+class ResetExamAction extends QuestionsScreenActions{}

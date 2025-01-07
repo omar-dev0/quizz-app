@@ -39,7 +39,6 @@ class ExamStartScreenBloc extends StatelessWidget {
           if(state.questions.isNotEmpty){
             Navigator.of(context).push(MaterialPageRoute(builder: (_)=>  QuestionsScreen(questions: state.questions,examDuration: state.duration,)));
           }
-
         }
       },
       listenWhen: (previous, current) {

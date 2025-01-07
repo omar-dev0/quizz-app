@@ -14,12 +14,14 @@ class AnswersResultList extends StatelessWidget {
   final AnswerCachedEntity answerCachedEntity;
   final String? question;
   final int questionIndex;
+  final int questionsLength;
   const AnswersResultList(
-      {super.key, required this.answerCachedEntity, required this.question,required this.questionIndex});
+      {super.key, required this.answerCachedEntity, required this.question,required this.questionIndex,required this.questionsLength});
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<ResultDetailsViewModel>();
+    viewModel.selectedAnswers = List.filled(questionsLength, -1);
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),

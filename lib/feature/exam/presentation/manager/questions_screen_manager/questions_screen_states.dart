@@ -20,3 +20,4 @@ class ShowExamResultState extends QuestionsScreenStates{
 }
 
 class LastQuestionState extends QuestionsScreenStates{}
+class ResetExamState extends QuestionsScreenStates{}
