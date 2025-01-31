@@ -32,27 +32,7 @@ Ensure you have the following installed:
 - Dart
 - Android Studio or VS Code
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/omar-dev0/quizz-app.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd quizz-app
-   ```
-3. Install dependencies:
-   ```bash
-   flutter pub get
-   ```
-4. Run the app:
-   ```bash
-   flutter run
-   ```
-
-## 📸 Screenshots
-(Include some screenshots of the app here.)
-
+   ``' 
 ---
 Made with ❤️ using Flutter.
 
