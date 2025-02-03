@@ -22,17 +22,5 @@ Welcome to the **Quiz App**, a Flutter-based application that provides an intera
 ## 🛠️ Technologies Used
 - **Flutter** – Frontend framework for cross-platform development.
 - **Dart** – Programming language for app logic.
-- **Firebase** (or other backend service) – Used for authentication and data storage.
-
-## 🚀 Getting Started
-
-### Prerequisites
-Ensure you have the following installed:
-- Flutter SDK
-- Dart
-- Android Studio or VS Code
-
-   ``' 
----
 Made with ❤️ using Flutter.
 
