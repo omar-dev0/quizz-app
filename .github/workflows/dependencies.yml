@@ -1,0 +1,16 @@
+name: Flutter Dependencies
+
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+jobs:
+  dependencies:
+    name: Get Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pub get
+        run: flutter pub get
