@@ -1,0 +1,14 @@
+name: Run Build Runner
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+jobs:
+  build_runner:
+      name: Run Build Runner
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: run build_runner
+          run: flutter pub run build_runner build --delete-conflicting-outputs
