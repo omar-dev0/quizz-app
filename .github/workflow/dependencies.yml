@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - development
-      - mail
+      - main
 jobs:
   dependencies:
     name: Get Dependencies
